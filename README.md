@@ -60,3 +60,4 @@ Features List:
 
 ## GPL v3.0 License ## 
 Link to GNU General Public License
+http://www.gnu.org/licenses/
