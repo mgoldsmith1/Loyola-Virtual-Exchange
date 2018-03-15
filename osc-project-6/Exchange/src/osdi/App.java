@@ -15,8 +15,6 @@ public class App
     private static final long million = thousand * thousand;
     private static final long endValue = 200L * million;
     
-    CreateFacadeMaker createFacadeMaker = new CreateFacadeMaker();
-    
     public static void main( String[] args )
     {
     	 // Summary:
