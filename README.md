@@ -1,5 +1,3 @@
-# Market-Exchange-Simulator
-
 # Market Exchange Simulator #
 
 ##  Mission Statement ## 
