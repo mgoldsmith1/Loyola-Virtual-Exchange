@@ -19,5 +19,7 @@
 	<classpathentry kind="lib" path="/Users/Mattata/Desktop/MostRecentComp312Workspace/osc-project-6/Exchange/jars/quickfixj-msg-fix43.jar"/>
 	<classpathentry kind="lib" path="/Users/Mattata/Desktop/MostRecentComp312Workspace/osc-project-6/Exchange/jars/quickfixj-msg-fix44.jar"/>
 	<classpathentry kind="lib" path="/Users/Mattata/Desktop/MostRecentComp312Workspace/osc-project-6/Exchange/jars/quickfixj-messages-fixt11-1.6.2.jar"/>
+	<classpathentry kind="lib" path="/Users/Mattata/Desktop/MostRecentComp312Workspace/osc-project-6/Exchange/jars/quickfixj-messages-fix50-2.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/Mattata/Desktop/MostRecentComp312Workspace/osc-project-6/Exchange/jars/dataprovider.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
