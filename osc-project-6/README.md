@@ -37,9 +37,7 @@ Features List:
 
 ## Frequently Asked Questions (FAQ) ##
 
-	    Are there indicators provided?
-
-        Answer: No. Possibly in the future.
+* Are there indicators provided? 	Answer: No. Possibly in the future.
 
 ## Who do I talk to? ##
 
@@ -48,8 +46,7 @@ Features List:
 
 
 ## IRC channel ##
-* comp312_group6
-* password: hex2142
+* ##MES
 
 ## Development ##
 
