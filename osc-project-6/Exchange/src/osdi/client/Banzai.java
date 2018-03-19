@@ -104,7 +104,7 @@ public class Banzai {
             try {
                 initiator.start();
                 initiatorStarted = true;
-                sessions = initiator.getSessions(); // this was not here before
+             //   sessions = initiator.getSessions(); // this was not here before
             } catch (Exception e) {
                 log.error("Logon failed", e);
                 
