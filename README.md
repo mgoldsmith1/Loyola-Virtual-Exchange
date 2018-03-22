@@ -48,8 +48,8 @@ Features List:
 
 
 ## IRC channel ##
-* comp312_group6
-* password: hex2142
+* ##MES
+
 
 ## Development ##
 
