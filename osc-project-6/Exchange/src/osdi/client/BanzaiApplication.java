@@ -371,7 +371,7 @@ public class BanzaiApplication implements Application {
         send(populateOrder(order, newOrderSingle), order.getSessionID());
     }
 
- /*   public void send50(Order order) {
+    public void send50(Order order) {
         quickfix.fix50.NewOrderSingle newOrderSingle = new quickfix.fix50.NewOrderSingle(
                 new ClOrdID(order.getID()), sideToFIXSide(order.getSide()),
                 new TransactTime(), typeToFIXType(order.getType()));
@@ -379,7 +379,7 @@ public class BanzaiApplication implements Application {
         newOrderSingle.set(new Symbol(order.getSymbol()));
         newOrderSingle.set(new HandlInst('1'));
         send(populateOrder(order, newOrderSingle), order.getSessionID());
-    }*/
+    }
 
     public quickfix.Message populateOrder(Order order, quickfix.Message newOrderSingle) {
 
@@ -407,7 +407,7 @@ public class BanzaiApplication implements Application {
         String beginString = order.getSessionID().getBeginString();
         switch (beginString) {
             case "FIX.4.0":
-             //   cancel40(order);
+                cancel40(order);
                 break;
             case "FIX.4.1":
                 cancel41(order);
@@ -418,7 +418,7 @@ public class BanzaiApplication implements Application {
         }
     }
 
-  /*  public void cancel40(Order order) {
+    public void cancel40(Order order) {
         String id = order.generateID();
         quickfix.fix40.OrderCancelRequest message = new quickfix.fix40.OrderCancelRequest(
                 new OrigClOrdID(order.getID()), new ClOrdID(id), new CxlType(CxlType.FULL_REMAINING_QUANTITY), new Symbol(order
@@ -427,7 +427,7 @@ public class BanzaiApplication implements Application {
 
         orderTableModel.addID(order, id);
         send(message, order.getSessionID());
-    }*/
+    }
 
     public void cancel41(Order order) {
         String id = order.generateID();

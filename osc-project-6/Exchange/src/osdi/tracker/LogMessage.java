@@ -208,7 +208,7 @@ public class LogMessage implements Comparable<Object> {
                     messageTypeValue, field.getTag());
         if (groupInfo != null) {
 
-            int delimeterField = groupInfo.getDelimeterField();
+            int delimeterField = groupInfo.getDelimeterField(); // should it be this? getDelimeterField();
             Group group = new Group(field.getTag(), delimeterField);
             int numberOfGroups =  Integer.valueOf((String) field.getObject());
             for (int index = 0; index < numberOfGroups; index++) {

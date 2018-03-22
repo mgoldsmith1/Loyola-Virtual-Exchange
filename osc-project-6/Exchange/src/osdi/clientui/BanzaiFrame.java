@@ -48,7 +48,7 @@ public class BanzaiFrame extends JFrame {
     public BanzaiFrame(osdi.client.OrderTableModel orderTableModel, osdi.client.ExecutionTableModel executionTableModel,
             final osdi.client.BanzaiApplication application) {
         super();
-        setTitle("Banzai!");
+        setTitle("Order Entry");
         setSize(600, 400);
 
         if (System.getProperties().containsKey("openfix")) {

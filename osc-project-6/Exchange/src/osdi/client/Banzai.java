@@ -1,4 +1,5 @@
 package osdi.client;
+
 import osdi.clientui.*;
 
 /*******************************************************************************
@@ -92,8 +93,7 @@ public class Banzai {
                 messageFactory);
 
         JmxExporter exporter = new JmxExporter();
-        exporter.export(initiator);  //originally ->  exporter.register(initiator);
-        // tried exporter.export(initiator) which works but its not doing what it says should work
+        exporter.register(initiator);  // works now
 
         frame = new BanzaiFrame(orderTableModel, executionTableModel, application);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,7 +104,7 @@ public class Banzai {
             try {
                 initiator.start();
                 initiatorStarted = true;
-             //   sessions = initiator.getSessions(); // this was not here before
+           
             } catch (Exception e) {
                 log.error("Logon failed", e);
                 
@@ -143,12 +143,7 @@ public class Banzai {
         }
         banzai = new Banzai(args);
         if (!System.getProperties().containsKey("openfix")) {
-        //	banzai.frame.setVisible(true);
-        	//Thread.sleep(5000);
-        	//banzai.frame.isShowing();
-        	//Thread.sleep(5000);
-            banzai.logon();
-            banzai.wait(5000);
+            banzai.logon();     
         }
         shutdownLatch.await();
     }
