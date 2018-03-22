@@ -13,6 +13,8 @@ The value we will focus on first is the OrderID's e.g. LPX (Loyola Prime Index),
 
 Then we need to do the accounting portion of the project
 
+![screenshot](https://user-images.githubusercontent.com/25426180/37797273-5e4d6b58-2de7-11e8-96e6-d7263c65271e.png)
+
 
 
 ### TO DO ###
