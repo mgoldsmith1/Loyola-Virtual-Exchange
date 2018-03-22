@@ -59,22 +59,22 @@ Then we need to do the accounting portion of the project
 
 ## Frequently Asked Questions (FAQ) ##
 * What is Market-Exchange-Simulator?	
-_Market Exchange Simulator is an open source trading simulator that uses the FIX Protocol and will allow users to test market strategies._
+   -_Market Exchange Simulator is an open source trading simulator that uses the FIX Protocol and will allow users to test market strategies._
 
 * Which software license is Market-Exchange-Simulator licensed under?	
-_Market-Exchange-Simulator is licensed under the GNU General Public License v3.0. Refer to the license document for more information._
+   -_Market-Exchange-Simulator is licensed under the GNU General Public License v3.0. Refer to the license document for more information._
 
 * Which platforms does Market-Exchange-Simulator support?	
-_Market-Exchange-Simulator is actively tested and supported on various 64 bit versions of Windows (7 and up) and macOS._
+   -_Market-Exchange-Simulator is actively tested and supported on various 64 bit versions of Windows (7 and up) and macOS._
 
 * Who made Market-Exchange-Simulator? 	
-_Group6 from COMP312/412 course. The list of contributors can be found on GitHub._
+   -_Group6 from COMP312/412 course. The list of contributors can be found on GitHub._
 
 * Are there indicators provided?	
-_No. Possibly in the future._
+   -_No. Possibly in the future._
 
 * How do I report a bug?	
-_On the project's Github page under the issues tab please submit a new issue ticket with a descriptive but brief subject line. In the main body please provide adequate information for contributors to solve the issue._
+   -_On the project's Github page under the issues tab please submit a new issue ticket with a descriptive but brief subject line. In the main body please provide adequate information for contributors to solve the issue._
 
 ## Who do I talk to? ##
 
