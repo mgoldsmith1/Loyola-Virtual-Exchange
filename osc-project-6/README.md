@@ -25,16 +25,15 @@ Then we need to do the accounting portion of the project
 
 ## Requirements ## 
 
-* Functional Requirements
-	- Provides multi-threaded order traffic engine.
-		
-* Non-Functional Requirements
-	- Provides the ability for the simulation of a financial exchange.
-	- Provides delegation of an exchange feed.
+* JRE Java SE 8 v1.8.0_121
+
 	
 ## Installation ##
 
-*
+
+
+
+
 
 
 ## Features List: ##
@@ -44,9 +43,20 @@ Then we need to do the accounting portion of the project
 * Provides simulation of message/order routing.
 * Provide string responses for financial exchange quotes for clients to trade based on.
 
+## Functional vs Non-Functional Requirements ##
+
+* Functional Requirements
+	- Provides multi-threaded order traffic engine.
+		
+* Non-Functional Requirements
+	- Provides the ability for the simulation of a financial exchange.
+	- Provides delegation of an exchange feed.
+
 ## Frequently Asked Questions (FAQ) ##
 
 * Are there indicators provided? 	Answer: No. Possibly in the future.
+
+* How do I report a bug?			Answer: 
 
 ## Who do I talk to? ##
 
