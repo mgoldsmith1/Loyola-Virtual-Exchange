@@ -25,15 +25,24 @@ Then we need to do the accounting portion of the project
 
 ## Requirements ## 
 
+* Functional Requirements
+	- Provides multi-threaded order traffic engine.
+		
+* Non-Functional Requirements
+	- Provides the ability for the simulation of a financial exchange.
+	- Provides delegation of an exchange feed.
+	
 ## Installation ##
 
+* 
 
-Features List:
 
-* Provides live updates of stock exchange information
+## Features List: ##
+
+* Provides live updates of financial exchange information.
 * Integrate the Financial Information Exchange Application Programming Interface to:
-* Provides easy simulation of trades
-* Provide string responses for stock exchange quotes for clients to trade based on
+* Provides simulation of message/order routing.
+* Provide string responses for financial exchange quotes for clients to trade based on.
 
 ## Frequently Asked Questions (FAQ) ##
 
