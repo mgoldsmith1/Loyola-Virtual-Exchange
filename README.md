@@ -25,21 +25,28 @@ Then we need to do the accounting portion of the project
 
 ## Requirements ## 
 
+* Functional Requirements
+	- Provides multi-threaded order traffic engine.
+		
+* Non-Functional Requirements
+	- Provides the ability for the simulation of a financial exchange.
+	- Provides delegation of an exchange feed.
+	
 ## Installation ##
 
+*
 
-Features List:
 
-* Provides live updates of stock exchange information
+## Features List: ##
+
+* Provides live updates of financial exchange information.
 * Integrate the Financial Information Exchange Application Programming Interface to:
-* Provides easy simulation of trades
-* Provide string responses for stock exchange quotes for clients to trade based on
+* Provides simulation of message/order routing.
+* Provide string responses for financial exchange quotes for clients to trade based on.
 
 ## Frequently Asked Questions (FAQ) ##
 
-	    Are there indicators provided?
-
-        Answer: No. Possibly in the future.
+* Are there indicators provided? 	Answer: No. Possibly in the future.
 
 ## Who do I talk to? ##
 
@@ -50,7 +57,6 @@ Features List:
 ## IRC channel ##
 * ##MES
 
-
 ## Development ##
 
 * Writing tests
@@ -59,5 +65,4 @@ Features List:
 * Link to Contribution.MD
 
 ## GPL v3.0 License ## 
-Link to GNU General Public License:
-http://www.gnu.org/licenses/
+Link to GNU General Public License
