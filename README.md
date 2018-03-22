@@ -5,6 +5,8 @@
 An open source trading simulator that uses the FIX Protocol and will allow users to test market strategies.
 
 ## How it works ## 
+![screenshot](https://user-images.githubusercontent.com/25426180/37797273-5e4d6b58-2de7-11e8-96e6-d7263c65271e.png)
+
 In our main, we are feeding numbers ranging from 1 to 200 million through an exchange system. This system consists of two threads. The first thread finds what market these numbers should go to. The second thread determines if it is a prime market. In other words if we have found a prime number within our system it will be queued to the Loyola Prime Market Index or (LPX). The numbers are treated like a key value pair. The key representing a ticket number and the value is the information of the order being placed. The numbers are read in like a queue that is FIFO. The processed ordered are feed to a dequeue that are eventually redirected to a market. This is a baseline approach to find a particular difference in what is being feed through the Exchange Feed
 
 We will eventually remove the numbers that are feed here and replace them with strings
@@ -13,7 +15,7 @@ The value we will focus on first is the OrderID's e.g. LPX (Loyola Prime Index),
 
 Then we need to do the accounting portion of the project
 
-![screenshot](https://user-images.githubusercontent.com/25426180/37797273-5e4d6b58-2de7-11e8-96e6-d7263c65271e.png)
+
 
 
 
