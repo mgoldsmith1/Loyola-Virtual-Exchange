@@ -1,4 +1,5 @@
 # Market Exchange Simulator #
+<img src="https://user-images.githubusercontent.com/35674633/37799728-99235646-2dee-11e8-975b-588a411163fd.png" width="450">
 
 ##  Mission Statement ##
 
