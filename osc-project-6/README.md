@@ -1,6 +1,7 @@
 # Market Exchange Simulator #
 
-##  Mission Statement ## 
+##  Mission Statement ##
+
 An open source trading simulator that uses the FIX Protocol and will allow users to test market strategies.
 
 ## How it works ## 
@@ -85,6 +86,7 @@ Then we need to do the accounting portion of the project
 
 
 ## IRC channel ##
+
 * ##MES
 
 ## Development ##
@@ -94,5 +96,6 @@ Then we need to do the accounting portion of the project
 * Other guidelines
 * Link to Contribution.MD
 
-## GPL v3.0 License ## 
+## GPL v3.0 License ##
+
 Link to GNU General Public License
