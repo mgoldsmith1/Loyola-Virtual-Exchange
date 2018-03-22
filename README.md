@@ -36,10 +36,27 @@ Then we need to do the accounting portion of the project
 	
 ## Installation ##
 
+On OS X and Windows you can install Maven with Homebrew:
 
+If you don't have homebrew. Install homebrew with the following:
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+Install maven:
+```bash 
+brew install maven
+```
 
+Then in the project directory run the following in terminal:
+```bash
+mvn validate
+mvn compile
+mvn test
+mvn package
+mvn verify
+mvn install
+```
 
+Currently working on a Makefile to establish project dependencies/resources
 
 
 ## Features List: ##
