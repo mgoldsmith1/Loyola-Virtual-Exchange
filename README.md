@@ -77,8 +77,8 @@ Then we need to do the accounting portion of the project
    - _On the project's Github page under the issues tab please submit a new issue ticket with a descriptive but brief subject line. In the main body please provide adequate information for contributors to solve the issue._
 
 * Who do I talk to? 
- - Repo owner or admin
- - Other community members or team contact
+ - _Repo owner or admin_
+ - _Other community members or team contact_
 
 
 ## IRC channel ##
