@@ -34,7 +34,7 @@ Then we need to do the accounting portion of the project
 	
 ## Installation ##
 
-* 
+*
 
 
 ## Features List: ##
