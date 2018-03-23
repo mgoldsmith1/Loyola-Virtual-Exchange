@@ -19,7 +19,6 @@ package osdi.client;
  * are not clear to you.
  ******************************************************************************/
 
-//package quickfix.examples.banzai;
 
 import quickfix.Application;
 import quickfix.DefaultMessageFactory;
@@ -319,9 +318,9 @@ public class BanzaiApplication implements Application {
             case FixVersions.BEGINSTRING_FIX44:
                 send44(order);
                 break;
-            //case FixVersions.BEGINSTRING_FIXT11:
-             //   send50(order);
-              //  break;
+            case FixVersions.BEGINSTRING_FIXT11:
+                send50(order);
+                break;
         }
     }
 
