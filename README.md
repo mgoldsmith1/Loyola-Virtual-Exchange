@@ -27,31 +27,20 @@ Cloning Market-Exchange-Simulator with Git
 ```bash
 git clone https://github.com/mgoldsmith1/Market-Exchange-Simulator.git
 cd Market-Exchange-Simulator
+
 ```
 
+On OS X and Windows you can run the application via following:
 
-On OS X and Windows you can install Maven with Homebrew:
-
-If you don't have homebrew. Install homebrew with the following:
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-Install maven:
+Step 1: Run the server:
 ```bash 
-brew install maven
+cd osc-project-6/Exchange/jars
+java -jar server.jar
 ```
-
-Then in the project directory run the following in terminal:
-```bash
-mvn validate
-mvn compile
-mvn test
-mvn package
-mvn verify
-mvn install
+Step 2: In the same directory run the client:
+```bash 
+java -jar client.jar
 ```
-
-Currently working on a Makefile to establish project dependencies/resources
-
 
 ## Features List: ##
 
