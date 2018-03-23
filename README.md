@@ -16,19 +16,6 @@ The value we will focus on first is the OrderID's e.g. LPX (Loyola Prime Index),
 
 Then we need to do the accounting portion of the project
 
-
-
-
-
-### TO DO ###
-
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-* Image Placeholder
-
 ## Requirements ## 
 
 * JRE Java SE 8 v1.8.0_121
@@ -119,5 +106,5 @@ Currently working on a Makefile to establish project dependencies/resources
 
 ## GPL v3.0 License ##
 
-Link to GNU General Public License
-https://www.gnu.org/licenses/gpl-3.0.en.html
+[GNU General Public License v 3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
