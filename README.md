@@ -120,3 +120,4 @@ Currently working on a Makefile to establish project dependencies/resources
 ## GPL v3.0 License ##
 
 Link to GNU General Public License
+https://www.gnu.org/licenses/gpl-3.0.en.html
