@@ -36,6 +36,13 @@ Then we need to do the accounting portion of the project
 	
 ## Installation ##
 
+Cloning Market-Exchange-Simulator with Git
+```bash
+git clone https://github.com/mgoldsmith1/Market-Exchange-Simulator.git
+cd Market-Exchange-Simulator
+```
+
+
 On OS X and Windows you can install Maven with Homebrew:
 
 If you don't have homebrew. Install homebrew with the following:
