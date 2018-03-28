@@ -1,3 +1,1 @@
-*	text=auto
-*.html  text
-*.css   text
+*.html linguist-language=Java
