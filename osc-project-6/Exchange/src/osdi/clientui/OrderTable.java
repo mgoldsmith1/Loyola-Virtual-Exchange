@@ -19,7 +19,7 @@
 
 package osdi.clientui;
 
-import osdi.client.BanzaiApplication;
+import osdi.client.ClientApplication;
 import osdi.client.Order;
 import osdi.client.OrderTableModel;
 
@@ -34,9 +34,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class OrderTable extends JTable implements MouseListener {
-    private final transient BanzaiApplication application;
+    private final transient ClientApplication application;
 
-    public OrderTable(OrderTableModel orderTableModel, BanzaiApplication application) {
+    public OrderTable(OrderTableModel orderTableModel, ClientApplication application) {
         super(orderTableModel);
         this.application = application;
         addMouseListener(this);

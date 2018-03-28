@@ -8,24 +8,24 @@ public class OrderBoundTrafficBufferImpl<T> implements OrderQueue<T> {
     private final java.util.Queue<T> queue;
     private final Semaphore full;
     private final Semaphore empty;
-    private final SpinLock lock;
+    private final SpinLock spinLock;
 
     public OrderBoundTrafficBufferImpl(int bufferSize) {
         this.bufferSize = bufferSize;
         queue = new java.util.ArrayDeque<>();
         full = new Semaphore(0);
         empty = new Semaphore(bufferSize);
-        lock = new SpinLock();
+        spinLock = new SpinLock();
     }
 
     @Override
     public void enqueue(T item) {
         empty.down();
         try {
-            lock.lock();
+            spinLock.lock();
             queue.add(item);
         } finally {
-            lock.unlock();
+            spinLock.unlock();
         }
         full.up();
     }
@@ -35,10 +35,10 @@ public class OrderBoundTrafficBufferImpl<T> implements OrderQueue<T> {
         T item;
         full.down();
         try {
-            lock.lock();
+            spinLock.lock();
             item = queue.remove();
         } finally {
-            lock.unlock();
+            spinLock.unlock();
         }
         empty.up();
         return item;
@@ -47,10 +47,10 @@ public class OrderBoundTrafficBufferImpl<T> implements OrderQueue<T> {
     @Override
     public boolean isEmpty() {
         try {
-            lock.lock();
+            spinLock.lock();
             return queue.isEmpty();
         } finally {
-            lock.unlock();
+            spinLock.unlock();
         }
     }
 }
