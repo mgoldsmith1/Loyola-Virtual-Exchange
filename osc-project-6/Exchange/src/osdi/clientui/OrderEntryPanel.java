@@ -43,7 +43,7 @@ import javax.swing.JTextField;
 
 import quickfix.SessionID;
 
-import osdi.client.BanzaiApplication;
+import osdi.client.ClientApplication;
 import osdi.client.DoubleNumberTextField;
 import osdi.client.IntegerNumberTextField;
 import osdi.client.LogonEvent;
@@ -80,12 +80,12 @@ public class OrderEntryPanel extends JPanel implements Observer {
     private final JButton submitButton = new JButton("Submit");
 
     private osdi.client.OrderTableModel orderTableModel = null;
-    private transient osdi.client.BanzaiApplication application = null;
+    private transient osdi.client.ClientApplication application = null;
 
     private final GridBagConstraints constraints = new GridBagConstraints();
 
     public OrderEntryPanel(final osdi.client.OrderTableModel orderTableModel2,
-                final osdi.client.BanzaiApplication application2) {
+                final osdi.client.ClientApplication application2) {
         setName("OrderEntryPanel");
         this.orderTableModel = orderTableModel2;
         this.application = application2;

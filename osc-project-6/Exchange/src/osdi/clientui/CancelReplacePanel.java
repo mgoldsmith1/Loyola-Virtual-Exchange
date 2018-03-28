@@ -38,9 +38,9 @@ public class CancelReplacePanel extends JPanel {
 
     private final GridBagConstraints constraints = new GridBagConstraints();
 
-    private final BanzaiApplication application;
+    private final ClientApplication application;
 
-    public CancelReplacePanel(final BanzaiApplication application) {
+    public CancelReplacePanel(final ClientApplication application) {
         this.application = application;
         cancelButton.addActionListener(new CancelListener());
         replaceButton.addActionListener(new ReplaceListener());

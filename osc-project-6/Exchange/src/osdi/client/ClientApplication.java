@@ -72,7 +72,7 @@ import java.util.HashSet;
 import java.util.Observable;
 import java.util.Observer;
 
-public class BanzaiApplication implements Application {
+public class ClientApplication implements Application {
     private final DefaultMessageFactory messageFactory = new DefaultMessageFactory();
     private OrderTableModel orderTableModel = null;
     private ExecutionTableModel executionTableModel = null;
@@ -86,7 +86,7 @@ public class BanzaiApplication implements Application {
     static private final TwoWayMap tifMap = new TwoWayMap();
     static private final HashMap<SessionID, HashSet<ExecID>> execIDs = new HashMap<>();
 
-    public BanzaiApplication(OrderTableModel orderTableModel,
+    public ClientApplication(OrderTableModel orderTableModel,
             ExecutionTableModel executionTableModel) {
         this.orderTableModel = orderTableModel;
         this.executionTableModel = executionTableModel;

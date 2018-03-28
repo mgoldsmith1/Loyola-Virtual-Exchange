@@ -19,7 +19,7 @@ package osdi.server;
  * are not clear to you.
  ******************************************************************************/
 
-//package quickfix.examples.executor;
+
 
 import org.quickfixj.jmx.JmxExporter;
 import org.slf4j.Logger;
@@ -56,15 +56,15 @@ import static quickfix.Acceptor.SETTING_ACCEPTOR_TEMPLATE;
 import static quickfix.Acceptor.SETTING_SOCKET_ACCEPT_ADDRESS;
 import static quickfix.Acceptor.SETTING_SOCKET_ACCEPT_PORT;
 
-public class Executor {
-    private final static Logger log = LoggerFactory.getLogger(Executor.class);
+public class Server {
+    private final static Logger log = LoggerFactory.getLogger(Server.class);
     private final SocketAcceptor acceptor;
     private final Map<InetSocketAddress, List<TemplateMapping>> dynamicSessionMappings = new HashMap<>();
 
     private final JmxExporter jmxExporter;
     private final ObjectName connectorObjectName;
 
-    public Executor(SessionSettings settings) throws ConfigError, FieldConvertError, JMException {
+    public Server(SessionSettings settings) throws ConfigError, FieldConvertError, JMException {
         Application application = new Application(settings);
         MessageStoreFactory messageStoreFactory = new FileStoreFactory(settings);
         LogFactory logFactory = new ScreenLogFactory(true, true, true);
@@ -141,18 +141,19 @@ public class Executor {
     }
 
     public static void main(String[] args) throws Exception {
+   // public void startMainServer(String[] args) throws Exception{
         try {
             InputStream inputStream = getSettingsInputStream(args);
             SessionSettings settings = new SessionSettings(inputStream);
             inputStream.close();
 
-            Executor executor = new Executor(settings);
-            executor.start();
+            Server server = new Server(settings);
+            server.start();
 
             System.out.println("press <enter> to quit");
             System.in.read();
 
-            executor.stop();
+            server.stop();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
@@ -161,12 +162,12 @@ public class Executor {
     private static InputStream getSettingsInputStream(String[] args) throws FileNotFoundException {
         InputStream inputStream = null;
         if (args.length == 0) {
-            inputStream = Executor.class.getResourceAsStream("executor.cfg");
+            inputStream = Server.class.getResourceAsStream("server.cfg");
         } else if (args.length == 1) {
             inputStream = new FileInputStream(args[0]);
         }
         if (inputStream == null) {
-            System.out.println("usage: " + Executor.class.getName() + " [configFile].");
+            System.out.println("usage: " + Server.class.getName() + " [configFile].");
             System.exit(1);
         }
         return inputStream;

@@ -52,29 +52,29 @@ import org.quickfixj.jmx.mbean.JmxSupport;
 import org.quickfixj.jmx.mbean.session.*;
 
 //import osdi.client.BanzaiApplication
-import osdi.clientui.BanzaiFrame;
+import osdi.clientui.ClientFrame;
 
 /**
- * Entry point for the Banzai application.
+ * Entry point for the Client application.
  */
-public class Banzai {
+public class Client {
     private static final CountDownLatch shutdownLatch = new CountDownLatch(1);
     private ArrayList<SessionID> sessions;
-    private static final Logger log = LoggerFactory.getLogger(Banzai.class);
-    private static Banzai banzai;
+    private static final Logger log = LoggerFactory.getLogger(Client.class);
+    private static Client client;
     private boolean initiatorStarted = false;
     private Initiator initiator = null;
     private JFrame frame = null;
 
-    public Banzai(String[] args) throws Exception {
+    public Client(String[] args) throws Exception {
         InputStream inputStream = null;
         if (args.length == 0) {
-            inputStream = Banzai.class.getResourceAsStream("client.cfg");
+            inputStream = Client.class.getResourceAsStream("client.cfg");
         } else if (args.length == 1) {
             inputStream = new FileInputStream(args[0]);
         }
         if (inputStream == null) {
-            System.out.println("usage: " + Banzai.class.getName() + " [configFile].");
+            System.out.println("usage: " + Client.class.getName() + " [configFile].");
             return;
         }
         SessionSettings settings = new SessionSettings(inputStream);
@@ -84,7 +84,7 @@ public class Banzai {
 
         OrderTableModel orderTableModel = new OrderTableModel();
         ExecutionTableModel executionTableModel = new ExecutionTableModel();
-        BanzaiApplication application = new BanzaiApplication(orderTableModel, executionTableModel);
+        ClientApplication application = new ClientApplication(orderTableModel, executionTableModel);
         MessageStoreFactory messageStoreFactory = new FileStoreFactory(settings);
         LogFactory logFactory = new ScreenLogFactory(true, true, true, logHeartbeats);
         MessageFactory messageFactory = new DefaultMessageFactory();
@@ -95,8 +95,10 @@ public class Banzai {
         JmxExporter exporter = new JmxExporter();
         exporter.register(initiator);  // works now
 
-        frame = new BanzaiFrame(orderTableModel, executionTableModel, application);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame = new ClientFrame(orderTableModel, executionTableModel, application);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); add this back if client order entry window is still
+        //closing main form (MarketExchangeSim) 
+        // I just checked an commenting out frame.setDefaultCloseOper... keeps MarketExchangeSim from exiting 
     }
 
     public synchronized void logon() {
@@ -131,8 +133,8 @@ public class Banzai {
         return frame;
     }
 
-    public static Banzai get() {
-        return banzai;
+    public static Client get() {
+        return client;
     }
 
     public static void main(String[] args) throws Exception {
@@ -141,9 +143,9 @@ public class Banzai {
         } catch (Exception e) {
             log.info(e.getMessage(), e);
         }
-        banzai = new Banzai(args);
+        client = new Client(args);
         if (!System.getProperties().containsKey("openfix")) {
-            banzai.logon();     
+            client.logon();     
         }
         shutdownLatch.await();
     }

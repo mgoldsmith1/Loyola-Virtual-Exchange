@@ -20,7 +20,7 @@
 package osdi.clientui;
 
 import osdi.client.OrderTableModel;
-import osdi.client.BanzaiApplication;
+import osdi.client.ClientApplication;
 
 
 import java.awt.GridBagConstraints;
@@ -40,7 +40,7 @@ public class OrderPanel extends JPanel {
 
     private JTable orderTable = null;
 
-    public OrderPanel(osdi.client.OrderTableModel orderTableModel2, osdi.client.BanzaiApplication application) {
+    public OrderPanel(osdi.client.OrderTableModel orderTableModel2, osdi.client.ClientApplication application) {
         setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();

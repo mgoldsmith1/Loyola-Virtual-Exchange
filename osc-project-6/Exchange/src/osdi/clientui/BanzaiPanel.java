@@ -18,7 +18,7 @@
  ******************************************************************************/
 
 package osdi.clientui;
-import osdi.client.BanzaiApplication;
+import osdi.client.ClientApplication;
 import osdi.client.ExecutionTableModel;
 import osdi.client.Order;
 import osdi.clientui.OrderPanel;
@@ -52,7 +52,7 @@ public class BanzaiPanel extends JPanel implements Observer, ActionListener {
 
     public BanzaiPanel(OrderTableModel orderTableModel2,
               ExecutionTableModel executionTableModel,
-                BanzaiApplication application) {
+                ClientApplication application) {
         setName("BanzaiPanel");
         this.orderTableModel = orderTableModel2;
 
