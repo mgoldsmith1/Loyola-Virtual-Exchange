@@ -20,7 +20,7 @@
 package osdi.clientui;
 
 
-import osdi.clientui.BanzaiPanel;
+import osdi.clientui.ClientPanel;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -175,7 +175,7 @@ public class ClientFrame extends JFrame {
         JMenuItem pasteMenuItem = new JMenuItem("Paste");
         pasteMenuItem.setActionCommand("Paste");
         
-        //Client connect to executor server/orderentry
+        //Client connect to executor server
         JMenuItem serverExecMenuItem = new JMenuItem("Server..."); //executor
         serverExecMenuItem.setActionCommand("Server..."); //executor
         
@@ -254,6 +254,7 @@ public class ClientFrame extends JFrame {
         //add menubar to the frame
         mainFrame.setJMenuBar(menuBar);
         mainFrame.setVisible(true);   
+        mainFrame.setLocationRelativeTo(null); // centers the GUI
 
      }
      class MenuItemListener implements ActionListener {
@@ -284,13 +285,14 @@ public class ClientFrame extends JFrame {
            }
            /////////////////////////////////////////////////
            if(e.getActionCommand().contains("Order Entry...")){
+        	   //This used to be in the constructor
         	   setTitle("Order Entry");
                setSize(600, 400);
 
                if (System.getProperties().containsKey("openfix")) {
                    createMenuBar(application);
                }
-               getContentPane().add(new BanzaiPanel(orderTableModel, executionTableModel, application),
+               getContentPane().add(new ClientPanel(orderTableModel, executionTableModel, application),
                        BorderLayout.CENTER);
                setVisible(true);
            }

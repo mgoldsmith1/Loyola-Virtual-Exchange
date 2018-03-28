@@ -93,12 +93,10 @@ public class Client {
                 messageFactory);
 
         JmxExporter exporter = new JmxExporter();
-        exporter.register(initiator);  // works now
+        exporter.register(initiator);  
 
         frame = new ClientFrame(orderTableModel, executionTableModel, application);
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); add this back if client order entry window is still
-        //closing main form (MarketExchangeSim) 
-        // I just checked an commenting out frame.setDefaultCloseOper... keeps MarketExchangeSim from exiting 
+        frame.setLocationRelativeTo(null);
     }
 
     public synchronized void logon() {

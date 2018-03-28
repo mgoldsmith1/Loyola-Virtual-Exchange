@@ -43,14 +43,14 @@ import javax.swing.event.ListSelectionListener;
 /**
  * Main content panel
  */
-public class BanzaiPanel extends JPanel implements Observer, ActionListener {
+public class ClientPanel extends JPanel implements Observer, ActionListener {
 
     private final OrderEntryPanel orderEntryPanel;
     private final OrderPanel orderPanel;
     private final CancelReplacePanel cancelReplacePanel;
     private final osdi.client.OrderTableModel orderTableModel;
 
-    public BanzaiPanel(OrderTableModel orderTableModel2,
+    public ClientPanel(OrderTableModel orderTableModel2,
               ExecutionTableModel executionTableModel,
                 ClientApplication application) {
         setName("BanzaiPanel");
