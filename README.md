@@ -30,13 +30,9 @@ cd Market-Exchange-Simulator
 
 ```
 
-On OS X and Windows you can run the application via following:
+On OSX, Linux, and Windows from a terminal you can run the application via the following:
 ```bash
-./osx-windows-run.sh
-```
-There is also a preferred script for OSX via the following:
-```bash
-./osx-run.sh
+./run.sh
 ```
 To run the client and server individually:
 
