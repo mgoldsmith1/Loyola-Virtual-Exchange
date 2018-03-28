@@ -32,6 +32,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -262,26 +263,16 @@ public class ClientFrame extends JFrame {
            statusLabel.setText(e.getActionCommand() + " JMenuItem clicked.");
            if(e.getActionCommand().contains("Server...") && foo == false){ //(Executor) 
         	  
-        	  //This does what we want to do to run the server
-        	  //but this forces you to use your absolute filepath
-        	  //of your program. Not very portable.
-        	   
-        	  //Also there is an issue with synchronization here.
-        	  //Tends to connect then disconnect then connect.
-        	  //Could be that we are continuing and not providing a thread
-        	  //to keep the server alive.
-        	   
-        	   
-        	  // Thread t = new Thread() need to use this
-        	  // correct file path
-        	  // ProcessBuilder pb = new ProcessBuilder("java", "-jar", "/Users/Mattata/Desktop/git/Exchange-Simulator-3/Market-Exchange-Simulator/osc-project-6/Exchange/src/osdi/clientui/server.jar");
-        	  // try {
-			  //  Process p = pb.start();
-		      // } catch (IOException e1) {
+        	   String Path = new File("").getAbsolutePath();
+        	   ProcessBuilder pb = new ProcessBuilder("java", "-jar", Path +"/Exchange/jars/server.jar");
+        	  // System.out.println(Path);
+        	   try {
+			    Process p = pb.start();
+		       } catch (IOException e1) {
 		           // TODO Auto-generated catch block
-			  //	   e1.printStackTrace();
-			  // }
-        	  // foo = true;
+			  	   e1.printStackTrace();
+			   }
+        	   foo = true;
            }
            /////////////////////////////////////////////////
            if(e.getActionCommand().contains("Order Entry...")){
