@@ -1,4 +1,5 @@
 #!/bin/sh
 
 cd osc-project-6/Exchange/jars
-java -jar client.jar | java -jar server.jar
+echo ‘Starting Server…’
+java -jar server.jar | java -jar client.jar
