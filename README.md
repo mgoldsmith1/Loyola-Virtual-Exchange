@@ -44,25 +44,30 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)
 
 Cloning Market-Exchange-Simulator with Git
 ```bash
-git clone https://github.com/mgoldsmith1/Market-Exchange-Simulator.git
-cd Market-Exchange-Simulator
+$ git clone https://github.com/mgoldsmith1/Market-Exchange-Simulator.git
+$ cd Market-Exchange-Simulator
 
 ```
 
 On OSX, Linux, and Windows from a terminal you can run the application via the following:
 ```bash
-./run.sh
+$ ./run.sh
 ```
 To run the client and server individually:
 
 Step 1: Run the server:
 ```bash 
-cd osc-project-6/Exchange/jars
-java -jar server.jar
+$ cd osc-project-6/Exchange/jars
+$ java -jar server.jar
 ```
 Step 2: In the same directory run the client:
 ```bash 
-java -jar client.jar
+$ java -jar client.jar
+```
+You can also create a script to run the server and client simultaneously using a pipe:
+```bash 
+$ cd osc-project-6/Exchange/jars
+$ java -jar server.jar | java -jar client.jar
 ```
 
 ## Features List: ##
