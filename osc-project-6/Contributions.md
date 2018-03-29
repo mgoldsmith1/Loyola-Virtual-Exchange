@@ -2,7 +2,7 @@
 # Make Pull Requests
 https://services.github.com/on-demand/github-cli/open-pull-request-github
 
-Use the command line to make the pull-request:
+If you're using the command line to make the pull-request:
 
 Push your commits to the remote, and set a tracking branch. Type:
 ```bash
