@@ -20,7 +20,26 @@ Then we need to do the accounting portion of the project
 
 * JRE Java SE 8 v1.8.0_121
 
-	
+To install Java 8 you can do so with [Homebrew](https://brew.sh/)
+
+To install Homebrew enter the following at the command line:
+```bash
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+Now you can install Java 8 using Homebrew:
+```bash
+$ brew update
+$ brew tap caskroom/cask
+$ brew cask install caskroom/versions/java8
+```
+Check Version:
+```bash
+$ java -version
+java version "1.8.0_121"
+Java(TM) SE Runtime Environment (build 1.8.0_121-b13)
+Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)
+```
+
 ## Installation ##
 
 Cloning Market-Exchange-Simulator with Git
