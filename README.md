@@ -119,7 +119,7 @@ $ java -jar server.jar | java -jar client.jar
 * Writing tests
 * Code review
 * Other guidelines
-* [Contribution.MD](https://github.com/mgoldsmith1/Market-Exchange-Simulator/blob/master/osc-project-6/Contributions.md)
+* [Contribution.md](https://github.com/mgoldsmith1/Market-Exchange-Simulator/blob/master/osc-project-6/Contributions.md)
 
 ## GPL v3.0 License ##
 
