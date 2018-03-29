@@ -18,6 +18,4 @@ cd Market-Exchange-Simulator
 
 ./run.sh
 
-#cd osc-project-6/Exchange/jars
 
-#java -jar server.jar
