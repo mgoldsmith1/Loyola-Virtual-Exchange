@@ -56,7 +56,6 @@ import osdi.client.ExecutionTableModel;
 import osdi.client.OrderTableModel;
 
 
-
 /**
  * Main application window
  */
