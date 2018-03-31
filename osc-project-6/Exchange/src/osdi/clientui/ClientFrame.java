@@ -157,6 +157,8 @@ public class ClientFrame extends JFrame {
         JMenu fileMenu = new JMenu("File");
         JMenu editMenu = new JMenu("Edit");
         JMenu graphMenu = new JMenu("Graph");
+        JMenu interfaceMenu = new JMenu("Interface"); 
+
         
         final JMenu aboutMenu = new JMenu("About");
         final JMenu linkMenu = new JMenu("Links");
@@ -188,6 +190,10 @@ public class ClientFrame extends JFrame {
         JMenuItem graphItem = new JMenuItem("New Graph");
         graphItem.setActionCommand("New Graph");
         
+        JMenuItem generateMenuItem = new JMenuItem("Generate");
+        generateMenuItem.setActionCommand("Generate");
+
+        
         
         //Client connect to executor server
         JMenuItem connectExecMenuItem = new JMenuItem("Connect..."); //executor
@@ -214,6 +220,7 @@ public class ClientFrame extends JFrame {
         connectExecMenuItem.addActionListener(menuItemListener);
         disconnectExecMenuItem.addActionListener(menuItemListener);
         
+      //Remember to import SwingUtilities before Run it
         graphItem.addActionListener(ev -> {
         	SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
@@ -222,6 +229,15 @@ public class ClientFrame extends JFrame {
 			});
         });
         
+        generateMenuItem.addActionListener(ev -> {
+        	SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					new InterfaceFrame().setVisible(true);
+				}
+			});
+        });
+
+       
         
 
         final JCheckBoxMenuItem showWindowMenu = new JCheckBoxMenuItem(
@@ -269,6 +285,7 @@ public class ClientFrame extends JFrame {
         serverMenu.add(disconnectExecMenuItem);
         orderMenu.add(orderMenuItem);
         graphMenu.add(graphItem);
+        interfaceMenu.add(generateMenuItem);
 
         //add menu to menubar
         menuBar.add(fileMenu);
@@ -276,6 +293,7 @@ public class ClientFrame extends JFrame {
         menuBar.add(aboutMenu);  
         menuBar.add(graphMenu);
        // menuBar.add(linkMenu);
+        menuBar.add(interfaceMenu);
         menuBar.add(orderMenu);
         menuBar.add(serverMenu);
        
