@@ -127,11 +127,11 @@ public class Server {
                 && settings.getBool(sessionID, SETTING_ACCEPTOR_TEMPLATE);
     }
 
-    private void start() throws RuntimeError, ConfigError {
+    public void start() throws RuntimeError, ConfigError {
         acceptor.start();
     }
 
-    private void stop() {
+    public void stop() {
         try {
             jmxExporter.getMBeanServer().unregisterMBean(connectorObjectName);
         } catch (Exception e) {

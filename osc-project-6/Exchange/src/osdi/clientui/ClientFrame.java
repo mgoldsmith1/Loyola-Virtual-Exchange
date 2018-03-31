@@ -21,6 +21,10 @@ package osdi.clientui;
 
 
 import osdi.clientui.ClientPanel;
+import osdi.server.Server;
+import quickfix.ConfigError;
+import quickfix.Initiator;
+import quickfix.RuntimeError;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -65,16 +69,18 @@ public class ClientFrame extends JFrame {
 	private final osdi.client.ClientApplication application;
 	private final osdi.client.OrderTableModel orderTableModel;
 	private final osdi.client.ExecutionTableModel executionTableModel;
+	private Initiator initiator = null; 
 	private boolean foo = false;
 
     public ClientFrame(osdi.client.OrderTableModel orderTableModel, osdi.client.ExecutionTableModel executionTableModel,
-            final osdi.client.ClientApplication application) {
+            final osdi.client.ClientApplication application, Initiator initiator) {
   
         super();
         
         this.application = application;
         this.orderTableModel = orderTableModel;
         this.executionTableModel = executionTableModel;
+        this.initiator = initiator;
         
       	prepareGUI();
       	showMenuDemo();
@@ -152,7 +158,7 @@ public class ClientFrame extends JFrame {
         final JMenu aboutMenu = new JMenu("About");
         final JMenu linkMenu = new JMenu("Links");
         final JMenu orderMenu = new JMenu("Order");
-        final JMenu connectMenu = new JMenu("Connect");
+        final JMenu serverMenu = new JMenu("Server");
         //create menu items
         JMenuItem newMenuItem = new JMenuItem("New");
         newMenuItem.setMnemonic(KeyEvent.VK_N);
@@ -177,8 +183,11 @@ public class ClientFrame extends JFrame {
         pasteMenuItem.setActionCommand("Paste");
         
         //Client connect to executor server
-        JMenuItem serverExecMenuItem = new JMenuItem("Server..."); //executor
-        serverExecMenuItem.setActionCommand("Server..."); //executor
+        JMenuItem connectExecMenuItem = new JMenuItem("Connect..."); //executor
+        connectExecMenuItem.setActionCommand("Connect..."); //executor
+        
+        JMenuItem disconnectExecMenuItem = new JMenuItem("Disconnect..."); //executor
+        disconnectExecMenuItem.setActionCommand("Disconnect..."); //executor
         
         JMenuItem orderMenuItem = new JMenuItem("Order Entry..."); //executor
         orderMenuItem.setActionCommand("Order Entry..."); //executor
@@ -195,7 +204,9 @@ public class ClientFrame extends JFrame {
         
         // new
         orderMenuItem.addActionListener(menuItemListener);
-        serverExecMenuItem.addActionListener(menuItemListener);
+        connectExecMenuItem.addActionListener(menuItemListener);
+        disconnectExecMenuItem.addActionListener(menuItemListener);
+
         
         
 
@@ -240,7 +251,8 @@ public class ClientFrame extends JFrame {
         editMenu.add(copyMenuItem);
         editMenu.add(pasteMenuItem);
         //new
-        connectMenu.add(serverExecMenuItem);
+        serverMenu.add(connectExecMenuItem);
+        serverMenu.add(disconnectExecMenuItem);
         orderMenu.add(orderMenuItem);
 
         //add menu to menubar
@@ -249,7 +261,7 @@ public class ClientFrame extends JFrame {
         menuBar.add(aboutMenu);       
        // menuBar.add(linkMenu);
         menuBar.add(orderMenu);
-        menuBar.add(connectMenu);
+        menuBar.add(serverMenu);
        
 
         //add menubar to the frame
@@ -261,19 +273,25 @@ public class ClientFrame extends JFrame {
      class MenuItemListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {            
            statusLabel.setText(e.getActionCommand() + " JMenuItem clicked.");
-           if(e.getActionCommand().contains("Server...") && foo == false){ //(Executor) 
+           if(e.getActionCommand().contains("Connect...") && foo == false){ //(Executor) 
         	  
-        	   String Path = new File("").getAbsolutePath();
-        	   ProcessBuilder pb = new ProcessBuilder("java", "-jar", Path +"/Exchange/jars/server.jar");
-        	  // System.out.println(Path);
-        	   try {
-			    Process p = pb.start();
-		       } catch (IOException e1) {
-		           // TODO Auto-generated catch block
-			  	   e1.printStackTrace();
-			   }
+        	  try {
+				initiator.start();
+			} catch (RuntimeError e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ConfigError e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         	   foo = true;
            }
+           /////////////////////////////////////////////////
+           if(e.getActionCommand().contains("Disconnect...")){ //(Executor Stopper)
+        	   initiator.stop();
+        	   foo = false;
+           }
+
            /////////////////////////////////////////////////
            if(e.getActionCommand().contains("Order Entry...")){
         	   //This used to be in the constructor
