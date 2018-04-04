@@ -69,8 +69,7 @@ You can also create a script to run the server and client simultaneously using a
 $ cd osc-project-6/Exchange/jars
 $ java -jar server.jar | java -jar client.jar
 ```
-You can also automate this entire sequence of installation steps via the install-run.sh file.
-Without cloning this repository take the raw contents of install-run.sh and run it from any directory on your local machine:
+From any directory on your local machine, you can also automate the entire sequence of requirements/installation steps by running the install-run.sh file. (Note: If you already have Homebrew and Java 8 the installation will skip this steps, clone, then run the project):
 ```bash 
 $ ./install-run.sh
 ```
