@@ -72,7 +72,6 @@ $ java -jar server.jar | java -jar client.jar
 You can also automate this entire sequence of installation steps via the install-run.sh file.
 Without cloning this repository take the raw contents of install-run.sh and run it from any directory on your local machine:
 ```bash 
-$ cd Market-Exchange-Simulator
 $ ./install-run.sh
 ```
 
