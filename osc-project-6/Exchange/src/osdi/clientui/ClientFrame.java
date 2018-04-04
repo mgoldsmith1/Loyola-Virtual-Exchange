@@ -23,8 +23,10 @@ package osdi.clientui;
 import osdi.clientui.ClientPanel;
 import osdi.server.Server;
 import quickfix.ConfigError;
+import quickfix.FieldConvertError;
 import quickfix.Initiator;
 import quickfix.RuntimeError;
+import quickfix.SessionSettings;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -40,6 +42,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.management.JMException;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -69,31 +72,22 @@ public class ClientFrame extends JFrame {
 	private final osdi.client.OrderTableModel orderTableModel;
 	private final osdi.client.ExecutionTableModel executionTableModel;
 	private Initiator initiator = null;
+	private SessionSettings settings = null;
 	private boolean foo = false;
 
     public ClientFrame(osdi.client.OrderTableModel orderTableModel, osdi.client.ExecutionTableModel executionTableModel,
-            final osdi.client.ClientApplication application, Initiator initiator) {
+            final osdi.client.ClientApplication application, Initiator initiator, SessionSettings settings) {
 
-  
         super();
         
         this.application = application;
         this.orderTableModel = orderTableModel;
         this.executionTableModel = executionTableModel;
         this.initiator = initiator;
-        
-      	prepareGUI();
-      	showMenuDemo();
+        this.settings = settings;
+      	prepareMainMenuGUI();
+      	showMainMenuGUI();
       	
-        /*setTitle("Order Entry");
-        setSize(600, 400);
-
-        if (System.getProperties().containsKey("openfix")) {
-            createMenuBar(application);
-        }
-        getContentPane().add(new BanzaiPanel(orderTableModel, executionTableModel, application),
-                BorderLayout.CENTER);
-        setVisible(true);*/
     }
 
     private void createMenuBar(final ClientApplication application) {
@@ -125,7 +119,7 @@ public class ClientFrame extends JFrame {
 
         setJMenuBar(menubar);
     }
-    private void prepareGUI(){
+    private void prepareMainMenuGUI(){
         mainFrame = new JFrame("Market Exchange Sim");
         
         mainFrame.setSize(1080,600);
@@ -148,20 +142,20 @@ public class ClientFrame extends JFrame {
         mainFrame.add(statusLabel);
         mainFrame.setVisible(true);  
      }
-     private void showMenuDemo(){
+     private void showMainMenuGUI(){
         //create a menu bar
         final JMenuBar menuBar = new JMenuBar();
       
         //create menus
         JMenu fileMenu = new JMenu("File");
-        JMenu editMenu = new JMenu("Edit");
-        JMenu graphMenu = new JMenu("Graph");
-        JMenu interfaceMenu = new JMenu("Interface"); 
-
+        JMenu editMenu = new JMenu("Edit");       
+        final JMenu orderMenu = new JMenu("Order");
+        JMenu orderBookMenu = new JMenu("Order Book"); 
+        JMenu chartMenu = new JMenu("Charts");
         
         final JMenu aboutMenu = new JMenu("About");
         final JMenu linkMenu = new JMenu("Links");
-        final JMenu orderMenu = new JMenu("Order");
+        
         final JMenu serverMenu = new JMenu("Server");
         //create menu items
         JMenuItem newMenuItem = new JMenuItem("New");
@@ -186,15 +180,21 @@ public class ClientFrame extends JFrame {
         JMenuItem pasteMenuItem = new JMenuItem("Paste");
         pasteMenuItem.setActionCommand("Paste");
         
-        JMenuItem graphItem = new JMenuItem("New Graph");
-        graphItem.setActionCommand("New Graph");
+        JMenuItem chartMenuItem = new JMenuItem("Select Instrument...");
+        chartMenuItem.setActionCommand("Select Instrument...");
         
-        JMenuItem generateMenuItem = new JMenuItem("Generate");
-        generateMenuItem.setActionCommand("Generate");
+        JMenuItem orderBookMenuItem = new JMenuItem("Generate...");
+        orderBookMenuItem.setActionCommand("Generate...");
 
         
         
         //Client connect to executor server
+        //Connect to Firm
+        //Disconnect to Firm
+        //need a menu dialog with scroll bar of a list of firms to connect
+        // and configure to
+        // configuration will include ip address and prefered port
+        // need a separat configuration for your own configs
         JMenuItem connectExecMenuItem = new JMenuItem("Connect..."); //executor
         connectExecMenuItem.setActionCommand("Connect..."); //executor
         
@@ -220,18 +220,18 @@ public class ClientFrame extends JFrame {
         disconnectExecMenuItem.addActionListener(menuItemListener);
         
       //Remember to import SwingUtilities before Run it
-        graphItem.addActionListener(ev -> {
+        chartMenuItem.addActionListener(ev -> {
         	SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					new GraphFrame().setVisible(true);
+					new ChartFrame().setVisible(true);
 				}
 			});
         });
         
-        generateMenuItem.addActionListener(ev -> {
+        orderBookMenuItem.addActionListener(ev -> {
         	SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					new InterfaceFrame().setVisible(true);
+					new OrderBookFrame().setVisible(true);
 				}
 			});
         });
@@ -283,16 +283,16 @@ public class ClientFrame extends JFrame {
         serverMenu.add(connectExecMenuItem);
         serverMenu.add(disconnectExecMenuItem);
         orderMenu.add(orderMenuItem);
-        graphMenu.add(graphItem);
-        interfaceMenu.add(generateMenuItem);
+        chartMenu.add(chartMenuItem);
+        orderBookMenu.add(orderBookMenuItem);
 
         //add menu to menubar
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
         menuBar.add(aboutMenu);  
-        menuBar.add(graphMenu);
+        menuBar.add(chartMenu);
        // menuBar.add(linkMenu);
-        menuBar.add(interfaceMenu);
+        menuBar.add(orderBookMenu);
         menuBar.add(orderMenu);
         menuBar.add(serverMenu);
        
@@ -301,31 +301,61 @@ public class ClientFrame extends JFrame {
         mainFrame.setJMenuBar(menuBar);
         mainFrame.setVisible(true);   
         mainFrame.setLocationRelativeTo(null); // centers the GUI
+        
+        
 
      }
      class MenuItemListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {            
            statusLabel.setText(e.getActionCommand() + " JMenuItem clicked.");
+         
            if(e.getActionCommand().contains("Connect...") && foo == false){ //(Executor) 
-        	  
-        	   String Path = new File("").getAbsolutePath();
-        	   ProcessBuilder pb = new ProcessBuilder("java", "-jar", Path +"/Exchange/jars/server.jar");
+        	
+			/*try {
+				server = new Server(settings);
+			} catch (ConfigError e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (FieldConvertError e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (JMException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+               try {
+				server.start();
+			} catch (RuntimeError e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ConfigError e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        	  // String Path = new File("").getAbsolutePath();
+        	  // ProcessBuilder pb = new ProcessBuilder("java", "-jar", Path +"/Exchange/jars/server.jar");
         	  // System.out.println(Path);
+        	/*   Server serverAcceptor;
+			try {
+				serverAcceptor = new Server(settings);
+				serverAcceptor.start(); //starts acceptor factory and starts server
+			} catch (ConfigError e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (FieldConvertError e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			} catch (JMException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}*/
         	   
-			    try {
-					initiator.start();
-				} catch (RuntimeError e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ConfigError e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-		      
+			   
         	   foo = true;
            }
            /////////////////////////////////////////
            if(e.getActionCommand().contains("Disconnect...")) {
+        	   statusLabel.setText("Disconnected Client");
         	   initiator.stop();
         	   foo = false;
            }

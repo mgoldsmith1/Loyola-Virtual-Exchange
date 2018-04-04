@@ -95,7 +95,7 @@ public class Client {
         JmxExporter exporter = new JmxExporter();
         exporter.register(initiator);  
 
-        frame = new ClientFrame(orderTableModel, executionTableModel, application, initiator);
+        frame = new ClientFrame(orderTableModel, executionTableModel, application, initiator, settings);
         frame.setLocationRelativeTo(null);
     }
 

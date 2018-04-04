@@ -53,7 +53,7 @@ public class ClientPanel extends JPanel implements Observer, ActionListener {
     public ClientPanel(OrderTableModel orderTableModel2,
               ExecutionTableModel executionTableModel,
                 ClientApplication application) {
-        setName("BanzaiPanel");
+        setName("ClientPanel");
         this.orderTableModel = orderTableModel2;
 
         setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));

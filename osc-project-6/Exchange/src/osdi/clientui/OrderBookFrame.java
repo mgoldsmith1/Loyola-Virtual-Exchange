@@ -23,19 +23,38 @@ import java.awt.Dimension;
 
 import javax.swing.*;
 
-public class InterfaceFrame extends JFrame {
+import osdi.tracker.FIXTracker;
+import osdi.trackerui.FIXTrackerFrame;
 
-	public InterfaceFrame() {
-		super("Interface Frame");
-		prepareInterfaceGUI();
+public class OrderBookFrame extends JFrame {
+
+	public OrderBookFrame() {
+		super("Order Books Frame");
+		prepareOrderBookGUI();
 		pack();
 		setLocationRelativeTo(null);
 	}
 
-	private void prepareInterfaceGUI() {
-		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(800, 800));
-		getContentPane().add(panel);
+	private void prepareOrderBookGUI() {
+		
+		java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                FIXTracker fiximulator = new FIXTracker();
+                fiximulator.start();
+				FIXTrackerFrame fixFrame = new FIXTrackerFrame();
+				JFrame frame = fixFrame;
+				frame.setVisible(true);
+               // JPanel panel = new JPanel();
+        		//frame.setPreferredSize(new Dimension(800, 800));
+        	//	getContentPane().add(frame);
+            }
+        });
+		
+		
+		
+		//JPanel panel = new JPanel();
+		//panel.setPreferredSize(new Dimension(800, 800));
+		//getContentPane().add(panel);
 
 	}
 }
