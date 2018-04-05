@@ -1708,7 +1708,7 @@ private void singleIOIButtonActionPerformed(java.awt.event.ActionEvent evt) {//G
     ioiDialog.setVisible(true);
 }//GEN-LAST:event_singleIOIButtonActionPerformed
 
-private void startExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startExecutorButtonActionPerformed
+public void startExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startExecutorButtonActionPerformed
     int delay = 1;
     if ( this.executorDelay.getSelectedItem().toString().equals("10 ms")) 
         delay = 10;

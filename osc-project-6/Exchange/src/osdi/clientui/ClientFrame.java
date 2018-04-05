@@ -80,13 +80,21 @@ public class ClientFrame extends JFrame {
 
         super();
         
+ 	    setTitle("Order Entry");
+        setSize(600, 400);
+
+        if (System.getProperties().containsKey("openfix")) {
+            createMenuBar(application);
+        }
+        getContentPane().add(new ClientPanel(orderTableModel, executionTableModel, application),
+                BorderLayout.CENTER);
         this.application = application;
         this.orderTableModel = orderTableModel;
         this.executionTableModel = executionTableModel;
         this.initiator = initiator;
         this.settings = settings;
-      	prepareMainMenuGUI();
-      	showMainMenuGUI();
+      	initializeMainMenuGUI();
+      	displayMainMenuGUI();
       	
     }
 
@@ -119,7 +127,7 @@ public class ClientFrame extends JFrame {
 
         setJMenuBar(menubar);
     }
-    private void prepareMainMenuGUI(){
+    private void initializeMainMenuGUI(){
         mainFrame = new JFrame("Market Exchange Sim");
         
         mainFrame.setSize(1080,600);
@@ -142,51 +150,65 @@ public class ClientFrame extends JFrame {
         mainFrame.add(statusLabel);
         mainFrame.setVisible(true);  
      }
-     private void showMainMenuGUI(){
+     private void displayMainMenuGUI(){
         //create a menu bar
         final JMenuBar menuBar = new JMenuBar();
       
         //create menus
         JMenu fileMenu = new JMenu("File");
-        JMenu editMenu = new JMenu("Edit");       
+        //JMenu editMenu = new JMenu("Edit");       
         final JMenu orderMenu = new JMenu("Order");
         JMenu orderBookMenu = new JMenu("Order Book"); 
         JMenu chartMenu = new JMenu("Charts");
-        
-        final JMenu aboutMenu = new JMenu("About");
-        final JMenu linkMenu = new JMenu("Links");
-        
         final JMenu serverMenu = new JMenu("Server");
+        final JMenu aboutMenu = new JMenu("About");
+        
+        // Provides the ability to open a configuration file from them main gui
+        // and edit the contents (IP,port,etc.
+        JMenu configurationMenu = new JMenu("Configuration"); 
+        
+        final JMenu linkMenu = new JMenu("Links");
+         
+    
         //create menu items
         JMenuItem newMenuItem = new JMenuItem("New");
         newMenuItem.setMnemonic(KeyEvent.VK_N);
         newMenuItem.setActionCommand("New");
 
-        JMenuItem openMenuItem = new JMenuItem("Open");
+        JMenuItem openMenuItem = new JMenuItem("Open"); //Open Workspace
         openMenuItem.setActionCommand("Open");
 
-        JMenuItem saveMenuItem = new JMenuItem("Save");
+        JMenuItem saveMenuItem = new JMenuItem("Save"); //Save Workspace
         saveMenuItem.setActionCommand("Save");
 
         JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.setActionCommand("Exit");
 
-        JMenuItem cutMenuItem = new JMenuItem("Cut");
-        cutMenuItem.setActionCommand("Cut");
+        //JMenuItem cutMenuItem = new JMenuItem("Cut");
+        //cutMenuItem.setActionCommand("Cut");
 
-        JMenuItem copyMenuItem = new JMenuItem("Copy");
-        copyMenuItem.setActionCommand("Copy");
+        //JMenuItem copyMenuItem = new JMenuItem("Copy");
+        //copyMenuItem.setActionCommand("Copy");
 
-        JMenuItem pasteMenuItem = new JMenuItem("Paste");
-        pasteMenuItem.setActionCommand("Paste");
+        //JMenuItem pasteMenuItem = new JMenuItem("Paste");
+        //pasteMenuItem.setActionCommand("Paste");
         
-        JMenuItem chartMenuItem = new JMenuItem("Select Instrument...");
-        chartMenuItem.setActionCommand("Select Instrument...");
+      
+        
+        JMenuItem orderMenuItem = new JMenuItem("Order Entry..."); //executor
+        orderMenuItem.setActionCommand("Order Entry..."); //executor
         
         JMenuItem orderBookMenuItem = new JMenuItem("Generate...");
         orderBookMenuItem.setActionCommand("Generate...");
 
-        
+        /*
+         * Temporarily putting this here. This starts the FIXTracker if user presses the start button
+         startExecutorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startExecutorButtonActionPerformed(evt);
+            }
+        });
+         */
         
         //Client connect to executor server
         //Connect to Firm
@@ -201,8 +223,17 @@ public class ClientFrame extends JFrame {
         JMenuItem disconnectExecMenuItem = new JMenuItem("Disconnect..."); //executor
         disconnectExecMenuItem.setActionCommand("Disconnect..."); //executor
         
-        JMenuItem orderMenuItem = new JMenuItem("Order Entry..."); //executor
-        orderMenuItem.setActionCommand("Order Entry..."); //executor
+        JMenuItem chartMenuItem = new JMenuItem("Select Instrument...");
+        chartMenuItem.setActionCommand("Select Instrument...");
+        
+       // JMenuItem newConfigurationMenuItem = new JMenuItem("New Config");
+       // newConfigurationMenuItem.setActionCommand("New");
+        
+        JMenuItem openConfigurationMenuItem = new JMenuItem("Open Config");
+        openConfigurationMenuItem.setActionCommand("Open");
+        
+      
+        
 
         MenuItemListener menuItemListener = new MenuItemListener();
 
@@ -210,9 +241,9 @@ public class ClientFrame extends JFrame {
         openMenuItem.addActionListener(menuItemListener);
         saveMenuItem.addActionListener(menuItemListener);
         exitMenuItem.addActionListener(menuItemListener);
-        cutMenuItem.addActionListener(menuItemListener);
-        copyMenuItem.addActionListener(menuItemListener);
-        pasteMenuItem.addActionListener(menuItemListener);
+       // cutMenuItem.addActionListener(menuItemListener);
+       // copyMenuItem.addActionListener(menuItemListener);
+       // pasteMenuItem.addActionListener(menuItemListener);
         
         // new
         orderMenuItem.addActionListener(menuItemListener);
@@ -235,9 +266,6 @@ public class ClientFrame extends JFrame {
 				}
 			});
         });
-
-       
-        
 
         final JCheckBoxMenuItem showWindowMenu = new JCheckBoxMenuItem(
            "Show About", true);
@@ -276,26 +304,28 @@ public class ClientFrame extends JFrame {
         fileMenu.add(showLinksMenu);       
         fileMenu.addSeparator();
         fileMenu.add(exitMenuItem);       
-        editMenu.add(cutMenuItem);
-        editMenu.add(copyMenuItem);
-        editMenu.add(pasteMenuItem);
+       // editMenu.add(cutMenuItem);
+       // editMenu.add(copyMenuItem);
+       // editMenu.add(pasteMenuItem);
         //new
+        
+        orderMenu.add(orderMenuItem);
+        orderBookMenu.add(orderBookMenuItem);
+        chartMenu.add(chartMenuItem);
         serverMenu.add(connectExecMenuItem);
         serverMenu.add(disconnectExecMenuItem);
-        orderMenu.add(orderMenuItem);
-        chartMenu.add(chartMenuItem);
-        orderBookMenu.add(orderBookMenuItem);
-
+        
+      
         //add menu to menubar
         menuBar.add(fileMenu);
-        menuBar.add(editMenu);
+      //  menuBar.add(editMenu);
         menuBar.add(aboutMenu);  
-        menuBar.add(chartMenu);
        // menuBar.add(linkMenu);
-        menuBar.add(orderBookMenu);
         menuBar.add(orderMenu);
+        menuBar.add(orderBookMenu);
+        menuBar.add(chartMenu);
         menuBar.add(serverMenu);
-       
+     
 
         //add menubar to the frame
         mainFrame.setJMenuBar(menuBar);
@@ -306,51 +336,12 @@ public class ClientFrame extends JFrame {
 
      }
      class MenuItemListener implements ActionListener {
+    
         public void actionPerformed(ActionEvent e) {            
            statusLabel.setText(e.getActionCommand() + " JMenuItem clicked.");
          
            if(e.getActionCommand().contains("Connect...") && foo == false){ //(Executor) 
-        	
-			/*try {
-				server = new Server(settings);
-			} catch (ConfigError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (FieldConvertError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (JMException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-               try {
-				server.start();
-			} catch (RuntimeError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (ConfigError e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-        	  // String Path = new File("").getAbsolutePath();
-        	  // ProcessBuilder pb = new ProcessBuilder("java", "-jar", Path +"/Exchange/jars/server.jar");
-        	  // System.out.println(Path);
-        	/*   Server serverAcceptor;
-			try {
-				serverAcceptor = new Server(settings);
-				serverAcceptor.start(); //starts acceptor factory and starts server
-			} catch (ConfigError e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			} catch (FieldConvertError e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			} catch (JMException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}*/
         	   
-			   
         	   foo = true;
            }
            /////////////////////////////////////////
@@ -362,17 +353,13 @@ public class ClientFrame extends JFrame {
            
            /////////////////////////////////////////////////
            if(e.getActionCommand().contains("Order Entry...")){
-        	   //This used to be in the constructor
-        	   setTitle("Order Entry");
-               setSize(600, 400);
-
-               if (System.getProperties().containsKey("openfix")) {
-                   createMenuBar(application);
-               }
-               getContentPane().add(new ClientPanel(orderTableModel, executionTableModel, application),
-                       BorderLayout.CENTER);
                setVisible(true);
            }
+           if(e.getActionCommand().contains("Exit")){
+        	   //Revisions needed
+        	   System.exit(0);
+           }
+           
         }    
      }
 }
