@@ -109,6 +109,11 @@ public class LogMessage implements Comparable<Object> {
     }
 
     public String getRawMessage() {
+    	
+    	if(rawMessage.contains("NYSE GROUP INC")){
+    		NYSEGROUP nysegroup = new NYSEGROUP(rawMessage + "\n");
+    	}
+    	
         return rawMessage;
     }
 
@@ -285,7 +290,6 @@ public class LogMessage implements Comparable<Object> {
             Field field = (Field) iterator.next();
             allFields.put(field.getTag(), field);
         }
-
         return allFields;
     }
 

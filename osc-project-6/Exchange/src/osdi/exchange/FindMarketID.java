@@ -20,6 +20,15 @@ public class FindMarketID {
         }
         return true;
     }
+    
+    public static boolean isISHARESRUSSELL2000(String id) {
+    	
+      if(id.contains("ISHARES RUSSELL 2000"))
+       return true;
+      else
+	   return false;
+   }
+   
     /*
      public static boolean isAPPL(string id) {
        if(id =="AAPL")

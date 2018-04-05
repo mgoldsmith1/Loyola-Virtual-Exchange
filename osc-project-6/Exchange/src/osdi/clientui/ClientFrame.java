@@ -79,10 +79,7 @@ public class ClientFrame extends JFrame {
             final osdi.client.ClientApplication application, Initiator initiator, SessionSettings settings) {
 
         super();
-        
  	    setTitle("Order Entry");
-        setSize(600, 400);
-
         if (System.getProperties().containsKey("openfix")) {
             createMenuBar(application);
         }
@@ -94,8 +91,8 @@ public class ClientFrame extends JFrame {
         this.initiator = initiator;
         this.settings = settings;
       	initializeMainMenuGUI();
+      	setSize(600, 400);
       	displayMainMenuGUI();
-      	
     }
 
     private void createMenuBar(final ClientApplication application) {
@@ -169,7 +166,6 @@ public class ClientFrame extends JFrame {
         
         final JMenu linkMenu = new JMenu("Links");
          
-    
         //create menu items
         JMenuItem newMenuItem = new JMenuItem("New");
         newMenuItem.setMnemonic(KeyEvent.VK_N);
@@ -233,8 +229,6 @@ public class ClientFrame extends JFrame {
         openConfigurationMenuItem.setActionCommand("Open");
         
       
-        
-
         MenuItemListener menuItemListener = new MenuItemListener();
 
         newMenuItem.addActionListener(menuItemListener);
@@ -249,6 +243,15 @@ public class ClientFrame extends JFrame {
         orderMenuItem.addActionListener(menuItemListener);
         connectExecMenuItem.addActionListener(menuItemListener);
         disconnectExecMenuItem.addActionListener(menuItemListener);
+        openConfigurationMenuItem.addActionListener(menuItemListener);
+        
+        /*openConfigurationMenuItem.addActionListener(ev->{
+        	SwingUtilities.invokeLater(new Runnable() {
+        		public void run(){
+        			n
+        		}
+        	}
+        });*/
         
       //Remember to import SwingUtilities before Run it
         chartMenuItem.addActionListener(ev -> {
@@ -296,9 +299,9 @@ public class ClientFrame extends JFrame {
         });
         //add menu items to menus
         fileMenu.add(newMenuItem);
-        fileMenu.add(openMenuItem);
-        fileMenu.add(saveMenuItem);
-        fileMenu.addSeparator();
+        //fileMenu.add(openMenuItem);
+        //fileMenu.add(saveMenuItem);
+        //fileMenu.addSeparator();
         fileMenu.add(showWindowMenu);
         fileMenu.addSeparator();
         fileMenu.add(showLinksMenu);       
@@ -323,17 +326,15 @@ public class ClientFrame extends JFrame {
        // menuBar.add(linkMenu);
         menuBar.add(orderMenu);
         menuBar.add(orderBookMenu);
-        menuBar.add(chartMenu);
+      //  menuBar.add(chartMenu);
         menuBar.add(serverMenu);
-     
+       // menuBar.add(configurationMenu);
 
         //add menubar to the frame
         mainFrame.setJMenuBar(menuBar);
         mainFrame.setVisible(true);   
         mainFrame.setLocationRelativeTo(null); // centers the GUI
         
-        
-
      }
      class MenuItemListener implements ActionListener {
     

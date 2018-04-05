@@ -180,12 +180,12 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         aboutDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        aboutDialog.setTitle("About...");
+        //aboutDialog.setTitle("About...");
         aboutDialog.setLocationByPlatform(true);
 
         aboutPanel.setPreferredSize(new java.awt.Dimension(200, 100));
 
-        okButton.setText("OK");
+        //okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
@@ -453,7 +453,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
             getColumn(i).setPreferredWidth(800);
         }
         messageScrollPane.setViewportView(messageTable);
-
+        
         javax.swing.GroupLayout messagePanelLayout = new javax.swing.GroupLayout(messagePanel);
         messagePanel.setLayout(messagePanelLayout);
         messagePanelLayout.setHorizontalGroup(
