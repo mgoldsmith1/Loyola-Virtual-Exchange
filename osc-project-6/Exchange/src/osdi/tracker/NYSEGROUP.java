@@ -8,7 +8,7 @@ public class NYSEGROUP {
 		this.quote = quote;
 	}
 	public String quote(){
-		System.out.println(quote);
+		//System.out.println(quote);
 		return quote;
 	}
 }
