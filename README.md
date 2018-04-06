@@ -30,12 +30,16 @@ A 1 lot (or 1 quantity) Loyola Rambler Futures Contract = 0.05 cents up or down.
 For example: 
 
 Long(Buy):
-If the price goes up .0025 from .10 the quote from LRF will be .1025. At this point you can close at .1025 and make a 0.05 cent profit.
-Likewise if the price goes down .0025 from .10 the quote from LRF will be .0975. At this point you can close at .0975 to make a 0.05 cent loss.
+If the price goes up .0025 from .10 the quote from LRF will be .1025. 
+At this point you can close at .1025 and make a 0.05 cent profit.
+Likewise if the price goes down .0025 from .10 the quote from LRF will be .0975. 
+At this point you can close at .0975 to make a 0.05 cent loss.
 
 Short(Sell):
-If the price goes down .0025 from .10 the quote from LRF will be .0975. At this point you can close at .0975 to make a 0.05 cent gain.
-Likewise if the price goes up .0025 from .10 the quote from LRF will be .1025. At this point you can close at .1025 and make a 0.05 cent loss.
+If the price goes down .0025 from .10 the quote from LRF will be .0975. 
+At this point you can close at .0975 to make a 0.05 cent gain.
+Likewise if the price goes up .0025 from .10 the quote from LRF will be .1025. 
+At this point you can close at .1025 and make a 0.05 cent loss.
 ```
 
 (MRF) Contract Specs:
@@ -48,12 +52,16 @@ A 1 lot (or 1 quantity) Loyola micro-Rambler Futures Contract = 0.01 cents up or
 For example: 
 
 Long(Buy):
-If the price goes up .00025 from .01 the quote from LRF will be .01025. At this point you can close at .01025 and make a 0.01 cent profit.
-Likewise if the price goes down .00025 from .01 the quote from LRF will be .00975. At this point you can close at .00975 to make a 0.01 cent loss.
+If the price goes up .00025 from .01 the quote from LRF will be .01025. 
+At this point you can close at .01025 and make a 0.01 cent profit.
+Likewise if the price goes down .00025 from .01 the quote from LRF will be .00975. 
+At this point you can close at .00975 to make a 0.01 cent loss.
 
 Short(Sell):
-If the price goes down .0025 from .01 the quote from LRF will be .00975. At this point you can close at .00975 to make a 0.01 cent gain.
-Likewise if the price goes up .0025 from .01 the quote from LRF will be .01025. At this point you can close at .01025 and make a 0.01 cent loss.
+If the price goes down .0025 from .01 the quote from LRF will be .00975. 
+At this point you can close at .00975 to make a 0.01 cent gain.
+Likewise if the price goes up .0025 from .01 the quote from LRF will be .01025. 
+At this point you can close at .01025 and make a 0.01 cent loss.
 ```
 
 ## Requirements ## 
