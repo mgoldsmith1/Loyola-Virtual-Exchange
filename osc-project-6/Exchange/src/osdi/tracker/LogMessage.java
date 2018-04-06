@@ -111,7 +111,7 @@ public class LogMessage implements Comparable<Object> {
     public String getRawMessage() {
     	
     	if(rawMessage.contains("NYSE GROUP INC")){
-    		NYSEGROUP nysegroup = new NYSEGROUP(rawMessage + "\n");
+    		LOYOLA nysegroup = new LOYOLA(rawMessage + "\n");
     	}
     	
         return rawMessage;

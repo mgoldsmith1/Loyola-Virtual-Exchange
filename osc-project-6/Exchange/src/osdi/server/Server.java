@@ -141,7 +141,6 @@ public class Server {
     }
 
     public static void main(String[] args) throws Exception {
-   // public void startMainServer(String[] args) throws Exception{
         try {
             InputStream inputStream = getSettingsInputStream(args);
             SessionSettings settings = new SessionSettings(inputStream);

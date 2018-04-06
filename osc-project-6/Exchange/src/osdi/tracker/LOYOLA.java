@@ -1,10 +1,10 @@
 package osdi.tracker;
 
-public class NYSEGROUP {
+public class LOYOLA {
 	//NYSE GROUP INC
 	private String quote = null;
 	
-	public NYSEGROUP(String quote){
+	public LOYOLA(String quote){
 		this.quote = quote;
 	}
 	public String quote(){
