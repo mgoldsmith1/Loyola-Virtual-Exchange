@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instruments>
+   <instrument name="LOYOLA INDEX" ticker="LDX" sedol="2885700" ric="LDX.N" cusip="873168108" price="58.56"/>
+   <instrument name="ISHARES LOYOLA INDEX" ticker="ILX" sedol="2005973" ric="ILX.N" cusip="459200101" price="92.07"/>
+   <instrument name="ISHARES SMALLCAP RAMBLER BUCKS" ticker="ISR" sedol="2986539" ric="ISR.OQ" cusip="984332106" price="32.09"/>
+   <instrument name="TXU CORP" ticker="TXU" sedol="2885700" ric="TXU.N" cusip="873168108" price="58.56"/>
+  
+</instruments>
