@@ -38,8 +38,6 @@ If the price goes down .0025 from .10 the quote from LRF will be .0975. At this 
 Likewise if the price goes up .0025 from .10 the quote from LRF will be .1025. At this point you can close at .1025 and make a 0.05 cent loss.
 ```
 
-Then we need to do the accounting portion of the project
-
 ## Requirements ## 
 
 * JRE Java SE 8 v1.8.0_121
