@@ -1,18 +1,41 @@
-# Market Exchange Simulator #
+# Loyola Virtual Exchange #
+Welcome to the Loyola Virtual Exchange.
 <img src="https://user-images.githubusercontent.com/35674633/37799728-99235646-2dee-11e8-975b-588a411163fd.png" width="450">
 
 ##  Mission Statement ##
 
-An open source trading simulator that uses the FIX Protocol and will allow users to test market strategies.
+An open source trading simulator that uses the FIX Protocol that allows users to trade Virtual Currency products on the Loyola Exchange. It will also provide the ability to test market strategies.
 
 ## How it works ## 
 ![screenshot](https://user-images.githubusercontent.com/25426180/37797273-5e4d6b58-2de7-11e8-96e6-d7263c65271e.png)
 
-In our main, we are feeding numbers ranging from 1 to 200 million through an exchange system. This system consists of two threads. The first thread finds what market these numbers should go to. The second thread determines if it is a prime market. In other words if we have found a prime number within our system it will be queued to the Loyola Prime Market Index or (LPX). The numbers are treated like a key value pair. The key representing a ticket number and the value is the information of the order being placed. The numbers are read in like a queue that is FIFO. The processed ordered are feed to a dequeue that are eventually redirected to a market. This is a baseline approach to find a particular difference in what is being feed through the Exchange Feed
+Loyola Virtual Currency Products:
 
-We will eventually remove the numbers that are feed here and replace them with strings
-Those strings will contain an OrderID, OrderType, OrderSize, PriceBought, PriceSold, etc.
-The value we will focus on first is the OrderID's e.g. LPX (Loyola Prime Index), or AAPL, MSFT, etc. This will determine which market the string info will go to. In that Market the string will be parsed into separate variables. From there we will determine if the OrderType is a Buy/Sell, QrderSize (quantity bought/sold), PriceBought $50.25, PriceSold $52.00, etc.
+Currency Futures:
+```bash
+Name:			        Symbol	    Contract	Expires	        Price	Change
+Loyola Rambler Futures	        LRF-M5Y18   MAY 2018	MAY 2018	0.10	+0.0000000
+
+Name:			        Symbol	    Contract	Expires	        Price	Change
+Loyola micro-Rambler Futures	MLR-M5Y18  MAY 2018	MAY 2018	0.01	+0.0000000
+```
+Contract Specs:
+```bash
+Minimum Price Fluctuation:	Outrights: .0025 USD per EUR increments ($0.05 USD).
+
+In other words: 
+A 1 lot Loyola Rambler Futures Contract = 0.05 cents up or down. 
+
+For example: 
+
+Long(Buy):
+If the price goes up .0025 from .10 the quote from LRF will be .1025. At this point you can close at .1025 and make a 0.05 cent profit.
+Likewise if the price goes down .0025 from .10 the quote from LRF will be .0975. At this point you can close at .0975 to make a 0.05 cent loss.
+
+Short(Sell):
+If the price goes down .0025 from .10 the quote from LRF will be .0975. At this point you can close at .0975 to make a 0.05 cent gain.
+Likewise if the price goes up .0025 from .10 the quote from LRF will be .1025. At this point you can close at .1025 and make a 0.05 cent loss.
+```
 
 Then we need to do the accounting portion of the project
 
