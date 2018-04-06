@@ -22,7 +22,7 @@ Loyola micro-Rambler Futures	MLR-M5Y18  MAY 2018	MAY 2018	0.01	+0.0000000
 ```
 Contract Specs:
 ```bash
-Minimum Price Fluctuation:	Outrights: .0025 USD per EUR increments ($0.05 USD).
+Minimum Price Fluctuation:	Outrights: .0025 USD per LRF increments ($0.05 USD).
 
 In other words: 
 A 1 lot Loyola Rambler Futures Contract = 0.05 cents up or down. 
