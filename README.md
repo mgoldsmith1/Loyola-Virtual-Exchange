@@ -1,8 +1,9 @@
 # Loyola Virtual Exchange #
-Welcome to the Loyola Virtual Exchange.
 <img src="https://user-images.githubusercontent.com/35674633/37799728-99235646-2dee-11e8-975b-588a411163fd.png" width="450">
 
 ##  Mission Statement ##
+
+Welcome to the Loyola Virtual Exchange.
 
 An open source trading simulator that uses the FIX Protocol that allows users to trade Virtual Currency products on the Loyola Exchange. It will also provide the ability to test market strategies.
 
