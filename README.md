@@ -12,7 +12,7 @@ An open source trading simulator that uses the FIX Protocol that allows users to
 
 Loyola Virtual Currency Products:
 
-Currency Futures:
+Virtual Currency Futures:
 ```bash
 Name:			        Symbol	    Contract	Expires	        Price	Change
 Loyola Rambler Futures	        LRF-M5Y18   MAY 2018	MAY 2018	0.10	+0.0000000
