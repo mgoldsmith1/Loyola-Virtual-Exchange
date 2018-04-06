@@ -47,7 +47,7 @@ public class FIXTracker {
             exception.printStackTrace();
             System.exit(0);
         }
-        instruments = new InstrumentSet(new File(_path +"/Exchange/src/osdi/tracker/instruments.xml"));
+        instruments = new InstrumentSet(new File(_path +"/Exchange/src/osdi/tracker/university.xml")); //instruments.xml
         messages = new LogMessageSet();
         try {
             SessionSettings settings = new SessionSettings( inputStream );

@@ -115,7 +115,7 @@ public class InstrumentSet extends DefaultHandler {
     public void outputToXML() {
         try {
             BufferedWriter writer = 
-                   new BufferedWriter(new FileWriter("instruments.xml"));
+                   new BufferedWriter(new FileWriter("university.xml")); //instruments.xml
             writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
             writer.write("<instruments>\n");
             Iterator<Instrument> iterator = instruments.iterator();

@@ -518,6 +518,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
             getColumn(i).setPreferredWidth(150);
         }
         messageDetailScrollPane.setViewportView(messageDetailTable);
+      
 
         javax.swing.GroupLayout messageDetailPanelLayout = new javax.swing.GroupLayout(messageDetailPanel);
         messageDetailPanel.setLayout(messageDetailPanelLayout);
