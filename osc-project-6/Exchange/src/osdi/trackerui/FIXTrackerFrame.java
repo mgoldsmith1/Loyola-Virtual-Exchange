@@ -422,7 +422,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Order Book (Sell-Side)"); // Sell-Side 
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         setMinimumSize(new java.awt.Dimension(800, 600));
