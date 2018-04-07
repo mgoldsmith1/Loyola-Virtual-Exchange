@@ -1881,7 +1881,7 @@ private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_saveSettingsButtonActionPerformed
 
 private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-System.exit(0);
+this.dispose();
 }//GEN-LAST:event_exitMenuItemActionPerformed
 
     @SuppressWarnings("static-access")
