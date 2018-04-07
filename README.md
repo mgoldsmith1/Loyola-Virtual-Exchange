@@ -47,7 +47,7 @@ At this point you can close at .1025 and make a 0.05 cent loss.
 Minimum Price Fluctuation:	Outrights: .00025 USD per MRF increments ($0.01 USD).
 
 In other words: 
-A 1 lot (or 1 quantity) Loyola micro-Rambler Futures Contract = 0.01 cents up or down. 
+A 1 lot (or 1 quantity) Loyola micro-Rambler Futures Contract = 0.01 cent up or down. 
 
 For example: 
 
