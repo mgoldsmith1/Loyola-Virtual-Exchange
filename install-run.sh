@@ -13,8 +13,8 @@ brew cask install caskroom/versions/java8
 
 java -version
 
-git clone https://github.com/mgoldsmith1/Market-Exchange-Simulator.git
-cd Market-Exchange-Simulator
+git clone https://github.com/mgoldsmith1/Loyola-Virtual-Exchange.git
+cd Loyola-Virtual-Exchange
 
 ./run.sh
 
