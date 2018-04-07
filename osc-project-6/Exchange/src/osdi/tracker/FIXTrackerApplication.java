@@ -820,9 +820,10 @@ public class FIXTrackerApplication extends MessageCracker
                 pricePrecision = 
                         (int)settings.getLong("FIXTrackerPricePrecision");
             } catch ( Exception e ) {}
-            double factor = Math.pow( 10, pricePrecision );
-            double price = Math.round( 
-                    random.nextDouble() * 100 * factor ) / factor;
+            //double factor = Math.pow( 10, pricePrecision );
+           // double price = Math.round( 
+                   // random.nextDouble() * 100 * factor ) / factor;
+            double price = myRandom(0,1);
             ioi.setPrice(price);
             
             // IOINaturalFlag
@@ -832,7 +833,10 @@ public class FIXTrackerApplication extends MessageCracker
             sendIOI(ioi);
         }
     }
-    
+    public double myRandom(double min, double max) {
+        Random r = new Random();
+        return (r.nextInt((int)((max-min)*10+1))+min*10) / 25.0;
+    }
     // Executor methods
     public void startExecutor( Integer delay, Integer partials ) {
         try {

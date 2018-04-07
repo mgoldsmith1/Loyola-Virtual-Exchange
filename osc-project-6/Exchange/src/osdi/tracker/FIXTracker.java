@@ -45,7 +45,18 @@ public class FIXTracker {
                             new File( _path +"/Exchange/src/osdi/tracker/FIXTracker.cfg" )));
         } catch (FileNotFoundException exception) {
             exception.printStackTrace();
-            System.exit(0);
+           // System.exit(0);
+        } finally {
+        	 try {
+        		if(inputStream == null) {
+					inputStream = new BufferedInputStream( 
+					         new FileInputStream( 
+					         new File( _path +"/osc-project-6/Exchange/src/osdi/tracker/FIXTracker.cfg" )));
+        		 } 
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         instruments = new InstrumentSet(new File(_path +"/Exchange/src/osdi/tracker/university.xml")); //instruments.xml
         messages = new LogMessageSet();
@@ -106,4 +117,3 @@ public class FIXTracker {
         }
     }
 }
-
