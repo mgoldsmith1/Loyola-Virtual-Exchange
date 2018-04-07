@@ -265,7 +265,7 @@ public class ClientFrame extends JFrame {
         orderBookMenuItem.addActionListener(ev -> {
         	SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					new OrderBookFrame().setVisible(true);
+					new OrderBookFrame();
 				}
 			});
         });
