@@ -1881,7 +1881,7 @@ private void saveSettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_saveSettingsButtonActionPerformed
 
 private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-this.dispose();
+	this.dispose();
 }//GEN-LAST:event_exitMenuItemActionPerformed
 
     @SuppressWarnings("static-access")
@@ -2168,10 +2168,11 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run() {      
                 fixtracker = new FIXTracker();
                 fixtracker.start();
-                new FIXTrackerFrame().setVisible(true);
+                new FIXTrackerFrame().setVisible(true);          
+                
             }
         });
     }

@@ -39,8 +39,8 @@ public class OrderBookFrame extends JFrame {
 		
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FIXTracker fiximulator = new FIXTracker();
-                fiximulator.start();
+                FIXTracker fixtracker = new FIXTracker();
+                fixtracker.start();
 				FIXTrackerFrame fixFrame = new FIXTrackerFrame();
 				JFrame frame = fixFrame;
 				frame.setVisible(true);

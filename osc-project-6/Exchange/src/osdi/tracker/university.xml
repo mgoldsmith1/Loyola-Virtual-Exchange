@@ -3,17 +3,17 @@
    <instrument name="Loyola Rambler Futures" ticker="LRF" sedol="2005973" ric="LRF-M18" cusip="459200101" price=".10"/>
    <instrument name="Loyola micro-Rambler Futures" ticker="MRF" sedol="2986539" ric="MRF-M18" cusip="984332106" price=".01"/>
    
-   <instrument name="Depaul Blue Demons Futures" ticker="DBDF" sedol="2005974" ric="DBD-M18" cusip="459200102" price=".10"/>
+    <!--<instrument name="Depaul Blue Demons Futures" ticker="DBDF" sedol="2005974" ric="DBD-M18" cusip="459200102" price=".10"/>
    <instrument name="Depaul micro-Blue Demons Futures" ticker="MBDF" sedol="2986540" ric="MBDF-M18" cusip="984332107" price=".01"/>
    
    <instrument name="Illinois Institute of Technology Futures" ticker="IITF" sedol="2005975" ric="IITF-M18" cusip="459200103" price=".10"/>
    <instrument name="micro-IIT Futures" ticker="MIITF" sedol="2986541" ric="MIITF-M18" cusip="984332108" price=".01"/>
    
-   <instrument name="School of the Art institute of Chicago Futures" ticker="SAICF" sedol="2005976" ric="SAICF-M18" cusip="459200104" price=".10"/>
+   <instrument name="School of the Art Institute of Chicago Futures" ticker="SAICF" sedol="2005976" ric="SAICF-M18" cusip="459200104" price=".10"/>
    <instrument name="micro-SAIC Futures" ticker="MSAICF" sedol="2986542" ric="SAICF-M18" cusip="984332109" price=".01"/>
    
    <instrument name="UIC Dragon Dollar Futures" ticker="UICDDF" sedol="200597" ric="UICDDF-M18" cusip="459200105" price=".10"/>
-   <instrument name="UIC micro-Dragon Dollar Futures" ticker="MDDF" sedol="2986543" ric="MDDF-M18" cusip="984332110" price=".01"/>
+   <instrument name="UIC micro-Dragon Dollar Futures" ticker="MDDF" sedol="2986543" ric="MDDF-M18" cusip="984332110" price=".01"/> -->
    
    
    

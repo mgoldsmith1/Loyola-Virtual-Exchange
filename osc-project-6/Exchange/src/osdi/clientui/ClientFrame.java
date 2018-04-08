@@ -31,6 +31,7 @@ import quickfix.SessionSettings;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.SplashScreen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -43,6 +44,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.management.JMException;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -74,7 +76,8 @@ public class ClientFrame extends JFrame {
 	private Initiator initiator = null;
 	private SessionSettings settings = null;
 	private boolean foo = false;
-
+   
+    
     public ClientFrame(osdi.client.OrderTableModel orderTableModel, osdi.client.ExecutionTableModel executionTableModel,
             final osdi.client.ClientApplication application, Initiator initiator, SessionSettings settings) {
 
@@ -125,7 +128,7 @@ public class ClientFrame extends JFrame {
         setJMenuBar(menubar);
     }
     private void initializeMainMenuGUI(){
-        mainFrame = new JFrame("Market Exchange Sim");
+        mainFrame = new JFrame("Loyola Exchange Sim");
         
         mainFrame.setSize(1080,600);
         mainFrame.setLayout(new GridLayout(3, 1));

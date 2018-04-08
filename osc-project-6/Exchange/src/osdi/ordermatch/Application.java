@@ -45,6 +45,7 @@ import quickfix.field.CxlRejResponseTo;
 import quickfix.field.MDEntryPx;
 import quickfix.field.MDEntryType;
 import quickfix.field.MDReqID;
+import quickfix.field.MarketDepth;
 import quickfix.field.OrdRejReason;
 import quickfix.fix42.OrderCancelReject;
 
@@ -200,12 +201,13 @@ public class Application extends MessageCracker implements quickfix.Application 
             UnsupportedMessageType, IncorrectTagValue {
         MarketDataRequest.NoRelatedSym noRelatedSyms = new MarketDataRequest.NoRelatedSym();
 
-        //String mdReqId = message.getString(MDReqID.FIELD);
+        String mdReqId = message.getString(MDReqID.FIELD);
         char subscriptionRequestType = message.getChar(SubscriptionRequestType.FIELD);
 
         if (subscriptionRequestType != SubscriptionRequestType.SNAPSHOT)
             throw new IncorrectTagValue(SubscriptionRequestType.FIELD);
-        //int marketDepth = message.getInt(MarketDepth.FIELD);
+        //
+       int marketDepth = message.getInt(MarketDepth.FIELD);
         int relatedSymbolCount = message.getInt(NoRelatedSym.FIELD);
 
         MarketDataSnapshotFullRefresh fixMD = new MarketDataSnapshotFullRefresh();
