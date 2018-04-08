@@ -58,11 +58,22 @@ public class FIXTracker {
 				e.printStackTrace();
 			}
         }
-        instruments = new InstrumentSet(new File(_path +"/Exchange/src/osdi/tracker/university.xml")); //instruments.xml
-        messages = new LogMessageSet();
+        
+        try{
+	        instruments = new InstrumentSet(new File(_path +"/Exchange/src/osdi/tracker/university.xml")); //instruments.xml
+	        messages = new LogMessageSet();
+        }catch(Exception e){
+        	e.getMessage();
+        }finally{
+        	if(instruments == null) {
+        	 instruments = new InstrumentSet(new File(_path +"/osc-project-6/Exchange/src/osdi/tracker/university.xml")); 
+        	}
+        }
+        
         try {
             SessionSettings settings = new SessionSettings( inputStream );
             application = new FIXTrackerApplication( settings, messages );
+
             MessageStoreFactory messageStoreFactory = 
                     new FileStoreFactory( settings );
             boolean logToFile = false;
