@@ -76,7 +76,7 @@ public class ClientFrame extends JFrame {
 	private Initiator initiator = null;
 	private SessionSettings settings = null;
 	private boolean foo = false;
-   
+    private SplashScreen screen;
     
     public ClientFrame(osdi.client.OrderTableModel orderTableModel, osdi.client.ExecutionTableModel executionTableModel,
             final osdi.client.ClientApplication application, Initiator initiator, SessionSettings settings) {
@@ -127,6 +127,14 @@ public class ClientFrame extends JFrame {
 
         setJMenuBar(menubar);
     }
+    /* private void splashScreenInit() {
+	  ImageIcon myImage = new ImageIcon(com.devdaily.splashscreen.SplashScreenMain.class.getResource("SplashImage.gif"));
+	  screen = new SplashScreen(myImage);
+	  screen.setLocationRelativeTo(null);
+	  screen.setProgressMax(100);
+	  screen.setScreenVisible(true);
+}*/
+
     private void initializeMainMenuGUI(){
         mainFrame = new JFrame("Loyola Exchange Sim");
         
