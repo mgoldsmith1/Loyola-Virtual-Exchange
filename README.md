@@ -3,7 +3,7 @@
 
 ##  Mission Statement ##
 
-Welcome to the Loyola Virtual Exchange.
+Welcome to the Loyola Virtual Exchange!
 
 An open source trading simulator that uses the FIX Protocol that allows users to trade Virtual Currency products on the Loyola Exchange. It will also provide the ability to test market strategies.
 
@@ -90,10 +90,10 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)
 
 ## Installation ##
 
-Cloning Market-Exchange-Simulator with Git
+Cloning Loyola-Virtual-Exchange with Git
 ```bash
-$ git clone https://github.com/mgoldsmith1/Market-Exchange-Simulator.git
-$ cd Market-Exchange-Simulator
+$ git clone https://github.com/mgoldsmith1/Loyola-Virtual-Exchange.git
+$ cd Loyola-Virtual-Exchange
 
 ```
 
@@ -139,16 +139,16 @@ $ ./install-run.sh
 	- Provides delegation of an exchange feed.
 
 ## Frequently Asked Questions (FAQ) ##
-* What is Market-Exchange-Simulator?	
-   - _Market Exchange Simulator is an open source trading simulator that uses the FIX Protocol and will allow users to test market strategies._
+* What is the Loyola-Virtual-Exchange?	
+   - _Loyola-Virtual-Exchange is an open source trading simulator that uses the FIX Protocol and will allow users to test market strategies._
 
-* Which software license is Market-Exchange-Simulator licensed under?	
-   - _Market-Exchange-Simulator is licensed under the GNU General Public License v3.0. Refer to the license document for more information._
+* Which software license is Loyola-Virtual-Exchange licensed under?	
+   - _Loyola-Virtual-Exchange is licensed under the GNU General Public License v3.0. Refer to the license document for more information._
 
-* Which platforms does Market-Exchange-Simulator support?	
-   - _Market-Exchange-Simulator is actively tested and supported on various 64 bit versions of Windows (7 and up) and macOS._
+* Which platforms does Loyola-Virtual-Exchange support?	
+   - _Loyola-Virtual-Exchange is actively tested and supported on various 64 bit versions of Windows (7 and up) and macOS._
 
-* Who made Market-Exchange-Simulator? 	
+* Who made Loyola-Virtual-Exchange? 	
    - _Group6 from COMP312/412 course. The list of contributors can be found on GitHub._
 
 * Are there indicators provided?	
@@ -171,7 +171,7 @@ $ ./install-run.sh
 * Writing tests
 * Code review
 * Other guidelines
-* [Contribution.md](https://github.com/mgoldsmith1/Market-Exchange-Simulator/blob/master/osc-project-6/Contributions.md)
+* [Contribution.md](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/Contributions.md)
 
 ## GPL v3.0 License ##
 
