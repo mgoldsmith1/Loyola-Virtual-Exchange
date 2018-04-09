@@ -32,7 +32,7 @@ import quickfix.SocketAcceptor;
 
 public class FIXTracker {
     private static final long serialVersionUID = 1L;
-    private Acceptor acceptor = null;
+    private static Acceptor acceptor = null;
     private static FIXTrackerApplication application = null;
     private static InstrumentSet instruments = null;
     private static LogMessageSet messages = null;
@@ -123,6 +123,13 @@ public class FIXTracker {
     public void start() {
         try {
             acceptor.start();
+        } catch ( Exception e ) {
+            System.out.println( e );
+        }
+    }
+    public static void stop() {
+        try {
+            acceptor.stop();
         } catch ( Exception e ) {
             System.out.println( e );
         }

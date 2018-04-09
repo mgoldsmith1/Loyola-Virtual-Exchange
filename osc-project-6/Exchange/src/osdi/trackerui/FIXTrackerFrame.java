@@ -12,7 +12,13 @@
 package osdi.trackerui;
 
 import osdi.tracker.Execution;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
+
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import osdi.tracker.FIXTracker;
 import osdi.tracker.IOI;
@@ -422,12 +428,29 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); //.DO_NOTHING_ON_CLOSE
         setTitle("Order Book (Sell-Side)"); // Sell-Side 
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setName("orderbookFrame");  // NOI18N
         setResizable(false);
+        
+        WindowListener exitListener = new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            	
+            	//Shutting down FIXTracker Acceptor.
+                int confirm = JOptionPane.showOptionDialog(
+                     null, "Shutting down OrderBook Server.", 
+                     "Exit Confirmation", JOptionPane.OK_CANCEL_OPTION, //.YES_NO_OPTION, 
+                     JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if (confirm == 0) {
+                   FIXTracker.stop();	
+                }
+            }
+        };
+        this.addWindowListener(exitListener);
 
         messagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Application Messages"));
 
@@ -1594,6 +1617,8 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
+				
+				FIXTracker.stop();
             }
         });
         fileMenu.add(exitMenuItem);
