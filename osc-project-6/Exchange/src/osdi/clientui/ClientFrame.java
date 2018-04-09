@@ -59,6 +59,11 @@ import osdi.client.Client;
 import osdi.client.ClientApplication;
 import osdi.client.ExecutionTableModel;
 import osdi.client.OrderTableModel;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 /**
  * Main application window
@@ -139,7 +144,7 @@ public class ClientFrame extends JFrame {
         mainFrame = new JFrame("Loyola Exchange Sim");
         
         mainFrame.setSize(1080,600);
-        mainFrame.setLayout(new GridLayout(3, 1));
+        mainFrame.getContentPane().setLayout(new GridLayout(3, 1));
 
         headerLabel = new JLabel("",JLabel.CENTER );
         statusLabel = new JLabel("",JLabel.CENTER);        
@@ -153,9 +158,12 @@ public class ClientFrame extends JFrame {
         controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout());
 
-        mainFrame.add(headerLabel);
-        mainFrame.add(controlPanel);
-        mainFrame.add(statusLabel);
+        mainFrame.getContentPane().add(headerLabel);
+        
+        JPopupMenu popupMenu = new JPopupMenu();
+        addPopup(headerLabel, popupMenu);
+        mainFrame.getContentPane().add(controlPanel);
+        mainFrame.getContentPane().add(statusLabel);
         mainFrame.setVisible(true);  
      }
      private void displayMainMenuGUI(){
@@ -165,7 +173,7 @@ public class ClientFrame extends JFrame {
         //create menus
         JMenu fileMenu = new JMenu("File");
         //JMenu editMenu = new JMenu("Edit");       
-        final JMenu orderMenu = new JMenu("Order");
+        final JMenu orderMenu = new JMenu("Trade");
         JMenu orderBookMenu = new JMenu("Order Book"); 
         JMenu chartMenu = new JMenu("Charts");
         final JMenu serverMenu = new JMenu("Server");
@@ -178,15 +186,16 @@ public class ClientFrame extends JFrame {
         final JMenu linkMenu = new JMenu("Links");
          
         //create menu items
-        JMenuItem newMenuItem = new JMenuItem("New");
-        newMenuItem.setMnemonic(KeyEvent.VK_N);
-        newMenuItem.setActionCommand("New");
+        //JMenuItem newMenuItem = new JMenuItem("New");
+        //newMenuItem.setMnemonic(KeyEvent.VK_N);
+        //newMenuItem.setActionCommand("New");
 
-        JMenuItem openMenuItem = new JMenuItem("Open"); //Open Workspace
-        openMenuItem.setActionCommand("Open");
+        JMenuItem clientStartLogonMenuItem = new JMenuItem("Logon @LocalHost..."); //Open Workspace
+       
+        clientStartLogonMenuItem.setActionCommand("Start Client Logon...");
 
-        JMenuItem saveMenuItem = new JMenuItem("Save"); //Save Workspace
-        saveMenuItem.setActionCommand("Save");
+        JMenuItem clientLogoutMenuItem = new JMenuItem("Logout..."); 
+        clientLogoutMenuItem.setActionCommand("Client Logout...");
 
         JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.setActionCommand("Exit");
@@ -242,13 +251,11 @@ public class ClientFrame extends JFrame {
       
         MenuItemListener menuItemListener = new MenuItemListener();
 
-        newMenuItem.addActionListener(menuItemListener);
-        openMenuItem.addActionListener(menuItemListener);
-        saveMenuItem.addActionListener(menuItemListener);
+   //     newMenuItem.addActionListener(menuItemListener);
+        clientStartLogonMenuItem.addActionListener(menuItemListener);
+        clientLogoutMenuItem.addActionListener(menuItemListener);
         exitMenuItem.addActionListener(menuItemListener);
-       // cutMenuItem.addActionListener(menuItemListener);
-       // copyMenuItem.addActionListener(menuItemListener);
-       // pasteMenuItem.addActionListener(menuItemListener);
+      
         
         // new
         orderMenuItem.addActionListener(menuItemListener);
@@ -256,13 +263,6 @@ public class ClientFrame extends JFrame {
         disconnectExecMenuItem.addActionListener(menuItemListener);
         openConfigurationMenuItem.addActionListener(menuItemListener);
         
-        /*openConfigurationMenuItem.addActionListener(ev->{
-        	SwingUtilities.invokeLater(new Runnable() {
-        		public void run(){
-        			n
-        		}
-        	}
-        });*/
         
       //Remember to import SwingUtilities before Run it
         chartMenuItem.addActionListener(ev -> {
@@ -280,64 +280,39 @@ public class ClientFrame extends JFrame {
 				}
 			});
         });
-
-        final JCheckBoxMenuItem showWindowMenu = new JCheckBoxMenuItem(
-           "Show About", true);
-        showWindowMenu.addItemListener(new ItemListener() {
-           public void itemStateChanged(ItemEvent e) {
-              
-              if(showWindowMenu.getState()){
-                 menuBar.add(aboutMenu);
-              } else {
-                 menuBar.remove(aboutMenu);
-              }
-           }
-        });
-        final JRadioButtonMenuItem showLinksMenu = new JRadioButtonMenuItem(
-           "Show Links", true);
-        
-        showLinksMenu.addItemListener(new ItemListener() {
-           public void itemStateChanged(ItemEvent e) {
-              
-              if(menuBar.getMenu(3)!= null){
-                 menuBar.remove(linkMenu);
-                 mainFrame.repaint();
-              } else {                   
-                 menuBar.add(linkMenu);
-                 mainFrame.repaint();
-              }
-           }
-        });
         //add menu items to menus
-        fileMenu.add(newMenuItem);
-        //fileMenu.add(openMenuItem);
-        //fileMenu.add(saveMenuItem);
-        //fileMenu.addSeparator();
-        fileMenu.add(showWindowMenu);
+      //  fileMenu.add(newMenuItem);
+      
+        
+        JMenu mnLogon = new JMenu("Session");  //Client//User
+        //fileMenu.add(mnLogon);
+        JMenuItem mntmLogon = new JMenuItem("Connect");
+      
+      
+        mnLogon.add(mntmLogon);
+        fileMenu.add(clientStartLogonMenuItem);
         fileMenu.addSeparator();
-        fileMenu.add(showLinksMenu);       
+        JMenuItem mntmLogoutlocalhost = new JMenuItem("Disconnect");
+       // mntmLogoutlocalhost.setActionCommand("disconnectclient");
+        mnLogon.add(mntmLogoutlocalhost);
+       
+        fileMenu.add(clientLogoutMenuItem);
         fileMenu.addSeparator();
         fileMenu.add(exitMenuItem);       
-       // editMenu.add(cutMenuItem);
-       // editMenu.add(copyMenuItem);
-       // editMenu.add(pasteMenuItem);
-        //new
         
         orderMenu.add(orderMenuItem);
         orderBookMenu.add(orderBookMenuItem);
         chartMenu.add(chartMenuItem);
         serverMenu.add(connectExecMenuItem);
+        serverMenu.addSeparator();
         serverMenu.add(disconnectExecMenuItem);
         
       
         //add menu to menubar
         menuBar.add(fileMenu);
-      //  menuBar.add(editMenu);
         menuBar.add(aboutMenu);  
-       // menuBar.add(linkMenu);
         menuBar.add(orderMenu);
         menuBar.add(orderBookMenu);
-      //  menuBar.add(chartMenu);
         menuBar.add(serverMenu);
        // menuBar.add(configurationMenu);
 
@@ -351,16 +326,41 @@ public class ClientFrame extends JFrame {
     
         public void actionPerformed(ActionEvent e) {            
            statusLabel.setText(e.getActionCommand() + " JMenuItem clicked.");
-         
-           if(e.getActionCommand().contains("Connect...") && foo == false){ //(Executor) 
-        	   
-        	   foo = true;
+           if(e.getActionCommand().contains("Start Client Logon...") ){ //(Executor) 
+   						
+   				try{
+                   Client.get().logon();
+   				}catch(Exception e1 ){
+   					e1.getMessage();
+   					foo = true;
+   				}finally{
+   					try {
+   						if( foo == true)
+   						initiator.start();
+   					} catch (RuntimeError e1) {
+   						// TODO Auto-generated catch block
+   						e1.printStackTrace();
+   						
+   					} catch (ConfigError e1) {
+   						// TODO Auto-generated catch block
+   						e1.printStackTrace();
+   					}
+   				}
+              }
+           if(e.getActionCommand().contains("Client Logout...") ){ 
+        	   initiator.stop();
+        	   statusLabel.setText("Disconnected Client");
+           }
+           if(e.getActionCommand().contains("Connect...") ){ //(Connect to Executor Firm) 
+        	
+        	  
+        	   //foo = true;
            }
            /////////////////////////////////////////
            if(e.getActionCommand().contains("Disconnect...")) {
-        	   statusLabel.setText("Disconnected Client");
-        	   initiator.stop();
-        	   foo = false;
+        	   statusLabel.setText("Disconnected Server");
+        	 //  initiator.stop();
+        	  // foo = false;
            }
            
            /////////////////////////////////////////////////
@@ -374,4 +374,21 @@ public class ClientFrame extends JFrame {
            
         }    
      }
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
 }

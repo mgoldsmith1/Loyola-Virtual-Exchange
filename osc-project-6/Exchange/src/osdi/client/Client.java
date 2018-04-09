@@ -143,7 +143,7 @@ public class Client {
         }
         client = new Client(args);
         if (!System.getProperties().containsKey("openfix")) {
-            client.logon();     
+           // client.logon();     
         }
         shutdownLatch.await();
     }
