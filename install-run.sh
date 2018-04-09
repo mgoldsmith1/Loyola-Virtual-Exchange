@@ -23,19 +23,11 @@ if [[ "$_java" ]]; then
          echo Your Version of Java is more than 1.8 but less than 1.9
 	 echo No need to Upgrade... Skipping Installation Step
 
-	 #Cloning
-	 git clone https://github.com/mgoldsmith1/Loyola-Virtual-Exchange.git
-	 cd Loyola-Virtual-Exchange
-
 	 #Running Application
 	 echo Running Application... 
 	 ./run.sh
     elif [[ "$version" > "1.9" ]]; then        
          echo Your Version of Java is greater than 1.9
-
-         #Cloning	
-         git clone https://github.com/mgoldsmith1/Loyola-Virtual-Exchange.git
-	 cd Loyola-Virtual-Exchange
 
 	 #Running Application
 	 echo Running Application...
@@ -49,11 +41,6 @@ if [[ "$_java" ]]; then
 	 brew update
 	 brew tap caskroom/cask
 	 brew cask install caskroom/versions/java8
-
-	 #Cloning
-	 echo Cloning...
-	 git clone https://github.com/mgoldsmith1/Loyola-Virtual-Exchange.git
-	 cd Loyola-Virtual-Exchange
 
 	 #Running Application
 	 echo Running Application...
