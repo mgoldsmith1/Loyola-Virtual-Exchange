@@ -1,4 +1,5 @@
 language: java
+
 deploy:
   provider: pages
   skip-cleanup: true
@@ -8,7 +9,3 @@ deploy:
     branch: master
 
 
-jdk:
-  - oraclejdk8
-  - oraclejdk9
-  - openjdk7
