@@ -1,5 +1,5 @@
 # Loyola Virtual Exchange #
-![Build Status](https://travis-ci.org/quickfix-j/quickfixj.svg?branch=master)]
+[![Build Status](https://travis-ci.org/quickfix-j/quickfixj.svg?branch=master)](https://travis-ci.org/quickfix-j/quickfixj)
 
 <img src="https://user-images.githubusercontent.com/35674633/37799728-99235646-2dee-11e8-975b-588a411163fd.png" width="450">
 
