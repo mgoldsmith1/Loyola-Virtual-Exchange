@@ -23,6 +23,16 @@ import javax.swing.UIManager;
 import osdi.tracker.FIXTracker;
 import osdi.tracker.IOI;
 import osdi.tracker.Order;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JList;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.Dimension;
 
 public class FIXTrackerFrame extends javax.swing.JFrame {
     private static FIXTracker fixtracker;
@@ -93,25 +103,6 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         messageDetailScrollPane = new javax.swing.JScrollPane();
         messageDetailTable = new javax.swing.JTable();
         mainTabbedPane = new javax.swing.JTabbedPane();
-        loadPanel = new javax.swing.JPanel();
-        autoIOIPanel = new javax.swing.JPanel();
-        securityIDComboBox = new javax.swing.JComboBox();
-        rateSlider = new javax.swing.JSlider();
-        rateDisplayLable = new javax.swing.JLabel();
-        symbolLabel = new javax.swing.JLabel();
-        stopButton = new javax.swing.JButton();
-        startButton = new javax.swing.JButton();
-        symbolComboBox = new javax.swing.JComboBox();
-        securityIDLabel = new javax.swing.JLabel();
-        ioiSliderLabel = new javax.swing.JLabel();
-        autoExecutePanel = new javax.swing.JPanel();
-        stopExecutorButton = new javax.swing.JButton();
-        partialsSlider = new javax.swing.JSlider();
-        partialsLabel = new javax.swing.JLabel();
-        partialsNumber = new javax.swing.JLabel();
-        startExecutorButton = new javax.swing.JButton();
-        delayLabel = new javax.swing.JLabel();
-        executorDelay = new javax.swing.JComboBox();
         ioiPanel = new javax.swing.JPanel();
         manualIOIPanel = new javax.swing.JPanel();
         singleIOIButton = new javax.swing.JButton();
@@ -431,7 +422,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); //.DO_NOTHING_ON_CLOSE
         setTitle("Order Book (Sell-Side)"); // Sell-Side 
         setBounds(new java.awt.Rectangle(50, 50, 0, 0));
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new Dimension(1080, 600));
         setName("orderbookFrame");  // NOI18N
         setResizable(false);
         
@@ -452,7 +443,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         };
         this.addWindowListener(exitListener);
 
-        messagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Application Messages"));
+        messagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("FIX Messages:"));
 
         messageTable.setAutoCreateRowSorter(true);
         messageTable.setModel(new osdi.trackerui.MessageTableModel());
@@ -521,7 +512,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                 .addComponent(executorRunningLabel))
         );
 
-        messageDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Message Details"));
+        messageDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("FIX Message Details:"));
 
         messageDetailTable.setAutoCreateRowSorter(true);
         messageDetailTable.setModel(new osdi.trackerui.MessageDetailTableModel(messageTable));
@@ -544,73 +535,23 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
       
 
         javax.swing.GroupLayout messageDetailPanelLayout = new javax.swing.GroupLayout(messageDetailPanel);
-        messageDetailPanel.setLayout(messageDetailPanelLayout);
         messageDetailPanelLayout.setHorizontalGroup(
-            messageDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(messageDetailScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+        	messageDetailPanelLayout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(messageDetailPanelLayout.createSequentialGroup()
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        			.addComponent(messageDetailScrollPane, GroupLayout.PREFERRED_SIZE, 483, GroupLayout.PREFERRED_SIZE)
+        			.addGap(38))
         );
         messageDetailPanelLayout.setVerticalGroup(
-            messageDetailPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(messageDetailPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(messageDetailScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
+        	messageDetailPanelLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(messageDetailPanelLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(messageDetailScrollPane, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
         );
-
-        autoIOIPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Automated IOI Sender"));
-
-        securityIDComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RIC", "Sedol", "RIC", "Cusip" }));
-        securityIDComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                securityIDComboBoxActionPerformed(evt);
-            }
-        });
-
-        rateSlider.setMajorTickSpacing(200);
-        rateSlider.setMaximum(600);
-        rateSlider.setMinorTickSpacing(50);
-        rateSlider.setPaintLabels(true);
-        rateSlider.setPaintTicks(true);
-        rateSlider.setValue(60);
-        rateSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                sliderChanged(evt);
-            }
-        });
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, rateSlider, org.jdesktop.beansbinding.ELProperty.create("${value}"), rateDisplayLable, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
-        symbolLabel.setText("Symbol (55):");
-
-        stopButton.setText("Stop");
-        stopButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stopButtonActionPerformed(evt);
-            }
-        });
-
-        startButton.setText("Start");
-        startButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startButtonActionPerformed(evt);
-            }
-        });
-
-        symbolComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ticker", "Sedol", "RIC", "Cusip" }));
-        symbolComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                symbolComboBoxActionPerformed(evt);
-            }
-        });
-
-        securityIDLabel.setText("SecurityID (48):");
-
-        ioiSliderLabel.setText(" IOIs per minute:");
-
-        javax.swing.GroupLayout autoIOIPanelLayout = new javax.swing.GroupLayout(autoIOIPanel);
-        autoIOIPanel.setLayout(autoIOIPanelLayout);
-        autoIOIPanelLayout.setHorizontalGroup(
-            autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        messageDetailPanel.setLayout(messageDetailPanelLayout);
+      //  autoIOIPanel.setLayout(autoIOIPanelLayout);
+       // autoIOIPanelLayout.setHorizontalGroup(
+         /*   autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(autoIOIPanelLayout.createSequentialGroup()
                 .addGroup(autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(autoIOIPanelLayout.createSequentialGroup()
@@ -621,148 +562,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                     .addGroup(autoIOIPanelLayout.createSequentialGroup()
                         .addComponent(ioiSliderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rateDisplayLable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(autoIOIPanelLayout.createSequentialGroup()
-                        .addComponent(symbolLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(symbolComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(securityIDLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(securityIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rateSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        autoIOIPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {startButton, stopButton});
-
-        autoIOIPanelLayout.setVerticalGroup(
-            autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, autoIOIPanelLayout.createSequentialGroup()
-                .addGroup(autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(symbolLabel)
-                    .addComponent(symbolComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(securityIDLabel)
-                    .addComponent(securityIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ioiSliderLabel)
-                    .addComponent(rateDisplayLable, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(startButton)
-                    .addComponent(stopButton)))
-        );
-
-        autoExecutePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Automated Executor"));
-
-        stopExecutorButton.setText("Stop");
-        stopExecutorButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stopExecutorButtonActionPerformed(evt);
-            }
-        });
-
-        partialsSlider.setMajorTickSpacing(10);
-        partialsSlider.setMaximum(50);
-        partialsSlider.setPaintLabels(true);
-        partialsSlider.setPaintTicks(true);
-        partialsSlider.setValue(10);
-        partialsSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                partialsSliderChanged(evt);
-            }
-        });
-
-        partialsLabel.setText("Fills per order:");
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, partialsSlider, org.jdesktop.beansbinding.ELProperty.create("${value}"), partialsNumber, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
-        startExecutorButton.setText("Start");
-        startExecutorButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startExecutorButtonActionPerformed(evt);
-            }
-        });
-
-        delayLabel.setText("Delay:");
-
-        executorDelay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 ms", "10 ms", "100 ms", "1 second", "5 seconds" }));
-        executorDelay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                executorDelayActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout autoExecutePanelLayout = new javax.swing.GroupLayout(autoExecutePanel);
-        autoExecutePanel.setLayout(autoExecutePanelLayout);
-        autoExecutePanelLayout.setHorizontalGroup(
-            autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(autoExecutePanelLayout.createSequentialGroup()
-                .addGroup(autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(autoExecutePanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(autoExecutePanelLayout.createSequentialGroup()
-                                .addComponent(delayLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(executorDelay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(partialsLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(partialsNumber))
-                            .addGroup(autoExecutePanelLayout.createSequentialGroup()
-                                .addComponent(startExecutorButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(stopExecutorButton))))
-                    .addComponent(partialsSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        autoExecutePanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {startExecutorButton, stopExecutorButton});
-
-        autoExecutePanelLayout.setVerticalGroup(
-            autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(autoExecutePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(delayLabel)
-                    .addComponent(executorDelay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(partialsNumber)
-                    .addComponent(partialsLabel))
-                .addGap(11, 11, 11)
-                .addComponent(partialsSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(autoExecutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stopExecutorButton)
-                    .addComponent(startExecutorButton))
-                .addGap(14, 14, 14))
-        );
-
-        javax.swing.GroupLayout loadPanelLayout = new javax.swing.GroupLayout(loadPanel);
-        loadPanel.setLayout(loadPanelLayout);
-        loadPanelLayout.setHorizontalGroup(
-            loadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loadPanelLayout.createSequentialGroup()
-                .addGroup(loadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(autoExecutePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(autoIOIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        loadPanelLayout.setVerticalGroup(
-            loadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(loadPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(autoIOIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(autoExecutePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        mainTabbedPane.addTab("Load", loadPanel);
+                        .addComponent(rateDisplayLable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))*/
 
         manualIOIPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("IOIs"));
 
@@ -847,29 +647,72 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(100);
         }
+        loadPanel = new javax.swing.JPanel();
+        startButton = new javax.swing.JButton();
+        startButton.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusGained(FocusEvent e) {
+        	}
+        });
+        
+                startButton.setText("Start Exchange Feed");
+                startButton.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        startButtonActionPerformed(evt);
+                    }
+                });
+                stopButton = new javax.swing.JButton();
+                
+                        stopButton.setText("Stop");
+                        stopButton.addActionListener(new java.awt.event.ActionListener() {
+                            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                stopButtonActionPerformed(evt);
+                            }
+                        });
+                        //bindingGroup.addBinding(binding);
+
+                        javax.swing.GroupLayout loadPanelLayout = new javax.swing.GroupLayout(loadPanel);
+                        loadPanelLayout.setHorizontalGroup(
+                        	loadPanelLayout.createParallelGroup(Alignment.LEADING)
+                        		.addGroup(loadPanelLayout.createSequentialGroup()
+                        			.addContainerGap()
+                        			.addGroup(loadPanelLayout.createParallelGroup(Alignment.LEADING)
+                        				.addComponent(startButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        				.addComponent(stopButton, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                        			.addGap(326))
+                        );
+                        loadPanelLayout.setVerticalGroup(
+                        	loadPanelLayout.createParallelGroup(Alignment.LEADING)
+                        		.addGroup(loadPanelLayout.createSequentialGroup()
+                        			.addContainerGap()
+                        			.addComponent(startButton)
+                        			.addPreferredGap(ComponentPlacement.RELATED)
+                        			.addComponent(stopButton)
+                        			.addContainerGap(76, Short.MAX_VALUE))
+                        );
+                        loadPanel.setLayout(loadPanelLayout);
+                        
+                                mainTabbedPane.addTab("Feed", loadPanel);
         ioiTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ioiScrollPane.setViewportView(ioiTable);
 
         javax.swing.GroupLayout ioiPanelLayout = new javax.swing.GroupLayout(ioiPanel);
-        ioiPanel.setLayout(ioiPanelLayout);
         ioiPanelLayout.setHorizontalGroup(
-            ioiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ioiPanelLayout.createSequentialGroup()
-                .addComponent(manualIOIPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(ioiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(ioiScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE))
+        	ioiPanelLayout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(ioiPanelLayout.createSequentialGroup()
+        			.addComponent(manualIOIPanel, GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+        			.addContainerGap())
+        		.addComponent(ioiScrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
         );
         ioiPanelLayout.setVerticalGroup(
-            ioiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ioiPanelLayout.createSequentialGroup()
-                .addComponent(manualIOIPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
-            .addGroup(ioiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ioiPanelLayout.createSequentialGroup()
-                    .addGap(54, 54, 54)
-                    .addComponent(ioiScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)))
+        	ioiPanelLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(ioiPanelLayout.createSequentialGroup()
+        			.addComponent(manualIOIPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(ioiScrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        ioiPanel.setLayout(ioiPanelLayout);
 
         mainTabbedPane.addTab("IOIs", ioiPanel);
 
@@ -1645,6 +1488,21 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                 aboutMenuItemActionPerformed(evt);
             }
         });
+        
+        mnPreferences = new JMenu("Preferences");
+        mainMenuBar.add(mnPreferences);
+        
+        mnNewMenu = new JMenu("Control Panel");
+        mnPreferences.add(mnNewMenu);
+        int delay = 0; 
+        // int delay = 1;
+       /* String value = executorDelay.getSelectedItem().toString(); 
+        if (value.equals("10 ms")) delay = 10;
+        if (value.equals("100 ms")) delay = 100;
+        if (value.equals("1 second")) delay = 1000;
+        if (value.equals("5 seconds")) delay = 5000;*/
+        FIXTracker.getApplication().setNewExecutorDelay(delay);
+        FIXTracker.getApplication().setNewSymbol("Ticker");
         helpMenu.add(aboutMenuItem);
 
         mainMenuBar.add(helpMenu);
@@ -1652,33 +1510,33 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         setJMenuBar(mainMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(messagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(messageDetailPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(statusBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(messagePanel, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 558, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(messageDetailPanel, GroupLayout.PREFERRED_SIZE, 504, Short.MAX_VALUE))
+        				.addComponent(statusBarPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(messageDetailPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(messagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(mainTabbedPane, GroupLayout.PREFERRED_SIZE, 336, Short.MAX_VALUE)
+        				.addComponent(messageDetailPanel, GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(messagePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(statusBarPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
         );
+        getContentPane().setLayout(layout);
 
         bindingGroup.bind();
 
@@ -1689,33 +1547,30 @@ private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     aboutDialog.dispose();
 }//GEN-LAST:event_okButtonActionPerformed
 
-private void symbolComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_symbolComboBoxActionPerformed
-    FIXTracker.getApplication().setNewSymbol(
-            symbolComboBox.getSelectedItem().toString());
-}//GEN-LAST:event_symbolComboBoxActionPerformed
-
-private void securityIDComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_securityIDComboBoxActionPerformed
-    FIXTracker.getApplication().setNewSecurityID(
-            securityIDComboBox.getSelectedItem().toString());
-}//GEN-LAST:event_securityIDComboBoxActionPerformed
+//private void symbolComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_symbolComboBoxActionPerformed
+   // FIXTracker.getApplication().setNewSymbol("Ticker");
+           // symbolComboBox.getSelectedItem().toString());
+//}//GEN-LAST:event_symbolComboBoxActionPerformed
 
 private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-    String symbol = symbolComboBox.getSelectedItem().toString();
-    String securityID = securityIDComboBox.getSelectedItem().toString();
-    int rate = (int)rateSlider.getValue();
-    if ( rate == 0 ) rate = 1;
+	
+    String symbol = "Ticker";//symbolComboBox.getSelectedItem().toString();
+    String securityID = "RIC";//securityIDComboBox.getSelectedItem().toString();
+   // int rate = (int)rateSlider.getValue();
+    int rate = 600;
+    //if ( rate == 0 ) rate = 1;
     Integer delay = 60000 / rate;
     FIXTracker.getApplication().startIOIsender( delay, symbol, securityID );
 }//GEN-LAST:event_startButtonActionPerformed
 
-private void sliderChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderChanged
+/*private void sliderChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderChanged
    if (!rateSlider.getValueIsAdjusting()) {
         int rate = (int)rateSlider.getValue();
         if ( rate == 0 ) rate = 1;
         Integer newDelay = 60000 / rate;
         FIXTracker.getApplication().setNewDelay(newDelay);
     }
-}//GEN-LAST:event_sliderChanged
+}//GEN-LAST:event_sliderChanged*/
 
 private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
     FIXTracker.getApplication().stopIOIsender();
@@ -1733,25 +1588,6 @@ private void singleIOIButtonActionPerformed(java.awt.event.ActionEvent evt) {//G
     ioiDialog.pack();
     ioiDialog.setVisible(true);
 }//GEN-LAST:event_singleIOIButtonActionPerformed
-
-public void startExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startExecutorButtonActionPerformed
-    int delay = 1;
-    if ( this.executorDelay.getSelectedItem().toString().equals("10 ms")) 
-        delay = 10;
-    if ( this.executorDelay.getSelectedItem().toString().equals("100 ms")) 
-        delay = 100;
-    if ( this.executorDelay.getSelectedItem().toString().equals("1 second")) 
-        delay = 1000;
-    if ( this.executorDelay.getSelectedItem().toString().equals("5 seconds")) 
-        delay = 5000;
-    int partials = (int)partialsSlider.getValue();
-    if ( partials == 0 ) partials = 1;
-    FIXTracker.getApplication().startExecutor(delay, partials);
-}//GEN-LAST:event_startExecutorButtonActionPerformed
-
-private void stopExecutorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopExecutorButtonActionPerformed
-    FIXTracker.getApplication().stopExecutor();
-}//GEN-LAST:event_stopExecutorButtonActionPerformed
 
 private void ioiDialogCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ioiDialogCancelActionPerformed
     ioiDialog.dispose();
@@ -1833,15 +1669,6 @@ private void acknowledgeButtonActionPerformed(java.awt.event.ActionEvent evt) {/
     }
 }//GEN-LAST:event_acknowledgeButtonActionPerformed
 
-private void partialsSliderChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_partialsSliderChanged
-   if (!this.partialsSlider.getValueIsAdjusting()) {
-        int partials = (int)partialsSlider.getValue();
-        if ( partials == 0 ) partials = 1;
-        System.out.println("The number of partials was changed to: " + partials);
-        FIXTracker.getApplication().setNewExecutorPartials(partials);
-    }
-}//GEN-LAST:event_partialsSliderChanged
-
 private void executionBustButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executionBustButtonActionPerformed
     int row = executionTable.getSelectedRow();
     // if there is a row selected
@@ -1860,16 +1687,6 @@ private void executionBustButtonActionPerformed(java.awt.event.ActionEvent evt) 
         
     }
 }//GEN-LAST:event_executionBustButtonActionPerformed
-
-private void executorDelayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executorDelayActionPerformed
-    int delay = 1;
-    String value = executorDelay.getSelectedItem().toString(); 
-    if (value.equals("10 ms")) delay = 10;
-    if (value.equals("100 ms")) delay = 100;
-    if (value.equals("1 second")) delay = 1000;
-    if (value.equals("5 seconds")) delay = 5000;
-    FIXTracker.getApplication().setNewExecutorDelay(delay);
-}//GEN-LAST:event_executorDelayActionPerformed
 
 private void autoReplaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoReplaceActionPerformed
     FIXTracker.getApplication().getSettings()
@@ -2211,8 +2028,6 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JPanel appSettingsPanel;
     private javax.swing.JCheckBox autoAcknowledge;
     private javax.swing.JCheckBox autoCancel;
-    private javax.swing.JPanel autoExecutePanel;
-    private javax.swing.JPanel autoIOIPanel;
     private javax.swing.JCheckBox autoPendingCancel;
     private javax.swing.JCheckBox autoPendingReplace;
     private javax.swing.JCheckBox autoReplace;
@@ -2229,7 +2044,6 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JButton cannedQueryRunButton;
     private javax.swing.JLabel clientConnectedLabel;
     private javax.swing.JButton customQueryRunButton;
-    private javax.swing.JLabel delayLabel;
     private javax.swing.JButton dfdButton;
     private javax.swing.JButton executeButton;
     private javax.swing.JPanel executionActionPanel;
@@ -2245,7 +2059,6 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JScrollPane executionScrollPane;
     private javax.swing.JLabel executionSharesLabel;
     private javax.swing.JTable executionTable;
-    private javax.swing.JComboBox executorDelay;
     private javax.swing.JLabel executorRunningLabel;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
@@ -2276,7 +2089,6 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JLabel ioiSenderRunningLabel;
     private javax.swing.JLabel ioiSharesLabel;
     private javax.swing.JLabel ioiSideLabel;
-    private javax.swing.JLabel ioiSliderLabel;
     private javax.swing.JLabel ioiSymbolLabel;
     private javax.swing.JTable ioiTable;
     private javax.swing.JMenuItem loadInstrumentMenuItem;
@@ -2301,17 +2113,13 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JButton orderRejectButton;
     private javax.swing.JScrollPane orderScrollPane;
     private javax.swing.JTable orderTable;
-    private javax.swing.JLabel partialsLabel;
-    private javax.swing.JLabel partialsNumber;
-    private javax.swing.JSlider partialsSlider;
     private javax.swing.JComboBox pricePrecisionCombo;
     private javax.swing.JLabel pricePrecisionLabel;
     private javax.swing.JLabel queryLabel;
     private javax.swing.JLabel querySymbolLabel;
     private javax.swing.JTextField querySymbolText;
     private javax.swing.JTextField queryText;
-    private javax.swing.JLabel rateDisplayLable;
-    private javax.swing.JSlider rateSlider;
+   // private javax.swing.JSlider rateSlider;
     private javax.swing.JButton replaceAcceptButton;
     private javax.swing.JButton replaceIOIButton;
     private javax.swing.JButton replacePendingButton;
@@ -2322,21 +2130,15 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JScrollPane reportScrollPane;
     private javax.swing.JTable reportTable;
     private javax.swing.JButton saveSettingsButton;
-    private javax.swing.JComboBox securityIDComboBox;
-    private javax.swing.JLabel securityIDLabel;
     private javax.swing.JCheckBox sendOnBehalfOfCompID;
     private javax.swing.JCheckBox sendOnBehalfOfSubID;
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JButton showSettingsButton;
     private javax.swing.JButton singleIOIButton;
     private javax.swing.JButton startButton;
-    private javax.swing.JButton startExecutorButton;
     private javax.swing.JPanel statusBarPanel;
     private javax.swing.JButton stopButton;
-    private javax.swing.JButton stopExecutorButton;
-    private javax.swing.JComboBox symbolComboBox;
-    private javax.swing.JLabel symbolLabel;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
-    // End of variables declaration//GEN-END:variables
-
+    private JMenu mnPreferences;
+    private JMenu mnNewMenu;
 }
