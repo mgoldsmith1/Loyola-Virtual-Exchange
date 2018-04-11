@@ -92,10 +92,7 @@ public class ClientFrame extends JFrame {
             final osdi.client.ClientApplication application, Initiator initiator, SessionSettings settings) {
 
         super();
-       // splashScreenInit();
-        setSize(600, 400);
-      //  SplashScreen s ;//= new SplashScreen();
-       // s.createGraphics().
+      
  	    setTitle("Order Entry");
         if (System.getProperties().containsKey("openfix")) {
             createMenuBar(application);
@@ -107,15 +104,17 @@ public class ClientFrame extends JFrame {
         this.executionTableModel = executionTableModel;
         this.initiator = initiator;
         this.settings = settings;
-        splashScreenInit();
-        try {
+      
+      	initializeMainMenuGUI();
+      	
+       /* try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-      	initializeMainMenuGUI();
-      	//setSize(600, 400);
+		}*/
+        setSize(600, 400);
+       // splashScreenInit();
       	displayMainMenuGUI();
     }
 
@@ -152,11 +151,12 @@ public class ClientFrame extends JFrame {
     	 JWindow window = new JWindow();
     	 try {
 			window.getContentPane().add(
-			     new JLabel("", new ImageIcon(new URL("https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/Logo.png")), SwingConstants.CENTER));
+			     new JLabel( new ImageIcon(new URL("https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/Logo.jpg")), SwingConstants.CENTER));
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+    	
     	 window.setBounds(500, 150, 300, 200);
     	 window.setVisible(true);
     	 try {
