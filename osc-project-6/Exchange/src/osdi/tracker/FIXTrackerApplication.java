@@ -10,6 +10,7 @@
 
 package osdi.tracker;
 
+import java.awt.SplashScreen;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -845,8 +846,10 @@ public class FIXTrackerApplication extends MessageCracker
             executorThread.start();
         } catch (Exception e) {e.printStackTrace();}
         if (connected && executorStarted)
-            executorStatus.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/green.gif"));
+           executorStatus.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/green.gif"));
+
     }
+
 
     public void stopExecutor(){
         executor.stopExecutor();

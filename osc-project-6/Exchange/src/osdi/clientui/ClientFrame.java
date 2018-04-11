@@ -22,6 +22,7 @@ package osdi.clientui;
 
 import osdi.clientui.ClientPanel;
 import osdi.server.Server;
+
 import quickfix.ConfigError;
 import quickfix.FieldConvertError;
 import quickfix.Initiator;
@@ -42,6 +43,8 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.management.JMException;
 import javax.swing.ImageIcon;
@@ -53,6 +56,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JWindow;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import osdi.client.Client;
@@ -87,6 +92,9 @@ public class ClientFrame extends JFrame {
             final osdi.client.ClientApplication application, Initiator initiator, SessionSettings settings) {
 
         super();
+        setSize(600, 400);
+      //  SplashScreen s ;//= new SplashScreen();
+       // s.createGraphics().
  	    setTitle("Order Entry");
         if (System.getProperties().containsKey("openfix")) {
             createMenuBar(application);
@@ -99,7 +107,7 @@ public class ClientFrame extends JFrame {
         this.initiator = initiator;
         this.settings = settings;
       	initializeMainMenuGUI();
-      	setSize(600, 400);
+      	//setSize(600, 400);
       	displayMainMenuGUI();
     }
 
@@ -132,13 +140,29 @@ public class ClientFrame extends JFrame {
 
         setJMenuBar(menubar);
     }
-    /* private void splashScreenInit() {
-	  ImageIcon myImage = new ImageIcon(com.devdaily.splashscreen.SplashScreenMain.class.getResource("SplashImage.gif"));
-	  screen = new SplashScreen(myImage);
-	  screen.setLocationRelativeTo(null);
-	  screen.setProgressMax(100);
-	  screen.setScreenVisible(true);
-}*/
+     private void splashScreenInit() {
+    	 JWindow window = new JWindow();
+    	 try {
+			window.getContentPane().add(
+			     new JLabel("", new ImageIcon(new URL("http://docs.oracle.com/javase/tutorial/uiswing/examples/misc/SplashDemoProject/src/misc/images/splash.gif")), SwingConstants.CENTER));
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	 window.setBounds(500, 150, 300, 200);
+    	 window.setVisible(true);
+    	 try {
+    	     Thread.sleep(5000);
+    	 } catch (InterruptedException e) {
+    	     e.printStackTrace();
+    	 }
+    	 window.setVisible(false);
+    	 JFrame frame = new JFrame();
+    	 frame.add(new JLabel("Welcome"));
+    	 frame.setVisible(true);
+    	 frame.setSize(300,100);
+    	 window.dispose();
+}
 
     private void initializeMainMenuGUI(){
         mainFrame = new JFrame("Loyola Exchange Sim");

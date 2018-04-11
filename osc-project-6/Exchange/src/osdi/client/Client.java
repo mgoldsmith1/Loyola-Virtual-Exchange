@@ -85,6 +85,7 @@ public class Client {
         OrderTableModel orderTableModel = new OrderTableModel();
         ExecutionTableModel executionTableModel = new ExecutionTableModel();
         ClientApplication application = new ClientApplication(orderTableModel, executionTableModel);
+        
         MessageStoreFactory messageStoreFactory = new FileStoreFactory(settings);
         LogFactory logFactory = new ScreenLogFactory(true, true, true, logHeartbeats);
         MessageFactory messageFactory = new DefaultMessageFactory();
@@ -143,7 +144,7 @@ public class Client {
         }
         client = new Client(args);
         if (!System.getProperties().containsKey("openfix")) {
-           // client.logon();     
+           // client.logon(); // don't move this 
         }
         shutdownLatch.await();
     }
