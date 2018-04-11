@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="osc-project-6">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../../Downloads/Eclipse.app/Contents/Eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="osc-project-6.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="Exchange/jars/beansbinding-1.2.1.jar"/>
+        <pathelement location="Exchange/jars/dataprovider.jar"/>
+        <pathelement location="Exchange/jars/dom4j-2.1.0.jar"/>
+        <pathelement location="Exchange/jars/jaxen-1.1.6.jar"/>
+        <pathelement location="Exchange/jars/jcl-over-slf4j-1.7.25.jar"/>
+        <pathelement location="Exchange/jars/je-2.1.30.jar"/>
+        <pathelement location="Exchange/jars/junit-4.12.jar"/>
+        <pathelement location="Exchange/jars/mina-core-2.0.16.jar"/>
+        <pathelement location="Exchange/jars/mysql-connector-java-5.1.6-bin.jar"/>
+        <pathelement location="Exchange/jars/proxool-0.9.1.jar"/>
+        <pathelement location="Exchange/jars/proxool-cglib-0.9.1.jar"/>
+        <pathelement location="Exchange/jars/quickfixj-all-2.0.0.jar"/>
+        <pathelement location="Exchange/jars/quickfixj-core.jar"/>
+        <pathelement location="Exchange/jars/quickfixj-msg-fix42.jar"/>
+        <pathelement location="Exchange/jars/Saxon-HE-9.8.0-4.jar"/>
+        <pathelement location="Exchange/jars/slf4j-api-1.7.25.jar"/>
+        <pathelement location="Exchange/jars/slf4j-jdk14-1.7.25.jar"/>
+        <pathelement location="Exchange/jars/swing-layout.jar"/>
+        <pathelement location="jgoodies-forms-1.8.0.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="Exchange/src">
+                <exclude name="**/*.ucls"/>
+                <exclude name="**/*.useq"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="Exchange/src"/>
+            <classpath refid="osc-project-6.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="GrabStocks">
+        <java classname="osdi.priceobservertest.GrabStocks" failonerror="true" fork="yes">
+            <classpath refid="osc-project-6.classpath"/>
+        </java>
+    </target>
+    <target name="Client">
+        <java classname="osdi.client.Client" failonerror="true" fork="yes">
+            <classpath refid="osc-project-6.classpath"/>
+        </java>
+    </target>
+    <target name="Main">
+        <java classname="osdi.ordermatch.Main" failonerror="true" fork="yes">
+            <classpath refid="osc-project-6.classpath"/>
+        </java>
+    </target>
+    <target name="Server">
+        <java classname="osdi.server.Server" failonerror="true" fork="yes">
+            <classpath refid="osc-project-6.classpath"/>
+        </java>
+    </target>
+    <target name="FIXTrackerFrame">
+        <java classname="osdi.trackerui.FIXTrackerFrame" failonerror="true" fork="yes">
+            <classpath refid="osc-project-6.classpath"/>
+        </java>
+    </target>
+    <target name="what">
+        <java classname="osdi.client.what" failonerror="true" fork="yes">
+            <classpath refid="osc-project-6.classpath"/>
+        </java>
+    </target>
+    <target name="TimerTestClient">
+        <java classname="osdi.acceptancetimertest.TimerTestClient" failonerror="true" fork="yes">
+            <classpath refid="osc-project-6.classpath"/>
+        </java>
+    </target>
+    <target name="TimerTestServer">
+        <java classname="osdi.acceptancetimertest.TimerTestServer" failonerror="true" fork="yes">
+            <classpath refid="osc-project-6.classpath"/>
+        </java>
+    </target>
+    <target name="TimerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="osdi.acceptancetimertest.TimerTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="osc-project-6.classpath"/>
+        </junit>
+    </target>
+    <target name="osdi.acceptanceresynchtest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="osdi.acceptanceresynchtest.ResynchTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="osc-project-6.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
