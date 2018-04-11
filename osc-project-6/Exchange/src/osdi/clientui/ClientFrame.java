@@ -92,6 +92,7 @@ public class ClientFrame extends JFrame {
             final osdi.client.ClientApplication application, Initiator initiator, SessionSettings settings) {
 
         super();
+       // splashScreenInit();
         setSize(600, 400);
       //  SplashScreen s ;//= new SplashScreen();
        // s.createGraphics().
@@ -106,6 +107,13 @@ public class ClientFrame extends JFrame {
         this.executionTableModel = executionTableModel;
         this.initiator = initiator;
         this.settings = settings;
+        splashScreenInit();
+        try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
       	initializeMainMenuGUI();
       	//setSize(600, 400);
       	displayMainMenuGUI();
@@ -140,11 +148,11 @@ public class ClientFrame extends JFrame {
 
         setJMenuBar(menubar);
     }
-     private void splashScreenInit() {
+     public void splashScreenInit() {
     	 JWindow window = new JWindow();
     	 try {
 			window.getContentPane().add(
-			     new JLabel("", new ImageIcon(new URL("http://docs.oracle.com/javase/tutorial/uiswing/examples/misc/SplashDemoProject/src/misc/images/splash.gif")), SwingConstants.CENTER));
+			     new JLabel("", new ImageIcon(new URL("https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/Logo.png")), SwingConstants.CENTER));
 		} catch (MalformedURLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

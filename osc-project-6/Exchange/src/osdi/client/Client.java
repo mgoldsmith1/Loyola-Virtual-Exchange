@@ -101,6 +101,7 @@ public class Client {
     }
 
     public synchronized void logon() {
+    	
         if (!initiatorStarted) {
             try {
                 initiator.start();
