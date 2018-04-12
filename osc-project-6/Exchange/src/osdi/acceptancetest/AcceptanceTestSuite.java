@@ -33,7 +33,7 @@ public class AcceptanceTestSuite extends TestSuite {
     private static final String ATEST_TRANSPORT_KEY = "atest.transport";
     private static final String ATEST_SKIPSLOW_KEY = "atest.skipslow";
     private static final Logger log = LoggerFactory.getLogger(AcceptanceTestSuite.class);
-    private static final String acceptanceTestResourcePath = "quickfix/test/acceptance/definitions/";
+    private static final String acceptanceTestResourcePath = "quickfix/test/acceptance/definitions/"; //issue
     private static final String acceptanceTestBaseDir = AcceptanceTestSuite.class.getClassLoader().getResource(acceptanceTestResourcePath).getPath();
 
     private static int transportType = ProtocolFactory.SOCKET;
