@@ -30,6 +30,7 @@ import quickfix.RuntimeError;
 import quickfix.SessionSettings;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.SplashScreen;
@@ -87,24 +88,26 @@ public class ClientFrame extends JFrame {
 	private SessionSettings settings = null;
 	private boolean foo = false;
     private SplashScreen screen;
+    private String _path = new File("").getAbsolutePath();
     
     public ClientFrame(osdi.client.OrderTableModel orderTableModel, osdi.client.ExecutionTableModel executionTableModel,
             final osdi.client.ClientApplication application, Initiator initiator, SessionSettings settings) {
 
         super();
-      
+       
  	    setTitle("Order Entry");
         if (System.getProperties().containsKey("openfix")) {
             createMenuBar(application);
         }
         getContentPane().add(new ClientPanel(orderTableModel, executionTableModel, application),
                 BorderLayout.CENTER);
+        
         this.application = application;
         this.orderTableModel = orderTableModel;
         this.executionTableModel = executionTableModel;
         this.initiator = initiator;
         this.settings = settings;
-      
+        splashScreenInit();
       	initializeMainMenuGUI();
       	
        /* try {
@@ -114,7 +117,6 @@ public class ClientFrame extends JFrame {
 			e.printStackTrace();
 		}*/
         setSize(600, 400);
-       // splashScreenInit();
       	displayMainMenuGUI();
     }
 
@@ -147,33 +149,33 @@ public class ClientFrame extends JFrame {
 
         setJMenuBar(menubar);
     }
-     public void splashScreenInit() {
-    	 JWindow window = new JWindow();
-    	 try {
-			window.getContentPane().add(
-			     new JLabel( new ImageIcon(new URL("https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/Logo.jpg")), SwingConstants.CENTER));
-		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+
+	public void splashScreenInit() {
+		JWindow window = new JWindow();
+
+		window.getContentPane().add(new JLabel(new javax.swing.ImageIcon(_path + "/logo.png"), SwingConstants.CENTER)).setBackground(Color.WHITE);;
+
+		window.setLocationRelativeTo(null);
+		window.setBounds(500, 150, 300, 200);
+
+		window.setBackground(Color.WHITE);
+		window.setVisible(true);
+
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-    	
-    	 window.setBounds(500, 150, 300, 200);
-    	 window.setVisible(true);
-    	 try {
-    	     Thread.sleep(5000);
-    	 } catch (InterruptedException e) {
-    	     e.printStackTrace();
-    	 }
-    	 window.setVisible(false);
-    	 JFrame frame = new JFrame();
-    	 frame.add(new JLabel("Welcome"));
-    	 frame.setVisible(true);
-    	 frame.setSize(300,100);
-    	 window.dispose();
-}
+		// JFrame frame = new JFrame();
+		// frame.add(new JLabel("Welcome"));
+		// frame.setLocationRelativeTo(null);
+		// frame.setVisible(true);
+		// frame.setSize(300,100);
+		window.dispose();
+	}
 
     private void initializeMainMenuGUI(){
-        mainFrame = new JFrame("Loyola Exchange Sim");
+        mainFrame = new JFrame("Loyola Virtual Exchange");
         
         mainFrame.setSize(1080,600);
         mainFrame.getContentPane().setLayout(new GridLayout(3, 1));
@@ -196,6 +198,7 @@ public class ClientFrame extends JFrame {
         addPopup(headerLabel, popupMenu);
         mainFrame.getContentPane().add(controlPanel);
         mainFrame.getContentPane().add(statusLabel);
+        mainFrame.setLocationRelativeTo(null); // centers the GUI
         mainFrame.setVisible(true);  
      }
      private void displayMainMenuGUI(){
@@ -346,25 +349,26 @@ public class ClientFrame extends JFrame {
         menuBar.add(orderMenu);
         menuBar.add(orderBookMenu);
         menuBar.add(serverMenu);
-       // menuBar.add(configurationMenu);
+        //menuBar.add(configurationMenu);
 
         //add menubar to the frame
         mainFrame.setJMenuBar(menuBar);
-        mainFrame.setVisible(true);   
         mainFrame.setLocationRelativeTo(null); // centers the GUI
+        mainFrame.setVisible(true);   
+       
         
      }
      class MenuItemListener implements ActionListener {
     
         public void actionPerformed(ActionEvent e) {            
-           statusLabel.setText(e.getActionCommand() + " JMenuItem clicked.");
+          // statusLabel.setText(e.getActionCommand() ); //" JMenuItem clicked.");
            if(e.getActionCommand().contains("Start Client Logon...") ){ //(Executor) 
-   						
+        	   statusLabel.setText("Connecting to LocalHost...");	 
    				try{
                    Client.get().logon();
+                   foo = true;
    				}catch(Exception e1 ){
    					e1.getMessage();
-   					foo = true;
    				}finally{
    					try {
    						if( foo == true)
@@ -378,19 +382,22 @@ public class ClientFrame extends JFrame {
    						e1.printStackTrace();
    					}
    				}
+   				if( foo == true){
+   					statusLabel.setText("Connected.");
+   				}
               }
            if(e.getActionCommand().contains("Client Logout...") ){ 
         	   initiator.stop();
         	   statusLabel.setText("Disconnected Client");
            }
            if(e.getActionCommand().contains("Connect...") ){ //(Connect to Executor Firm) 
-        	
-        	  
+        	   statusLabel.setText("Not yet implemented");
         	   //foo = true;
            }
            /////////////////////////////////////////
            if(e.getActionCommand().contains("Disconnect...")) {
-        	   statusLabel.setText("Disconnected Server");
+        	  // statusLabel.setText("Disconnected Server");
+        	   statusLabel.setText("Not yet implemented");
         	 //  initiator.stop();
         	  // foo = false;
            }
