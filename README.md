@@ -1,5 +1,8 @@
-# Loyola Virtual Exchange #
-<img src="https://user-images.githubusercontent.com/35674633/37799728-99235646-2dee-11e8-975b-588a411163fd.png" width="450">
+![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/logo.png)
+## Loyola Virtual Exchange ##
+![Build Status](https://travis-ci.org/quickfix-j/quickfixj.svg?branch=master)
+
+![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/floor.jpg)
 
 ##  Mission Statement ##
 
@@ -176,4 +179,3 @@ $ ./install-run.sh
 ## GPL v3.0 License ##
 
 [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
-
