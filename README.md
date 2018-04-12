@@ -1,4 +1,4 @@
-![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/logo.png)
+![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/9158fe90-0e02-45cb-b8c2-96c52f6f3e20.png)
 ## Loyola Virtual Exchange ##
 ![Build Status](https://travis-ci.org/quickfix-j/quickfixj.svg?branch=master)
 
