@@ -15,7 +15,7 @@ import osdi.tracker.Execution;
 import osdi.tracker.ExecutionSet;
 import osdi.tracker.Order;
 
-public class ExecutionTableModel extends AbstractTableModel {
+public class PositionTableModel extends AbstractTableModel {
     private static ExecutionSet executions = 
             FIXTracker.getApplication().getExecutions();
     private static String[] columns = 
@@ -23,7 +23,7 @@ public class ExecutionTableModel extends AbstractTableModel {
          "CumQty", "AvgPx", "Open", "ExecType", "ExecTranType", "RefID", "DKd"}; 
     
 
-    public ExecutionTableModel(){
+    public PositionTableModel(){
         FIXTracker.getApplication().getExecutions().addCallback(this);
     }
     

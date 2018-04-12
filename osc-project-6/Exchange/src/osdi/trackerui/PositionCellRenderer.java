@@ -16,7 +16,7 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class ExecutionCellRenderer  extends DefaultTableCellRenderer {
+public class PositionCellRenderer  extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, 
@@ -25,7 +25,7 @@ public class ExecutionCellRenderer  extends DefaultTableCellRenderer {
         int myRow = table.convertRowIndexToModel(row);
         Component component = super.getTableCellRendererComponent(table, value,
                                           isSelected, hasFocus, myRow, column);
-        Boolean DKd = (Boolean)((ExecutionTableModel)table.getModel())
+        Boolean DKd = (Boolean)((PositionTableModel)table.getModel())
                 .getValueAt(myRow, 12);
                 
         if ( DKd ) {

@@ -12,11 +12,11 @@ package osdi.tracker;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import osdi.trackerui.IOITableModel;
+import osdi.trackerui.OrderBookTableModel;
 
 public class IOIset {
     private ArrayList<IOI> iois = new ArrayList<IOI>();
-    private IOITableModel ioiTableModel = null;
+    private OrderBookTableModel ioiTableModel = null;
 
     public IOIset() {}
     
@@ -33,7 +33,7 @@ public class IOIset {
         ioiTableModel.update();
     }
     
-    public void addCallback(IOITableModel ioiTableModel){
+    public void addCallback(OrderBookTableModel ioiTableModel){
         this.ioiTableModel = ioiTableModel;
     }
         

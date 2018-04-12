@@ -13,12 +13,12 @@ package osdi.tracker;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import osdi.trackerui.ExecutionTableModel;
+import osdi.trackerui.PositionTableModel;
 
 
 public class ExecutionSet {
     private ArrayList<Execution> executions = new ArrayList<Execution>();
-    private ExecutionTableModel executionTableModel = null;
+    private PositionTableModel executionTableModel = null;
 
     public ExecutionSet() {}
     
@@ -39,7 +39,7 @@ public class ExecutionSet {
         executionTableModel.update();
     }
     
-    public void addCallback(ExecutionTableModel executionTableModel){
+    public void addCallback(PositionTableModel executionTableModel){
         this.executionTableModel = executionTableModel;
     }
         

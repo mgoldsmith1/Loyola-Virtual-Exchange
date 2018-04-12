@@ -98,18 +98,18 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         messageTable = new javax.swing.JTable();
         statusBarPanel = new javax.swing.JPanel();
         executorRunningLabel = new javax.swing.JLabel();
-        ioiSenderRunningLabel = new javax.swing.JLabel();
+        OrderBookSenderRunningLabel = new javax.swing.JLabel();
         clientConnectedLabel = new javax.swing.JLabel();
         messageDetailPanel = new javax.swing.JPanel();
         messageDetailScrollPane = new javax.swing.JScrollPane();
         messageDetailTable = new javax.swing.JTable();
         mainTabbedPane = new javax.swing.JTabbedPane();
-        ioiPanel = new javax.swing.JPanel();
-        manualIOIPanel = new javax.swing.JPanel();
+        OrderBookPanel = new javax.swing.JPanel();
+        manualOrderBookPanel = new javax.swing.JPanel();
         singleIOIButton = new javax.swing.JButton();
         cancelIOIButton = new javax.swing.JButton();
         replaceIOIButton = new javax.swing.JButton();
-        ioiScrollPane = new javax.swing.JScrollPane();
+        OrderBookScrollPane = new javax.swing.JScrollPane();
         ioiTable = new javax.swing.JTable();
         orderPanel = new javax.swing.JPanel();
         orderActionPanel = new javax.swing.JPanel();
@@ -126,11 +126,11 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         replaceRejectButton = new javax.swing.JButton();
         orderScrollPane = new javax.swing.JScrollPane();
         orderTable = new javax.swing.JTable();
-        executionPanel = new javax.swing.JPanel();
-        executionActionPanel = new javax.swing.JPanel();
-        executionBustButton = new javax.swing.JButton();
-        executionCorrectButton = new javax.swing.JButton();
-        executionScrollPane = new javax.swing.JScrollPane();
+        positionPanel = new javax.swing.JPanel();
+        positionActionPanel = new javax.swing.JPanel();
+        positionBustButton = new javax.swing.JButton();
+        positionCorrectButton = new javax.swing.JButton();
+        positionScrollPane = new javax.swing.JScrollPane();
         executionTable = new javax.swing.JTable();
         instrumentPanel = new javax.swing.JPanel();
         instrumentScrollPane = new javax.swing.JScrollPane();
@@ -481,16 +481,16 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         );
       
         executorRunningLabel.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif")); // NOI18N //orig in ui
-        executorRunningLabel.setText("Executor status");
-        FIXTracker.getApplication().addStatusCallbacks(clientConnectedLabel, ioiSenderRunningLabel, executorRunningLabel);
+        executorRunningLabel.setText("Position Status:");
+        FIXTracker.getApplication().addStatusCallbacks(clientConnectedLabel, OrderBookSenderRunningLabel, executorRunningLabel);
 
-        ioiSenderRunningLabel.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif")); // NOI18N  //orig in ui
-        ioiSenderRunningLabel.setText("IOI sender status");
+        OrderBookSenderRunningLabel.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif")); // NOI18N  //orig in ui
+        OrderBookSenderRunningLabel.setText("Order Book Status:");
 
         clientConnectedLabel.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif")); // NOI18N //orig in ui
         if (FIXTracker.getApplication().getConnectionStatus())
         clientConnectedLabel.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/green.gif")); //orig in ui
-        clientConnectedLabel.setText("Client connection status");
+        clientConnectedLabel.setText("Client Connection Status:");
 
         javax.swing.GroupLayout statusBarPanelLayout = new javax.swing.GroupLayout(statusBarPanel);
         statusBarPanel.setLayout(statusBarPanelLayout);
@@ -500,7 +500,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(clientConnectedLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ioiSenderRunningLabel)
+                .addComponent(OrderBookSenderRunningLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(executorRunningLabel)
                 .addContainerGap(69, Short.MAX_VALUE))
@@ -509,7 +509,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
             statusBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statusBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(clientConnectedLabel)
-                .addComponent(ioiSenderRunningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(OrderBookSenderRunningLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(executorRunningLabel))
         );
 
@@ -565,34 +565,34 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rateDisplayLable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))*/
 
-        manualIOIPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("IOIs"));
+        manualOrderBookPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Book"));
 
-        singleIOIButton.setText("Add IOI");
+        singleIOIButton.setText("Add Order");
         singleIOIButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 singleIOIButtonActionPerformed(evt);
             }
         });
 
-        cancelIOIButton.setText("Cancel IOI");
+        cancelIOIButton.setText("Cancel Order");
         cancelIOIButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelIOIButtonActionPerformed(evt);
             }
         });
 
-        replaceIOIButton.setText("Replace IOI");
+        replaceIOIButton.setText("Replace Order");
         replaceIOIButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 replaceIOIButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout manualIOIPanelLayout = new javax.swing.GroupLayout(manualIOIPanel);
-        manualIOIPanel.setLayout(manualIOIPanelLayout);
-        manualIOIPanelLayout.setHorizontalGroup(
-            manualIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(manualIOIPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout gl_manualOrderBookPanel = new javax.swing.GroupLayout(manualOrderBookPanel);
+        manualOrderBookPanel.setLayout(gl_manualOrderBookPanel);
+        gl_manualOrderBookPanel.setHorizontalGroup(
+            gl_manualOrderBookPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gl_manualOrderBookPanel.createSequentialGroup()
                 .addComponent(singleIOIButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(replaceIOIButton)
@@ -601,19 +601,19 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                 .addContainerGap(140, Short.MAX_VALUE))
         );
 
-        manualIOIPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelIOIButton, replaceIOIButton, singleIOIButton});
+        gl_manualOrderBookPanel.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelIOIButton, replaceIOIButton, singleIOIButton});
 
-        manualIOIPanelLayout.setVerticalGroup(
-            manualIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(manualIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        gl_manualOrderBookPanel.setVerticalGroup(
+            gl_manualOrderBookPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gl_manualOrderBookPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(singleIOIButton)
                 .addComponent(replaceIOIButton)
                 .addComponent(cancelIOIButton))
         );
 
-        ioiTable.setDefaultRenderer(Object.class, new IOICellRenderer());
+        ioiTable.setDefaultRenderer(Object.class, new OrderBookCellRenderer());
         ioiTable.setAutoCreateRowSorter(true);
-        ioiTable.setModel(new osdi.trackerui.IOITableModel());
+        ioiTable.setModel(new osdi.trackerui.OrderBookTableModel());
         ioiTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
         for (int i = 0; i < ioiTable.getColumnCount(); i++){
@@ -648,7 +648,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
             ioiTable.getColumnModel().
             getColumn(i).setPreferredWidth(100);
         }
-        loadPanel = new javax.swing.JPanel();
+        feedPanel = new javax.swing.JPanel();
         startButton = new javax.swing.JButton();
         startButton.addFocusListener(new FocusAdapter() {
         	@Override
@@ -672,50 +672,50 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                         });
                         //bindingGroup.addBinding(binding);
 
-                        javax.swing.GroupLayout loadPanelLayout = new javax.swing.GroupLayout(loadPanel);
-                        loadPanelLayout.setHorizontalGroup(
-                        	loadPanelLayout.createParallelGroup(Alignment.LEADING)
-                        		.addGroup(loadPanelLayout.createSequentialGroup()
+                        javax.swing.GroupLayout gl_feedPanel = new javax.swing.GroupLayout(feedPanel);
+                        gl_feedPanel.setHorizontalGroup(
+                        	gl_feedPanel.createParallelGroup(Alignment.LEADING)
+                        		.addGroup(gl_feedPanel.createSequentialGroup()
                         			.addContainerGap()
-                        			.addGroup(loadPanelLayout.createParallelGroup(Alignment.LEADING)
+                        			.addGroup(gl_feedPanel.createParallelGroup(Alignment.LEADING)
                         				.addComponent(startButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         				.addComponent(stopButton, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                         			.addGap(326))
                         );
-                        loadPanelLayout.setVerticalGroup(
-                        	loadPanelLayout.createParallelGroup(Alignment.LEADING)
-                        		.addGroup(loadPanelLayout.createSequentialGroup()
+                        gl_feedPanel.setVerticalGroup(
+                        	gl_feedPanel.createParallelGroup(Alignment.LEADING)
+                        		.addGroup(gl_feedPanel.createSequentialGroup()
                         			.addContainerGap()
                         			.addComponent(startButton)
                         			.addPreferredGap(ComponentPlacement.RELATED)
                         			.addComponent(stopButton)
                         			.addContainerGap(76, Short.MAX_VALUE))
                         );
-                        loadPanel.setLayout(loadPanelLayout);
+                        feedPanel.setLayout(gl_feedPanel);
                         
-                                mainTabbedPane.addTab("Feed", loadPanel);
+                                mainTabbedPane.addTab("Feed", feedPanel);
         ioiTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        ioiScrollPane.setViewportView(ioiTable);
+        OrderBookScrollPane.setViewportView(ioiTable);
 
-        javax.swing.GroupLayout ioiPanelLayout = new javax.swing.GroupLayout(ioiPanel);
-        ioiPanelLayout.setHorizontalGroup(
-        	ioiPanelLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(ioiPanelLayout.createSequentialGroup()
-        			.addComponent(manualIOIPanel, GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+        javax.swing.GroupLayout gl_OrderBookPanel = new javax.swing.GroupLayout(OrderBookPanel);
+        gl_OrderBookPanel.setHorizontalGroup(
+        	gl_OrderBookPanel.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(gl_OrderBookPanel.createSequentialGroup()
+        			.addComponent(manualOrderBookPanel, GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
         			.addContainerGap())
-        		.addComponent(ioiScrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+        		.addComponent(OrderBookScrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
         );
-        ioiPanelLayout.setVerticalGroup(
-        	ioiPanelLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(ioiPanelLayout.createSequentialGroup()
-        			.addComponent(manualIOIPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        gl_OrderBookPanel.setVerticalGroup(
+        	gl_OrderBookPanel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_OrderBookPanel.createSequentialGroup()
+        			.addComponent(manualOrderBookPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(ioiScrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(OrderBookScrollPane, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        ioiPanel.setLayout(ioiPanelLayout);
+        OrderBookPanel.setLayout(gl_OrderBookPanel);
 
-        mainTabbedPane.addTab("IOIs", ioiPanel);
+        mainTabbedPane.addTab("Order Book", OrderBookPanel);
 
         orderActionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Orders"));
 
@@ -863,7 +863,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        ioiTable.setDefaultRenderer(Object.class, new IOICellRenderer());
+        ioiTable.setDefaultRenderer(Object.class, new OrderBookCellRenderer());
         orderTable.setAutoCreateRowSorter(true);
         orderTable.setModel(new osdi.trackerui.OrderTableModel());
         orderTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -931,42 +931,42 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
 
         mainTabbedPane.addTab("Orders", orderPanel);
 
-        executionActionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Executions"));
+        positionActionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Executions"));
 
-        executionBustButton.setText("Bust");
-        executionBustButton.addActionListener(new java.awt.event.ActionListener() {
+        positionBustButton.setText("Bust");
+        positionBustButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 executionBustButtonActionPerformed(evt);
             }
         });
 
-        executionCorrectButton.setText("Correct");
-        executionCorrectButton.addActionListener(new java.awt.event.ActionListener() {
+        positionCorrectButton.setText("Correct");
+        positionCorrectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 executionCorrectButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout executionActionPanelLayout = new javax.swing.GroupLayout(executionActionPanel);
-        executionActionPanel.setLayout(executionActionPanelLayout);
-        executionActionPanelLayout.setHorizontalGroup(
-            executionActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(executionActionPanelLayout.createSequentialGroup()
-                .addComponent(executionBustButton)
+        javax.swing.GroupLayout gl_positionActionPanel = new javax.swing.GroupLayout(positionActionPanel);
+        positionActionPanel.setLayout(gl_positionActionPanel);
+        gl_positionActionPanel.setHorizontalGroup(
+            gl_positionActionPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gl_positionActionPanel.createSequentialGroup()
+                .addComponent(positionBustButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(executionCorrectButton)
+                .addComponent(positionCorrectButton)
                 .addGap(228, 228, 228))
         );
-        executionActionPanelLayout.setVerticalGroup(
-            executionActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(executionActionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(executionBustButton)
-                .addComponent(executionCorrectButton))
+        gl_positionActionPanel.setVerticalGroup(
+            gl_positionActionPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gl_positionActionPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(positionBustButton)
+                .addComponent(positionCorrectButton))
         );
 
-        executionTable.setDefaultRenderer(Object.class, new ExecutionCellRenderer());
+        executionTable.setDefaultRenderer(Object.class, new PositionCellRenderer());
         executionTable.setAutoCreateRowSorter(true);
-        executionTable.setModel(new osdi.trackerui.ExecutionTableModel());
+        executionTable.setModel(new osdi.trackerui.PositionTableModel());
         executionTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         //Set initial column widths
         for (int i = 0; i < executionTable.getColumnCount(); i++){
@@ -1008,24 +1008,24 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
             getColumn(i).setPreferredWidth(90);
         }
         executionTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        executionScrollPane.setViewportView(executionTable);
+        positionScrollPane.setViewportView(executionTable);
 
-        javax.swing.GroupLayout executionPanelLayout = new javax.swing.GroupLayout(executionPanel);
-        executionPanel.setLayout(executionPanelLayout);
-        executionPanelLayout.setHorizontalGroup(
-            executionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(executionActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-            .addComponent(executionScrollPane, 0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout gl_positionPanel = new javax.swing.GroupLayout(positionPanel);
+        positionPanel.setLayout(gl_positionPanel);
+        gl_positionPanel.setHorizontalGroup(
+            gl_positionPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(positionActionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+            .addComponent(positionScrollPane, 0, 0, Short.MAX_VALUE)
         );
-        executionPanelLayout.setVerticalGroup(
-            executionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(executionPanelLayout.createSequentialGroup()
-                .addComponent(executionActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        gl_positionPanel.setVerticalGroup(
+            gl_positionPanel.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gl_positionPanel.createSequentialGroup()
+                .addComponent(positionActionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(executionScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
+                .addComponent(positionScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
         );
 
-        mainTabbedPane.addTab("Executions", executionPanel);
+        mainTabbedPane.addTab("Positions", positionPanel);
 
         instrumentTable.setAutoCreateRowSorter(true);
         instrumentTable.setModel(new osdi.trackerui.InstrumentTableModel());
@@ -1119,7 +1119,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        executionTable.setDefaultRenderer(Object.class, new ExecutionCellRenderer());
+        executionTable.setDefaultRenderer(Object.class, new PositionCellRenderer());
         reportTable.setAutoCreateRowSorter(true);
         reportTable.setModel(new QueryTableModel());
         reportTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -1145,7 +1145,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        mainTabbedPane.addTab("Reports", reportPanel);
+        mainTabbedPane.addTab("Data", reportPanel);
 
         autoResponsePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Automated Responses"));
 
@@ -1483,7 +1483,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
 
         helpMenu.setLabel("Help");
 
-        aboutMenuItem.setText("About...");
+        aboutMenuItem.setText("Repository");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutMenuItemActionPerformed(evt);
@@ -2047,17 +2047,17 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JButton customQueryRunButton;
     private javax.swing.JButton dfdButton;
     private javax.swing.JButton executeButton;
-    private javax.swing.JPanel executionActionPanel;
-    private javax.swing.JButton executionBustButton;
-    private javax.swing.JButton executionCorrectButton;
+    private javax.swing.JPanel positionActionPanel;
+    private javax.swing.JButton positionBustButton;
+    private javax.swing.JButton positionCorrectButton;
     private javax.swing.JDialog executionDialog;
     private javax.swing.JButton executionDialogCancel;
     private javax.swing.JButton executionDialogOK;
     private javax.swing.JFormattedTextField executionDialogPrice;
     private javax.swing.JFormattedTextField executionDialogShares;
-    private javax.swing.JPanel executionPanel;
+    private javax.swing.JPanel positionPanel;
     private javax.swing.JLabel executionPriceLabel;
-    private javax.swing.JScrollPane executionScrollPane;
+    private javax.swing.JScrollPane positionScrollPane;
     private javax.swing.JLabel executionSharesLabel;
     private javax.swing.JTable executionTable;
     private javax.swing.JLabel executorRunningLabel;
@@ -2083,23 +2083,23 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JLabel ioiIDLabel;
     private javax.swing.JLabel ioiIDSourceLabel;
     private javax.swing.JLabel ioiNaturalLabel;
-    private javax.swing.JPanel ioiPanel;
+    private javax.swing.JPanel OrderBookPanel;
     private javax.swing.JLabel ioiPriceLabel;
-    private javax.swing.JScrollPane ioiScrollPane;
+    private javax.swing.JScrollPane OrderBookScrollPane;
     private javax.swing.JLabel ioiSecurityIDLabel;
-    private javax.swing.JLabel ioiSenderRunningLabel;
+    private javax.swing.JLabel OrderBookSenderRunningLabel;
     private javax.swing.JLabel ioiSharesLabel;
     private javax.swing.JLabel ioiSideLabel;
     private javax.swing.JLabel ioiSymbolLabel;
     private javax.swing.JTable ioiTable;
     private javax.swing.JMenuItem loadInstrumentMenuItem;
-    private javax.swing.JPanel loadPanel;
+    private javax.swing.JPanel feedPanel;
     private javax.swing.JCheckBox logToDB;
     private javax.swing.JCheckBox logToFile;
     private javax.swing.JLabel logToFileLabel;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JTabbedPane mainTabbedPane;
-    private javax.swing.JPanel manualIOIPanel;
+    private javax.swing.JPanel manualOrderBookPanel;
     private javax.swing.JPanel messageDetailPanel;
     private javax.swing.JScrollPane messageDetailScrollPane;
     private javax.swing.JTable messageDetailTable;

@@ -15,7 +15,7 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class IOICellRenderer  extends DefaultTableCellRenderer {
+public class OrderBookCellRenderer  extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, 
@@ -24,7 +24,7 @@ public class IOICellRenderer  extends DefaultTableCellRenderer {
         int myRow = table.convertRowIndexToModel(row);
         Component component = super.getTableCellRendererComponent(table, value,
                                           isSelected, hasFocus, myRow, column);
-        String type = (String) ((IOITableModel)table.getModel())
+        String type = (String) ((OrderBookTableModel)table.getModel())
                 .getValueAt(myRow, 1);
         if (type.equals("NEW")) {
             component.setForeground(Color.BLACK);

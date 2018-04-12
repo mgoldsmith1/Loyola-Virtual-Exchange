@@ -14,14 +14,14 @@ import osdi.tracker.FIXTracker;
 import osdi.tracker.IOI;
 import osdi.tracker.IOIset;
 
-public class IOITableModel extends AbstractTableModel {
+public class OrderBookTableModel extends AbstractTableModel {
     private static IOIset iois = FIXTracker.getApplication().getIOIs();
     private static String[] columns = 
         {"ID", "Type", "Side", "Shares", "Symbol", "Price", 
          "SecurityID", "IDSource", "Natural", "RefID"}; 
     
 
-    public IOITableModel(){
+    public OrderBookTableModel(){
         FIXTracker.getApplication().getIOIs().addCallback(this);
     }
     
