@@ -213,6 +213,7 @@ public class ClientFrame extends JFrame {
         JMenu chartMenu = new JMenu("Charts");
         final JMenu serverMenu = new JMenu("Server");
         final JMenu aboutMenu = new JMenu("About");
+
         
         // Provides the ability to open a configuration file from them main gui
         // and edit the contents (IP,port,etc.
@@ -281,7 +282,7 @@ public class ClientFrame extends JFrame {
        // newConfigurationMenuItem.setActionCommand("New");
         
         JMenuItem openConfigurationMenuItem = new JMenuItem("Open Config");
-        openConfigurationMenuItem.setActionCommand("Open");
+        openConfigurationMenuItem.setActionCommand("Open Config");
         
       
         MenuItemListener menuItemListener = new MenuItemListener();
@@ -341,6 +342,7 @@ public class ClientFrame extends JFrame {
         serverMenu.add(connectExecMenuItem);
         serverMenu.addSeparator();
         serverMenu.add(disconnectExecMenuItem);
+        configurationMenu.add(openConfigurationMenuItem);
         
       
         //add menu to menubar
@@ -349,7 +351,7 @@ public class ClientFrame extends JFrame {
         menuBar.add(orderMenu);
         menuBar.add(orderBookMenu);
         menuBar.add(serverMenu);
-        //menuBar.add(configurationMenu);
+        menuBar.add(configurationMenu);
 
         //add menubar to the frame
         mainFrame.setJMenuBar(menuBar);
@@ -361,7 +363,6 @@ public class ClientFrame extends JFrame {
      class MenuItemListener implements ActionListener {
     
         public void actionPerformed(ActionEvent e) {            
-          // statusLabel.setText(e.getActionCommand() ); //" JMenuItem clicked.");
            if(e.getActionCommand().contains("Start Client Logon...") ){ //(Executor) 
         	   statusLabel.setText("Connecting to LocalHost...");	 
    				try{
@@ -409,6 +410,9 @@ public class ClientFrame extends JFrame {
            if(e.getActionCommand().contains("Exit")){
         	   //Revisions needed
         	   System.exit(0);
+           }
+           if(e.getActionCommand().contains("Open Config")) {
+        	   
            }
            
         }    

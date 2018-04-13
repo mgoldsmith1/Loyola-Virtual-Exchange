@@ -158,7 +158,7 @@ public class ATServer implements Runnable {
                 acceptFixVersion(FixVersions.BEGINSTRING_FIXT11);
             }
 
-            ATApplication application = new ATApplication();
+            ATApplication application = new ATApplication(null, null);
             MessageStoreFactory factory = usingMemoryStore
                     ? new MemoryStoreFactory()
                     : new FileStoreFactory(settings);

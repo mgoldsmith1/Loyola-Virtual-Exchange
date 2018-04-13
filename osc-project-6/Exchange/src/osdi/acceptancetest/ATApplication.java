@@ -23,6 +23,9 @@ import java.io.IOException;
 
 import org.junit.Assert;
 
+import osdi.client.ClientApplication;
+import osdi.client.ExecutionTableModel;
+import osdi.client.OrderTableModel;
 import quickfix.Application;
 import quickfix.DoNotSend;
 import quickfix.FieldNotFound;
@@ -35,8 +38,16 @@ import quickfix.Session;
 import quickfix.SessionID;
 import quickfix.UnsupportedMessageType;
 
-public class ATApplication implements Application {
-    private final ATMessageCracker inboundCracker = new ATMessageCracker();
+public class ATApplication extends ClientApplication {
+    public ATApplication(OrderTableModel orderTableModel, ExecutionTableModel executionTableModel) {
+		super(orderTableModel, executionTableModel);
+		// TODO Auto-generated constructor stub
+	}
+/**
+ * @
+ * @return: None
+ */
+	private final ATMessageCracker inboundCracker = new ATMessageCracker();
     private final MessageCracker outboundCracker = new MessageCracker(new Object());
     private boolean isLoggedOn;
 
