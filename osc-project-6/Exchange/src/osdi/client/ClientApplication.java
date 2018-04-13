@@ -393,10 +393,10 @@ public class ClientApplication implements Application {
             newOrderSingle.setField(new StopPx(order.getStop()));
         }
 
-        if (order.getSide() == OrderSide.SHORT_SELL
-                || order.getSide() == OrderSide.SHORT_SELL_EXEMPT) {
-            newOrderSingle.setField(new LocateReqd(false));
-        }
+       // if (order.getSide() == ClientOrderSide.SHORT_SELL
+        //        || order.getSide() == ClientOrderSide.SHORT_SELL_EXEMPT) {
+         //   newOrderSingle.setField(new LocateReqd(false));
+       // }
 
         newOrderSingle.setField(tifToFIXTif(order.getTIF()));
         return newOrderSingle;
@@ -504,12 +504,12 @@ public class ClientApplication implements Application {
         return message;
     }
 
-    public Side sideToFIXSide(OrderSide side) {
+    public Side sideToFIXSide(ClientOrderSide side) {
         return (Side) sideMap.getFirst(side);
     }
 
-    public OrderSide FIXSideToSide(Side side) {
-        return (OrderSide) sideMap.getSecond(side);
+    public ClientOrderSide FIXSideToSide(Side side) {
+        return (ClientOrderSide) sideMap.getSecond(side);
     }
 
     public OrdType typeToFIXType(OrderType type) {
@@ -571,12 +571,12 @@ public class ClientApplication implements Application {
     }
 
     static {
-        sideMap.put(OrderSide.BUY, new Side(Side.BUY));
-        sideMap.put(OrderSide.SELL, new Side(Side.SELL));
-        sideMap.put(OrderSide.SHORT_SELL, new Side(Side.SELL_SHORT));
-        sideMap.put(OrderSide.SHORT_SELL_EXEMPT, new Side(Side.SELL_SHORT_EXEMPT));
-        sideMap.put(OrderSide.CROSS, new Side(Side.CROSS));
-        sideMap.put(OrderSide.CROSS_SHORT, new Side(Side.CROSS_SHORT));
+        sideMap.put(ClientOrderSide.LONG, new Side(Side.BUY));
+        sideMap.put(ClientOrderSide.SHORT, new Side(Side.SELL));
+      //  sideMap.put(ClientOrderSide.SHORT_SELL, new Side(Side.SELL_SHORT));
+      //  sideMap.put(ClientOrderSide.SHORT_SELL_EXEMPT, new Side(Side.SELL_SHORT_EXEMPT));
+      //  sideMap.put(ClientOrderSide.CROSS, new Side(Side.CROSS));
+      //  sideMap.put(ClientOrderSide.CROSS_SHORT, new Side(Side.CROSS_SHORT));
 
         typeMap.put(OrderType.MARKET, new OrdType(OrdType.MARKET));
         typeMap.put(OrderType.LIMIT, new OrdType(OrdType.LIMIT));
@@ -585,9 +585,9 @@ public class ClientApplication implements Application {
 
         tifMap.put(OrderTIF.DAY, new TimeInForce(TimeInForce.DAY));
         tifMap.put(OrderTIF.IOC, new TimeInForce(TimeInForce.IMMEDIATE_OR_CANCEL));
-        tifMap.put(OrderTIF.OPG, new TimeInForce(TimeInForce.AT_THE_OPENING));
+       // tifMap.put(OrderTIF.OPG, new TimeInForce(TimeInForce.AT_THE_OPENING));
         tifMap.put(OrderTIF.GTC, new TimeInForce(TimeInForce.GOOD_TILL_CANCEL));
-        tifMap.put(OrderTIF.GTX, new TimeInForce(TimeInForce.GOOD_TILL_CROSSING));
+       // tifMap.put(OrderTIF.GTX, new TimeInForce(TimeInForce.GOOD_TILL_CROSSING));
     }
 
     public boolean isMissingField() {

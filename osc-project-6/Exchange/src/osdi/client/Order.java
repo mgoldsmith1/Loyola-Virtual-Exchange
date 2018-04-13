@@ -27,7 +27,7 @@ public class Order implements Cloneable {
     private int quantity = 0;
     private int open = 0;
     private double executed = 0;
-    private OrderSide side = OrderSide.BUY;
+    private ClientOrderSide side = ClientOrderSide.LONG;
     private OrderType type = OrderType.MARKET;
     private OrderTIF tif = OrderTIF.DAY;
     private Double limit = null;
@@ -101,11 +101,11 @@ public class Order implements Cloneable {
 
     public void setExecuted(double executed) { this.executed = executed; }
 
-    public OrderSide getSide() {
+    public ClientOrderSide getSide() {
         return side;
     }
 
-    public void setSide(OrderSide side) {
+    public void setSide(ClientOrderSide side) {
         this.side = side;
     }
 

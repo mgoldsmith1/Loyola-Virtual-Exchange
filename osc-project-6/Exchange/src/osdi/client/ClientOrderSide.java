@@ -22,26 +22,21 @@ package osdi.client;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OrderSide {
-    static private final Map<String, OrderSide> known = new HashMap<>();
-    static public final OrderSide BUY = new OrderSide("Buy");
-    static public final OrderSide SELL = new OrderSide("Sell");
-    static public final OrderSide SHORT_SELL = new OrderSide("Short Sell");
-    static public final OrderSide SHORT_SELL_EXEMPT = new OrderSide("Short Sell Exempt");
-    static public final OrderSide CROSS = new OrderSide("Cross");
-    static public final OrderSide CROSS_SHORT = new OrderSide("Cross Short");
-    static public final OrderSide CROSS_SHORT_EXEMPT = new OrderSide("Cross Short Exempt");
+public class ClientOrderSide {
+    static private final Map<String, ClientOrderSide> known = new HashMap<>();
+    static public final ClientOrderSide LONG = new ClientOrderSide("Long");
+    static public final ClientOrderSide SHORT = new ClientOrderSide("Short");
+ 
 
-    static private final OrderSide[] array = {
-            BUY, SELL, SHORT_SELL, SHORT_SELL_EXEMPT,
-            CROSS, CROSS_SHORT, CROSS_SHORT_EXEMPT
+    static private final ClientOrderSide[] array = {
+            LONG, SHORT 
     };
 
     private final String name;
 
-    private OrderSide(String name) {
+    private ClientOrderSide(String name) {
         this.name = name;
-        synchronized (OrderSide.class) {
+        synchronized (ClientOrderSide.class) {
             known.put(name, this);
         }
     }
@@ -58,8 +53,8 @@ public class OrderSide {
         return array;
     }
 
-    public static OrderSide parse(String type) throws IllegalArgumentException {
-        OrderSide result = known.get(type);
+    public static ClientOrderSide parse(String type) throws IllegalArgumentException {
+        ClientOrderSide result = known.get(type);
         if (result == null) {
             throw new IllegalArgumentException
             ("OrderSide: " + type + " is unknown.");
