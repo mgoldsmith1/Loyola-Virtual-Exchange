@@ -1,4 +1,7 @@
 osdi
+osdi.acceptanceresynchtest
+osdi.acceptancetest
+osdi.acceptancetimertest
 osdi.client
 osdi.client.test
 osdi.clientui
@@ -7,3 +10,8 @@ osdi.exchange
 osdi.locks
 osdi.ordermatch
 osdi.server
+osdi.test
+osdi.tracker
+osdi.trackerui
+osdi.trackerutil
+osdi.utiltest
