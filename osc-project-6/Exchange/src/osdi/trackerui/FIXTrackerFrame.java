@@ -178,19 +178,15 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         aboutDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        //aboutDialog.setTitle("About...");
         aboutDialog.setLocationByPlatform(true);
 
         aboutPanel.setPreferredSize(new java.awt.Dimension(200, 100));
 
-        //okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
             }
         });
-
-       // aboutDialogLabel.setText("");
 
         javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
         aboutPanel.setLayout(aboutPanelLayout);
@@ -550,21 +546,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         			.addComponent(messageDetailScrollPane, GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
         );
         messageDetailPanel.setLayout(messageDetailPanelLayout);
-      //  autoIOIPanel.setLayout(autoIOIPanelLayout);
-       // autoIOIPanelLayout.setHorizontalGroup(
-         /*   autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(autoIOIPanelLayout.createSequentialGroup()
-                .addGroup(autoIOIPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(autoIOIPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(startButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stopButton))
-                    .addGroup(autoIOIPanelLayout.createSequentialGroup()
-                        .addComponent(ioiSliderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rateDisplayLable, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))*/
-
+  
         manualOrderBookPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Book"));
 
         singleIOIButton.setText("Add Order");
@@ -2120,7 +2102,6 @@ private void cannedQueryRunButtonActionPerformed(java.awt.event.ActionEvent evt)
     private javax.swing.JLabel querySymbolLabel;
     private javax.swing.JTextField querySymbolText;
     private javax.swing.JTextField queryText;
-   // private javax.swing.JSlider rateSlider;
     private javax.swing.JButton replaceAcceptButton;
     private javax.swing.JButton replaceIOIButton;
     private javax.swing.JButton replacePendingButton;
