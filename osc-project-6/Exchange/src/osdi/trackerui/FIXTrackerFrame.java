@@ -422,6 +422,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         setMinimumSize(new Dimension(1080, 600));
         setName("orderbookFrame");  // NOI18N
         setResizable(false);
+        setLocationRelativeTo(null);
         
         WindowListener exitListener = new WindowAdapter() {
 
