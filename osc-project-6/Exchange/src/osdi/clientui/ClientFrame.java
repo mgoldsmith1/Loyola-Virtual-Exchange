@@ -22,7 +22,7 @@ package osdi.clientui;
 
 import osdi.clientui.ClientPanel;
 import osdi.server.Server;
-
+import osdi.tracker.FIXTracker;
 import quickfix.ConfigError;
 import quickfix.FieldConvertError;
 import quickfix.Initiator;
@@ -41,6 +41,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,6 +56,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JWindow;
@@ -109,13 +111,7 @@ public class ClientFrame extends JFrame {
         this.settings = settings;
         splashScreenInit();
       	initializeMainMenuGUI();
-      	
-       /* try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+      
         setSize(600, 400);
       	displayMainMenuGUI();
     }
@@ -153,11 +149,15 @@ public class ClientFrame extends JFrame {
 	public void splashScreenInit() {
 		JWindow window = new JWindow();
 
-		window.getContentPane().add(new JLabel(new javax.swing.ImageIcon(_path + "/logo.png"), SwingConstants.CENTER)).setBackground(Color.WHITE);;
+		window.getContentPane().add(new JLabel(new javax.swing.ImageIcon(_path + "/logo.png"), SwingConstants.CENTER)).setBackground(Color.WHITE);
 
+		window.setSize(1080,600);
+		
+		// previously deleted. we'll keep setBounds for now until
+		// we add one of the other images that are larger. 
+        window.setBounds(500, 150, 300, 200);
 		window.setLocationRelativeTo(null);
-		window.setBounds(500, 150, 300, 200);
-
+		
 		window.setBackground(Color.WHITE);
 		window.setVisible(true);
 
@@ -177,13 +177,13 @@ public class ClientFrame extends JFrame {
     private void initializeMainMenuGUI(){
         mainFrame = new JFrame("Loyola Virtual Exchange");
         
-        mainFrame.setSize(1080,600);
+        mainFrame.setSize(1080,600); //mainFrame.setSize(2000,1800);
         mainFrame.getContentPane().setLayout(new GridLayout(3, 1));
 
         headerLabel = new JLabel("",JLabel.CENTER );
         statusLabel = new JLabel("",JLabel.CENTER);        
         statusLabel.setSize(350,100);
-        
+       
         mainFrame.addWindowListener(new WindowAdapter() {
            public void windowClosing(WindowEvent windowEvent){
               System.exit(0);
@@ -236,16 +236,6 @@ public class ClientFrame extends JFrame {
         JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.setActionCommand("Exit");
 
-        //JMenuItem cutMenuItem = new JMenuItem("Cut");
-        //cutMenuItem.setActionCommand("Cut");
-
-        //JMenuItem copyMenuItem = new JMenuItem("Copy");
-        //copyMenuItem.setActionCommand("Copy");
-
-        //JMenuItem pasteMenuItem = new JMenuItem("Paste");
-        //pasteMenuItem.setActionCommand("Paste");
-        
-      
         
         JMenuItem orderMenuItem = new JMenuItem("Order Entry..."); //executor
         orderMenuItem.setActionCommand("Order Entry..."); //executor
@@ -310,12 +300,33 @@ public class ClientFrame extends JFrame {
         });
         
         orderBookMenuItem.addActionListener(ev -> {
-        	SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					new OrderBookFrame();
-				}
-			});
+        	if( foo == true) {
+        		//if foo was triggered as connected by logon
+                	SwingUtilities.invokeLater(new Runnable() {
+        				public void run() {
+        					new OrderBookFrame();
+        				}
+        			});
+        	}else if (foo == false){
+        	 int confirm = JOptionPane.showOptionDialog(
+                     null, "Not Connected. \n(File->Logon).", 
+                     "Exit Confirmation", JOptionPane.OK_CANCEL_OPTION, //.YES_NO_OPTION, 
+                     JOptionPane.QUESTION_MESSAGE, null, null, null);
+                if (confirm == 0 ) {
+                	/*SwingUtilities.invokeLater(new Runnable() {
+        				public void run() {
+        					new OrderBookFrame();
+        				}
+        			});*/
+                }
+                else{
+                	 // does nothing
+                }
+        	}
+        	
         });
+        
+       
         //add menu items to menus
       //  fileMenu.add(newMenuItem);
       
@@ -366,8 +377,9 @@ public class ClientFrame extends JFrame {
            if(e.getActionCommand().contains("Start Client Logon...") ){ //(Executor) 
         	   statusLabel.setText("Connecting to LocalHost...");	 
    				try{
+   				   foo = true;
                    Client.get().logon();
-                   foo = true;
+                  
    				}catch(Exception e1 ){
    					e1.getMessage();
    				}finally{
@@ -390,6 +402,8 @@ public class ClientFrame extends JFrame {
            if(e.getActionCommand().contains("Client Logout...") ){ 
         	   initiator.stop();
         	   statusLabel.setText("Disconnected Client");
+        	   foo = false;
+        	  // foo = true;
            }
            if(e.getActionCommand().contains("Connect...") ){ //(Connect to Executor Firm) 
         	   statusLabel.setText("Not yet implemented");
@@ -400,7 +414,7 @@ public class ClientFrame extends JFrame {
         	  // statusLabel.setText("Disconnected Server");
         	   statusLabel.setText("Not yet implemented");
         	 //  initiator.stop();
-        	  // foo = false;
+        	//   foo = false;
            }
            
            /////////////////////////////////////////////////
