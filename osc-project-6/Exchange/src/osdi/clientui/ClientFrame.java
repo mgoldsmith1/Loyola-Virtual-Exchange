@@ -162,7 +162,7 @@ public class ClientFrame extends JFrame {
 		window.setVisible(true);
 
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -207,27 +207,18 @@ public class ClientFrame extends JFrame {
       
         //create menus
         JMenu fileMenu = new JMenu("File");
-        //JMenu editMenu = new JMenu("Edit");       
+        final JMenu aboutMenu = new JMenu("About");      
         final JMenu orderMenu = new JMenu("Trade");
         JMenu orderBookMenu = new JMenu("Order Book"); 
         JMenu chartMenu = new JMenu("Charts");
         final JMenu serverMenu = new JMenu("Server");
-        final JMenu aboutMenu = new JMenu("About");
-
-        
-        // Provides the ability to open a configuration file from them main gui
-        // and edit the contents (IP,port,etc.
+       
+        // Provides the ability to open a configuration file from the main gui
+        // and edit its contents (IP,port,etc.)
         JMenu configurationMenu = new JMenu("Configuration"); 
         
-        final JMenu linkMenu = new JMenu("Links");
-         
-        //create menu items
-        //JMenuItem newMenuItem = new JMenuItem("New");
-        //newMenuItem.setMnemonic(KeyEvent.VK_N);
-        //newMenuItem.setActionCommand("New");
 
-        JMenuItem clientStartLogonMenuItem = new JMenuItem("Logon @LocalHost..."); //Open Workspace
-       
+        JMenuItem clientStartLogonMenuItem = new JMenuItem("Logon -> LocalHost"); //Open Workspace
         clientStartLogonMenuItem.setActionCommand("Start Client Logon...");
 
         JMenuItem clientLogoutMenuItem = new JMenuItem("Logout..."); 
@@ -243,14 +234,6 @@ public class ClientFrame extends JFrame {
         JMenuItem orderBookMenuItem = new JMenuItem("Generate...");
         orderBookMenuItem.setActionCommand("Generate...");
 
-        /*
-         * Temporarily putting this here. This starts the FIXTracker if user presses the start button
-         startExecutorButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startExecutorButtonActionPerformed(evt);
-            }
-        });
-         */
         
         //Client connect to executor server
         //Connect to Firm
@@ -309,7 +292,7 @@ public class ClientFrame extends JFrame {
         			});
         	}else if (foo == false){
         	 int confirm = JOptionPane.showOptionDialog(
-                     null, "Not Connected. \n(File->Logon).", 
+                     null, "Not Connected. \n(File->Connect->Logon).", 
                      "Exit Confirmation", JOptionPane.OK_CANCEL_OPTION, //.YES_NO_OPTION, 
                      JOptionPane.QUESTION_MESSAGE, null, null, null);
                 if (confirm == 0 ) {
@@ -325,26 +308,14 @@ public class ClientFrame extends JFrame {
         	}
         	
         });
-        
-       
-        //add menu items to menus
-      //  fileMenu.add(newMenuItem);
       
         
-        JMenu mnLogon = new JMenu("Session");  //Client//User
-        //fileMenu.add(mnLogon);
-        JMenuItem mntmLogon = new JMenuItem("Connect");
-      
-      
-        mnLogon.add(mntmLogon);
-        fileMenu.add(clientStartLogonMenuItem);
+        JMenu mnLogon = new JMenu("Connect");  //Client//User
+       fileMenu.add(mnLogon);      
+        mnLogon.add(clientStartLogonMenuItem);
+        mnLogon.add(clientLogoutMenuItem);
         fileMenu.addSeparator();
-        JMenuItem mntmLogoutlocalhost = new JMenuItem("Disconnect");
-       // mntmLogoutlocalhost.setActionCommand("disconnectclient");
-        mnLogon.add(mntmLogoutlocalhost);
-       
-        fileMenu.add(clientLogoutMenuItem);
-        fileMenu.addSeparator();
+ 
         fileMenu.add(exitMenuItem);       
         
         orderMenu.add(orderMenuItem);
@@ -355,13 +326,12 @@ public class ClientFrame extends JFrame {
         serverMenu.add(disconnectExecMenuItem);
         configurationMenu.add(openConfigurationMenuItem);
         
-      
         //add menu to menubar
         menuBar.add(fileMenu);
         menuBar.add(aboutMenu);  
         menuBar.add(orderMenu);
         menuBar.add(orderBookMenu);
-        menuBar.add(serverMenu);
+       // menuBar.add(serverMenu);  //commented out for now
         menuBar.add(configurationMenu);
 
         //add menubar to the frame
@@ -375,6 +345,7 @@ public class ClientFrame extends JFrame {
     
         public void actionPerformed(ActionEvent e) {            
            if(e.getActionCommand().contains("Start Client Logon...") ){ //(Executor) 
+        	   
         	   statusLabel.setText("Connecting to LocalHost...");	 
    				try{
    				   foo = true;
