@@ -48,7 +48,7 @@ import osdi.client.DoubleNumberTextField;
 import osdi.client.IntegerNumberTextField;
 import osdi.client.LogonEvent;
 import osdi.client.Order;
-import osdi.client.OrderSide;
+import osdi.client.ClientOrderSide;
 import osdi.client.OrderTIF;
 import osdi.client.OrderTableModel;
 import osdi.client.OrderType;
@@ -64,7 +64,7 @@ public class OrderEntryPanel extends JPanel implements Observer {
     private final JTextField symbolTextField = new JTextField();
     private final IntegerNumberTextField quantityTextField = new IntegerNumberTextField();
 
-    private final JComboBox sideComboBox = new JComboBox(OrderSide.toArray());
+    private final JComboBox sideComboBox = new JComboBox(ClientOrderSide.toArray());
     private final JComboBox typeComboBox = new JComboBox(OrderType.toArray());
     private final JComboBox tifComboBox = new JComboBox(OrderTIF.toArray());
 
@@ -243,7 +243,7 @@ public class OrderEntryPanel extends JPanel implements Observer {
     private class SubmitListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             Order order = new Order();
-            order.setSide((OrderSide) sideComboBox.getSelectedItem());
+            order.setSide((ClientOrderSide) sideComboBox.getSelectedItem());
             order.setType((OrderType) typeComboBox.getSelectedItem());
             order.setTIF((OrderTIF) tifComboBox.getSelectedItem());
 

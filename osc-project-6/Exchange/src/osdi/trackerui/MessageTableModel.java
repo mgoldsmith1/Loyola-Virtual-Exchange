@@ -46,7 +46,7 @@ public class MessageTableModel extends AbstractTableModel {
     public Object getValueAt( int row, int column ) {
         LogMessage msg = messages.getMessage( row );
         if ( column == 0 ) return msg.getMessageIndex();
-        if ( column == 1 ) return (msg.isIncoming() ? "incoming" : "outgoing");
+        if ( column == 1 ) return (msg.isIncoming() ? "inbound" : "outbound");
         if ( column == 2 ) return UtcTimestampConverter.convert(msg.getSendingTime(),true);
         if ( column == 3 ) return msg.getMessageTypeName();
         if ( column == 4 ) return msg.getRawMessage();

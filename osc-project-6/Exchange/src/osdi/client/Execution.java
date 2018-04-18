@@ -22,7 +22,7 @@ package osdi.client;
 public class Execution {
     private String symbol = null;
     private int quantity = 0;
-    private OrderSide side = OrderSide.BUY;
+    private ClientOrderSide side = ClientOrderSide.LONG;
     private double price;
     private String ID = null;
     private String exchangeID = null;
@@ -52,11 +52,11 @@ public class Execution {
         this.quantity = quantity;
     }
 
-    public OrderSide getSide() {
+    public ClientOrderSide getSide() {
         return side;
     }
 
-    public void setSide(OrderSide side) {
+    public void setSide(ClientOrderSide side) {
         this.side = side;
     }
 

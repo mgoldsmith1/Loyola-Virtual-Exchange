@@ -1,9 +1,16 @@
 osdi
 osdi.client
-osdi.client.test
 osdi.clientui
 osdi.collections
 osdi.exchange
 osdi.locks
 osdi.ordermatch
 osdi.server
+osdi.test
+osdi.test.acceptance
+osdi.test.acceptanceresynch
+osdi.test.acceptancetimer
+osdi.test.util
+osdi.tracker
+osdi.trackerui
+osdi.trackerutil

@@ -1,9 +1,7 @@
 ![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/logo.png)
 ## Loyola Virtual Exchange ##
-![Build Status](https://travis-ci.org/quickfix-j/quickfixj.svg?branch=master)
 
 ![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/floor.jpg)
-
 ##  Mission Statement ##
 
 Welcome to the Loyola Virtual Exchange!
