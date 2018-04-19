@@ -22,7 +22,12 @@ package osdi.clientui;
 
 import osdi.clientui.ClientPanel;
 import osdi.server.Server;
+<<<<<<< HEAD
+import osdi.configEditor.*;
+
+=======
 import osdi.tracker.FIXTracker;
+>>>>>>> master
 import quickfix.ConfigError;
 import quickfix.FieldConvertError;
 import quickfix.Initiator;
@@ -152,10 +157,13 @@ public class ClientFrame extends JFrame {
 		window.getContentPane().add(new JLabel(new javax.swing.ImageIcon(_path + "/logo.png"), SwingConstants.CENTER)).setBackground(Color.WHITE);
 
 		window.setSize(1080,600);
+<<<<<<< HEAD
+=======
 		
 		// previously deleted. we'll keep setBounds for now until
 		// we add one of the other images that are larger. 
         window.setBounds(500, 150, 300, 200);
+>>>>>>> master
 		window.setLocationRelativeTo(null);
 		
 		window.setBackground(Color.WHITE);

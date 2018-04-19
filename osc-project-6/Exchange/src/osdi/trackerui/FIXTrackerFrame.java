@@ -34,6 +34,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Dimension;
+import javax.swing.JButton;
 
 public class FIXTrackerFrame extends javax.swing.JFrame {
     private static FIXTracker fixtracker;
@@ -661,8 +662,8 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                         		.addGroup(gl_feedPanel.createSequentialGroup()
                         			.addContainerGap()
                         			.addGroup(gl_feedPanel.createParallelGroup(Alignment.LEADING)
-                        				.addComponent(startButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        				.addComponent(stopButton, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                        				.addComponent(startButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                        				.addComponent(stopButton, GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
                         			.addGap(326))
                         );
                         gl_feedPanel.setVerticalGroup(
@@ -672,7 +673,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                         			.addComponent(startButton)
                         			.addPreferredGap(ComponentPlacement.RELATED)
                         			.addComponent(stopButton)
-                        			.addContainerGap(76, Short.MAX_VALUE))
+                        			.addContainerGap(220, Short.MAX_VALUE))
                         );
                         feedPanel.setLayout(gl_feedPanel);
                         
