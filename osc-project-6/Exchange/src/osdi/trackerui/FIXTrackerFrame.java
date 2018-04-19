@@ -499,16 +499,16 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
             .addComponent(messageScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
         );
       
-        executorRunningLabel.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif")); // NOI18N //orig in ui
+        executorRunningLabel.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("red.gif"))); // NOI18N //orig in ui
         executorRunningLabel.setText("Position Status:");
         FIXTracker.getApplication().addStatusCallbacks(clientConnectedLabel, OrderBookSenderRunningLabel, executorRunningLabel);
 
-        OrderBookSenderRunningLabel.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif")); // NOI18N  //orig in ui
+        OrderBookSenderRunningLabel.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("red.gif"))); // NOI18N  //orig in ui
         OrderBookSenderRunningLabel.setText("Order Book Status:");
 
-        clientConnectedLabel.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif")); // NOI18N //orig in ui
+        clientConnectedLabel.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("red.gif"))); // NOI18N //orig in ui
         if (FIXTracker.getApplication().getConnectionStatus())
-        clientConnectedLabel.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/green.gif")); //orig in ui
+        clientConnectedLabel.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("green.gif"))); //orig in ui
         clientConnectedLabel.setText("Client Connection Status:");
 
         javax.swing.GroupLayout statusBarPanelLayout = new javax.swing.GroupLayout(statusBarPanel);

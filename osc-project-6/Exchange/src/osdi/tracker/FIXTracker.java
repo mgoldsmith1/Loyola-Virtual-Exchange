@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import osdi.client.Client;
 import quickfix.Acceptor;
 import quickfix.CompositeLogFactory;
 import quickfix.ConfigError;
@@ -37,23 +38,26 @@ public class FIXTracker {
     private static InstrumentSet instruments = null;
     private static LogMessageSet messages = null;
     private String _path = new File("").getAbsolutePath();
+    private FileInputStream _fileInputStream;
     public FIXTracker() {
         InputStream inputStream = null;
         try {
-            inputStream = new BufferedInputStream( 
-                            new FileInputStream( 
-                            new File( _path +"/Exchange/src/osdi/tracker/FIXTracker.cfg" )));
-        } catch (FileNotFoundException exception) {
+            inputStream = FIXTracker.class.getResourceAsStream("FIXTracker.cfg");
+        } catch (Exception exception) {
             exception.printStackTrace();
            // System.exit(0);
         } finally {
         	 try {
         		if(inputStream == null) {
-					inputStream = new BufferedInputStream( 
+        			 inputStream = FIXTracker.class.getResourceAsStream("FIXTracker.cfg");
+        			
+        			// _fileInputStream = (FileInputStream)inputStream;
+        			//=FIXTracker.class.getResourceAsStream("FIXTracker.cfg");
+					/*inputStream = new BufferedInputStream( 
 					         new FileInputStream( 
-					         new File( _path +"/osc-project-6/Exchange/src/osdi/tracker/FIXTracker.cfg" )));
+					         new File( _path +"/osc-project-6/Exchange/src/osdi/tracker/FIXTracker.cfg" )));*/
         		 } 
-			} catch (FileNotFoundException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
