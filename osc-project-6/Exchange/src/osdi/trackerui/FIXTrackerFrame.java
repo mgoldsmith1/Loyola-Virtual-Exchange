@@ -35,6 +35,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Dimension;
 import javax.swing.JButton;
+import java.awt.TextField;
+import javax.swing.JLabel;
 
 public class FIXTrackerFrame extends javax.swing.JFrame {
     private static FIXTracker fixtracker;
@@ -227,7 +229,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
                 .addGap(7, 7, 7))
         );
 
-        ioiDialog.setTitle("Add IOI...");
+        ioiDialog.setTitle("Add Order");
         ioiDialog.setAlwaysOnTop(true);
         ioiDialog.setName("ioiDialog"); // NOI18N
 
@@ -245,11 +247,11 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
             }
         });
 
-        ioiIDLabel.setText("IOIid(23):");
+        ioiIDLabel.setText("OrderID(23):");
 
         ioiSideLabel.setText("Side(54):");
 
-        ioiSharesLabel.setText("IOIShares(27):");
+        ioiSharesLabel.setText("OrderSize(27):");
 
         ioiSymbolLabel.setText("Symbol(55):");
 
@@ -374,7 +376,7 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         executionDialogPrice.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.####"))));
         executionDialogPrice.setText("0.0");
 
-        executionSharesLabel.setText("LastShares(32):");
+        executionSharesLabel.setText("LastSize(32):");
 
         executionPriceLabel.setText("LastPx(31):");
 
@@ -432,15 +434,34 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
             	
             	//Shutting down FIXTracker Acceptor.
                 int confirm = JOptionPane.showOptionDialog(
-                     null, "Shutting down OrderBook Server.", 
+                     null, "OrderBook Server -> Disconnecting Client", 
                      "Exit Confirmation", JOptionPane.OK_CANCEL_OPTION, //.YES_NO_OPTION, 
-                     JOptionPane.QUESTION_MESSAGE, null, null, null);
+                     JOptionPane.WARNING_MESSAGE, null, null, null);
                 if (confirm == 0) {
                    FIXTracker.stop();	
                 }
             }
+          
         };
         this.addWindowListener(exitListener);
+        
+       /* WindowListener openListener = new WindowAdapter() {
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+            	
+            	//Shutting down FIXTracker Acceptor.
+                int confirm = JOptionPane.showOptionDialog(
+                     null, "Connecting Client -> OrderBook Server", 
+                     "Exit Confirmation", JOptionPane.OK_CANCEL_OPTION, //.YES_NO_OPTION, 
+                     JOptionPane.INFORMATION_MESSAGE, null, null, null);
+                if (confirm == 0) {
+                
+                }
+            }
+          
+        };
+        this.addWindowListener(openListener);*/
 
         messagePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("FIX Messages:"));
 
@@ -1493,7 +1514,8 @@ public class FIXTrackerFrame extends javax.swing.JFrame {
         mainMenuBar.add(helpMenu);
 
         setJMenuBar(mainMenuBar);
-
+        
+   
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -1564,7 +1586,7 @@ private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void singleIOIButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singleIOIButtonActionPerformed
     dialogIOI = new IOI();
     dialogIOI.setType("NEW");
-    ioiDialog.setTitle("Add IOI...");
+    ioiDialog.setTitle("Add Order");
     ioiDialogID.setText(dialogIOI.getID());
     ioiDialogShares.setValue(0);
     ioiDialogSymbol.setText("");
@@ -1607,7 +1629,7 @@ private void replaceIOIButtonActionPerformed(java.awt.event.ActionEvent evt) {//
     int row = ioiTable.getSelectedRow();
     // if no rows are selected
     if ( row != -1 ) {
-        ioiDialog.setTitle("Replace IOI...");
+        ioiDialog.setTitle("Replace Order...");
         row = ioiTable.convertRowIndexToModel(row);
         IOI ioi = FIXTracker.getApplication().getIOIs().getIOI(row);
         dialogIOI = ioi.clone();
