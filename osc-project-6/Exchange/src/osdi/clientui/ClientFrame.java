@@ -22,6 +22,7 @@ package osdi.clientui;
 
 import osdi.clientui.ClientPanel;
 import osdi.server.Server;
+import osdi.configEditor.*;
 
 import quickfix.ConfigError;
 import quickfix.FieldConvertError;
