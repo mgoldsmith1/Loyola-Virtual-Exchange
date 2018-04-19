@@ -149,7 +149,7 @@ public class ClientFrame extends JFrame {
 	public void splashScreenInit() {
 		JWindow window = new JWindow();
 
-		window.getContentPane().add(new JLabel(new javax.swing.ImageIcon(_path + "/logo.png"), SwingConstants.CENTER)).setBackground(Color.WHITE);
+		window.getContentPane().add(new JLabel(new javax.swing.ImageIcon(Client.class.getResource("logo.png")), SwingConstants.CENTER)).setBackground(Color.WHITE);
 
 		window.setSize(1080,600);
 		
