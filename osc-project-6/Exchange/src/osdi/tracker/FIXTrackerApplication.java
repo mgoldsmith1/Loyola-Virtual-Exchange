@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Date;
 import java.util.Random;
 
@@ -105,13 +107,13 @@ public class FIXTrackerApplication extends MessageCracker
         currentSession = sessionID;
         dictionary = Session.lookupSession(currentSession).getDataDictionary();
         if (connectedStatus != null)
-            connectedStatus.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/green.gif"));
+            connectedStatus.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("green.gif")));
     }
 
     public void onLogout( SessionID sessionID ) {
     	connected = false;
     	currentSession = null;
-        connectedStatus.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif"));
+        connectedStatus.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("red.gif")));
     }
 	
     // IndicationofInterest handling
@@ -255,12 +257,22 @@ public class FIXTrackerApplication extends MessageCracker
     }
     
     public void saveSettings() {
-        
+        /*
+         URL resourceUrl = getClass().getResource("FIXTracker.cfg");
+File file = new File(resourceUrl.toURI());
+OutputStream output = new FileOutputStream(file);
+         * */
         try {
+            URL resourceUrl = getClass().getResource("FIXTracker.cfg");
+            File file = null;
+			try {
+				file = new File(resourceUrl.toURI());
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             OutputStream outputStream = 
-                    new BufferedOutputStream(
-                    new FileOutputStream(
-                    new File(_path +"/Exchange/src/osdi/tracker/FIXTracker.cfg")));
+            		new FileOutputStream(file);
             settings.toStream(outputStream);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -705,7 +717,7 @@ public class FIXTrackerApplication extends MessageCracker
             ioiSenderThread.start();
         } catch (Exception e) {e.printStackTrace();}
         if (connected && ioiSenderStarted)
-            ioiSenderStatus.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/green.gif"));
+            ioiSenderStatus.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("green.gif")));
     }    
     
     public void stopIOIsender(){
@@ -714,7 +726,7 @@ public class FIXTrackerApplication extends MessageCracker
     	try {
             ioiSenderThread.join();
         } catch (InterruptedException e) {e.printStackTrace();}
-        ioiSenderStatus.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif"));
+        ioiSenderStatus.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("red.gif")));
     }
      
     public void setNewDelay(Integer delay) { 		
@@ -766,7 +778,7 @@ public class FIXTrackerApplication extends MessageCracker
                     Thread.sleep( delay.longValue() );
                 } catch ( InterruptedException e ) {}
             }
-            ioiSenderStatus.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif"));
+            ioiSenderStatus.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("red.gif")));
         }
     	
     	public void sendRandomIOI() {
@@ -846,7 +858,7 @@ public class FIXTrackerApplication extends MessageCracker
             executorThread.start();
         } catch (Exception e) {e.printStackTrace();}
         if (connected && executorStarted)
-           executorStatus.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/green.gif"));
+           executorStatus.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("green.gif")));
 
     }
 
@@ -857,7 +869,7 @@ public class FIXTrackerApplication extends MessageCracker
     	try {
             executorThread.join();
         } catch (InterruptedException e) {e.printStackTrace();}
-        executorStatus.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif"));
+        executorStatus.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("red.gif")));
     }
 
     public void setNewExecutorDelay( Integer delay ) {
@@ -892,7 +904,7 @@ public class FIXTrackerApplication extends MessageCracker
                     Thread.sleep( 5000 );
                 } catch ( InterruptedException e ) {}
             }
-            executorStatus.setIcon(new javax.swing.ImageIcon(_path +"/Exchange/src/osdi/tracker/red.gif"));
+            executorStatus.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("red.gif")));
         }
         
         public void stopExecutor(){

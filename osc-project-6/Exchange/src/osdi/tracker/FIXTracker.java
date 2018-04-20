@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.net.URL;
 
 import osdi.client.Client;
 import quickfix.Acceptor;
@@ -59,15 +60,9 @@ public class FIXTracker {
 			}
 		}
 
-		instruments = new InstrumentSet(new File(_path + "/Exchange/src/osdi/tracker/university.xml")); // instruments.xml
+		instruments = new InstrumentSet(FIXTracker.class.getResourceAsStream("university.xml"));
 		messages = new LogMessageSet();
 
-		// This is new. Also this is just a test
-		if (instruments == null || messages == null) {
-			instruments = new InstrumentSet(
-					new File(_path + "/osc-project-6/Exchange/src/osdi/tracker/university.xml")); // instruments.xml
-			messages = new LogMessageSet();
-		}
 
 		try {
 			SessionSettings settings = new SessionSettings(inputStream);

@@ -34,10 +34,10 @@ public class InstrumentSet extends DefaultHandler {
     private ArrayList<Instrument> oldInstruments = new ArrayList<Instrument>();
     private InstrumentTableModel instrumentModel = null;
     
-    public InstrumentSet( File file ) {
+    public InstrumentSet( InputStream inputStream ) {
         try {
-            InputStream input = 
-                    new BufferedInputStream(new FileInputStream(file));
+            InputStream input = inputStream;
+                  //  new BufferedInputStream(new FileInputStream(file));
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             saxParser.parse( input, this);		
