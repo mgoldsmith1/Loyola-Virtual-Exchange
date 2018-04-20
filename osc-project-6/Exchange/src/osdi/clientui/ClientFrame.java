@@ -393,8 +393,26 @@ public class ClientFrame extends JFrame {
                setVisible(true);
            }
            if(e.getActionCommand().contains("Exit")){
-        	   //Revisions needed
-        	   System.exit(0);
+        	   //New 4/19
+        	   if(initiator.isLoggedOn() == true){
+	        	  
+        	   }else{
+        		   int confirm = JOptionPane.showOptionDialog(
+	                       null, "Do you want to disconnect from current session?", 
+	                       "Exit Confirmation", JOptionPane.YES_NO_OPTION, 
+	                       JOptionPane.WARNING_MESSAGE, null, null, null);
+	                  if (confirm == 0 ) {
+	                	  initiator.stop();
+	               	      statusLabel.setText("Disconnected Client");
+	               	      foo = false;
+	               	      
+	                  }
+	                  else{
+	                  	 // does nothing
+	                  }
+	                  System.exit(0);
+        		   
+        	   }
            }
            if(e.getActionCommand().contains("Open Config")) {
         	   
