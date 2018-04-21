@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 import osdi.client.Client;
+import osdi.configEditor.ConfigurationDocumentViewer;
 import quickfix.Acceptor;
 import quickfix.CompositeLogFactory;
 import quickfix.ConfigError;
@@ -44,14 +45,14 @@ public class FIXTracker {
 	public FIXTracker() {
 		InputStream inputStream = null;
 		try {
-			inputStream = FIXTracker.class.getResourceAsStream("FIXTracker.cfg");
+			inputStream = ConfigurationDocumentViewer.class.getResourceAsStream("config/FIXTracker.cfg");
 		} catch (Exception exception) {
 			exception.printStackTrace();
 
 		} finally {
 			try {
 				if (inputStream == null) {
-					inputStream = FIXTracker.class.getResourceAsStream("FIXTracker.cfg");
+					inputStream = ConfigurationDocumentViewer.class.getResourceAsStream("config/FIXTracker.cfg");
 
 				}
 			} catch (Exception e) {

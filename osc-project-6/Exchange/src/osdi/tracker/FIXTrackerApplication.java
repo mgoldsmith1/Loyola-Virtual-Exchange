@@ -23,6 +23,7 @@ import java.util.Random;
 
 import javax.swing.JLabel;
 
+import osdi.configEditor.ConfigurationDocumentViewer;
 import osdi.locks.Semaphore;
 import osdi.locks.SpinLock;
 import quickfix.Application;

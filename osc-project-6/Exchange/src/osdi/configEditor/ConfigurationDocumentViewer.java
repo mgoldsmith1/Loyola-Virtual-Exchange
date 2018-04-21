@@ -13,22 +13,22 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class DocumentViewer {
+public class ConfigurationDocumentViewer {
 	private Path path;
 
-	public DocumentViewer() {
+	public ConfigurationDocumentViewer() {
 		URL resourseURL = null;
 		
 		try {
-		    resourseURL = getClass().getResource("client.cfg");
+		    resourseURL = getClass().getResource("config");
 			File file = null;
 			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 
-		final JFrame f = new JFrame("Document Viewer");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		final JFrame f = new JFrame("Configuration File Editor");
+		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		final JFileChooser fileChooser = new JFileChooser();
 		
 		try {
@@ -41,11 +41,11 @@ public class DocumentViewer {
 		final JEditorPane document = new JEditorPane();
 		gui.add(new JScrollPane(document), BorderLayout.CENTER);
 		
-		URL classpath = DocumentViewer.class.getResource("DocumentViewer.class");
+		URL classpath = ConfigurationDocumentViewer.class.getResource("DocumentViewer.class");
 		File location = new File("locationTarget");
 	
 
-		fileChooser.setDialogTitle("Configuration Files Only");
+		fileChooser.setDialogTitle("Configuration Files");
 		fileChooser.setFileFilter(new CFGSearcher());
 
 		JButton open = new JButton("Open");

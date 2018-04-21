@@ -12,12 +12,15 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import osdi.configEditor.ConfigurationDocumentViewer;
+
 public class Main {
     public static void main(String[] args) {
         try {
             InputStream inputStream = null;
             if (args.length == 0) {
-                inputStream = OrderMatcher.class.getResourceAsStream("ordermatch.cfg");
+                inputStream = ConfigurationDocumentViewer.class.getResourceAsStream("config/ordermatch.cfg");
+                //OrderMatcher.class.getResourceAsStream("ordermatch.cfg");
             } else if (args.length == 1) {
                 inputStream = new FileInputStream(args[0]);
             }

@@ -53,6 +53,7 @@ import org.quickfixj.jmx.mbean.session.*;
 
 //import osdi.client.BanzaiApplication
 import osdi.clientui.ClientFrame;
+import osdi.configEditor.ConfigurationDocumentViewer;
 
 /**
  * Entry point for the Client application.
@@ -69,7 +70,8 @@ public class Client {
     public Client(String[] args) throws Exception {
         InputStream inputStream = null;
         if (args.length == 0) {
-            inputStream = Client.class.getResourceAsStream("client.cfg");
+            inputStream = ConfigurationDocumentViewer.class.getResourceAsStream("config/client.cfg");
+            		//Client.class.getResourceAsStream("client.cfg");
         } else if (args.length == 1) {
             inputStream = new FileInputStream(args[0]);
         }

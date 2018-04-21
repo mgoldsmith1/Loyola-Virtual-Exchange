@@ -46,6 +46,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 
 import javax.management.JMException;
@@ -69,6 +70,7 @@ import osdi.client.ExecutionTableModel;
 import osdi.client.OrderTableModel;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
@@ -257,6 +259,10 @@ public class ClientFrame extends JFrame {
         JMenuItem openConfigurationMenuItem = new JMenuItem("Open Config");
         openConfigurationMenuItem.setActionCommand("Open Config");
         
+        JMenuItem repositoryMenuItem = new JMenuItem("Repository");
+        repositoryMenuItem.setActionCommand("Repository");
+        aboutMenu.add(repositoryMenuItem);
+        
       
         MenuItemListener menuItemListener = new MenuItemListener();
 
@@ -271,7 +277,7 @@ public class ClientFrame extends JFrame {
         connectExecMenuItem.addActionListener(menuItemListener);
         disconnectExecMenuItem.addActionListener(menuItemListener);
         openConfigurationMenuItem.addActionListener(menuItemListener);
-        
+        repositoryMenuItem.addActionListener(menuItemListener);
         
       //Remember to import SwingUtilities before Run it
         chartMenuItem.addActionListener(ev -> {
@@ -311,7 +317,7 @@ public class ClientFrame extends JFrame {
       
         
         JMenu mnLogon = new JMenu("Connect");  //Client//User
-       fileMenu.add(mnLogon);      
+        fileMenu.add(mnLogon);      
         mnLogon.add(clientStartLogonMenuItem);
         mnLogon.add(clientLogoutMenuItem);
         fileMenu.addSeparator();
@@ -329,6 +335,8 @@ public class ClientFrame extends JFrame {
         //add menu to menubar
         menuBar.add(fileMenu);
         menuBar.add(aboutMenu);  
+        
+        
         menuBar.add(orderMenu);
         menuBar.add(orderBookMenu);
        // menuBar.add(serverMenu);  //commented out for now
@@ -415,7 +423,17 @@ public class ClientFrame extends JFrame {
         	   }
            }
            if(e.getActionCommand().contains("Open Config")) {
-        	   osdi.configEditor.DocumentViewer d = new osdi.configEditor.DocumentViewer();
+        	   osdi.configEditor.ConfigurationDocumentViewer callConfigurationDocumentViewer = 
+        			   new osdi.configEditor.ConfigurationDocumentViewer();
+           }
+           if(e.getActionCommand().contains("Repository")){
+        	   try {
+					Desktop desktop = java.awt.Desktop.getDesktop();
+					URI oURL = new URI("https://github.com/mgoldsmith1/Loyola-Virtual-Exchange");
+					desktop.browse(oURL);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				} 
            }
            
         }    

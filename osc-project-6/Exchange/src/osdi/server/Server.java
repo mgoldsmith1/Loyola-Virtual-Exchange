@@ -24,6 +24,8 @@ package osdi.server;
 import org.quickfixj.jmx.JmxExporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import osdi.configEditor.ConfigurationDocumentViewer;
 import quickfix.ConfigError;
 import quickfix.DefaultMessageFactory;
 import quickfix.FieldConvertError;
@@ -161,7 +163,7 @@ public class Server {
     private static InputStream getSettingsInputStream(String[] args) throws FileNotFoundException {
         InputStream inputStream = null;
         if (args.length == 0) {
-            inputStream = Server.class.getResourceAsStream("server.cfg");
+            inputStream = ConfigurationDocumentViewer.class.getResourceAsStream("config/server.cfg");
         } else if (args.length == 1) {
             inputStream = new FileInputStream(args[0]);
         }

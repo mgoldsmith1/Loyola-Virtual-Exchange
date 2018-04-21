@@ -2,6 +2,7 @@ osdi
 osdi.client
 osdi.clientui
 osdi.collections
+osdi.configEditor
 osdi.exchange
 osdi.locks
 osdi.ordermatch
