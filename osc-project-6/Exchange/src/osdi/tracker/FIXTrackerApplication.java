@@ -22,6 +22,9 @@ import java.util.Date;
 import java.util.Random;
 
 import javax.swing.JLabel;
+
+import osdi.locks.Semaphore;
+import osdi.locks.SpinLock;
 import quickfix.Application;
 import quickfix.DataDictionary;
 import quickfix.DoNotSend;
@@ -90,7 +93,25 @@ public class FIXTrackerApplication extends MessageCracker
     private ExecutionSet executions = null;
     private String _path = new File("").getAbsolutePath();
                                 
+    private final int bufferSize;
+    //private final java.util.Queue<T> queue;
+    private final Semaphore full;
+    private final Semaphore empty;
+    private final SpinLock spinLock;
+
     
+
+   /* @Override
+    public void enqueue(T item) {
+        empty.down();
+        try {
+            spinLock.lock();
+            queue.add(item);
+        } finally {
+            spinLock.unlock();
+        }
+        full.up();
+    }*/
     public FIXTrackerApplication( SessionSettings settings, 
             LogMessageSet messages ){
             this.settings = settings;
@@ -98,6 +119,12 @@ public class FIXTrackerApplication extends MessageCracker
             iois = new IOIset();
             orders = new OrderSet();
             executions = new ExecutionSet();
+            
+            this.bufferSize =executions.getCount();
+          //  queue = new java.util.ArrayDeque<>();
+            full = new Semaphore(0);
+            empty = new Semaphore(bufferSize);
+            spinLock = new SpinLock();
     }
 	
     public void onCreate( SessionID sessionID ) {}
@@ -259,7 +286,7 @@ public class FIXTrackerApplication extends MessageCracker
     public void saveSettings() {
         /*
          URL resourceUrl = getClass().getResource("FIXTracker.cfg");
-File file = new File(resourceUrl.toURI());
+File file = new File(resourceUrl.toURI()s);
 OutputStream output = new FileOutputStream(file);
          * */
         try {
@@ -535,7 +562,10 @@ OutputStream output = new FileOutputStream(file);
         
         // Send actual message
         try {
+        	
+        	
             Session.sendToTarget( message, currentSession );
+        	
         } catch ( SessionNotFound e ) { e.printStackTrace(); }
     }
     
@@ -782,6 +812,7 @@ OutputStream output = new FileOutputStream(file);
         }
     	
     	public void sendRandomIOI() {
+    		
             Instrument instrument = instruments.randomInstrument();
             IOI ioi = new IOI();
             ioi.setType("NEW");

@@ -35,6 +35,7 @@ public class OrderSet {
     }
     
     public void update () {
+    	
         orderTableModel.update();
     }
     

@@ -415,7 +415,7 @@ public class ClientFrame extends JFrame {
         	   }
            }
            if(e.getActionCommand().contains("Open Config")) {
-        	   
+        	   osdi.configEditor.DocumentViewer d = new osdi.configEditor.DocumentViewer();
            }
            
         }    

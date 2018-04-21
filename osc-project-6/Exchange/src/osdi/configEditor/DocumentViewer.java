@@ -20,7 +20,7 @@ public class DocumentViewer {
 		URL resourseURL = null;
 		
 		try {
-		    resourseURL = getClass().getResource("FIXTracker.cfg");
+		    resourseURL = getClass().getResource("client.cfg");
 			File file = null;
 			
 		} catch (Exception e1) {
