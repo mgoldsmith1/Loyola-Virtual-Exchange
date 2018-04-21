@@ -42,11 +42,11 @@ public final class QuickChart {
 
     double[][] yData2d = {yData};
     if (seriesName == null) {
-      return getChart(chartTitle, xTitle, yTitle, null, xData, yData2d);
-    } else {
-      return getChart(chartTitle, xTitle, yTitle, new String[] {seriesName}, xData, yData2d);
+        return getChart(chartTitle, xTitle, yTitle, null, xData, yData2d);
+      } else {
+        return getChart(chartTitle, xTitle, yTitle, new String[] {seriesName}, xData, yData2d);
+      }
     }
-  }
 
   /**
    * Creates a Chart with multiple Series for the same X-Axis data with default style
