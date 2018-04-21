@@ -21,6 +21,7 @@ package osdi.clientui;
 
 
 import osdi.clientui.ClientPanel;
+import osdi.loyolaIndex.LoyolaRamblerIndex;
 import osdi.server.Server;
 import osdi.tracker.FIXTracker;
 import quickfix.ConfigError;
@@ -74,6 +75,10 @@ import java.awt.Desktop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
+import javax.swing.JTree;
+import javax.swing.JSpinner;
+import javax.swing.JSlider;
+import java.awt.TextArea;
 
 /**
  * Main application window
@@ -212,12 +217,14 @@ public class ClientFrame extends JFrame {
         final JMenu aboutMenu = new JMenu("About");      
         final JMenu orderMenu = new JMenu("Trade");
         JMenu orderBookMenu = new JMenu("Order Book"); 
-        JMenu chartMenu = new JMenu("Charts");
+      //  JMenu chartMenu = new JMenu("Charts");
         final JMenu serverMenu = new JMenu("Server");
        
         // Provides the ability to open a configuration file from the main gui
         // and edit its contents (IP,port,etc.)
         JMenu configurationMenu = new JMenu("Configuration"); 
+        
+        JMenu loyolaChartMenu = new JMenu("Chart");
         
 
         JMenuItem clientStartLogonMenuItem = new JMenuItem("Logon -> LocalHost"); //Open Workspace
@@ -263,7 +270,9 @@ public class ClientFrame extends JFrame {
         repositoryMenuItem.setActionCommand("Repository");
         aboutMenu.add(repositoryMenuItem);
         
-      
+        JMenuItem loyolaRamblerIndexMenuItem = new JMenuItem("Loyola Rambler Index");
+        loyolaRamblerIndexMenuItem.setActionCommand("LoyolaRamblerIndex");
+        
         MenuItemListener menuItemListener = new MenuItemListener();
 
    //     newMenuItem.addActionListener(menuItemListener);
@@ -278,6 +287,7 @@ public class ClientFrame extends JFrame {
         disconnectExecMenuItem.addActionListener(menuItemListener);
         openConfigurationMenuItem.addActionListener(menuItemListener);
         repositoryMenuItem.addActionListener(menuItemListener);
+        loyolaRamblerIndexMenuItem.addActionListener(menuItemListener);
         
       //Remember to import SwingUtilities before Run it
         chartMenuItem.addActionListener(ev -> {
@@ -326,19 +336,21 @@ public class ClientFrame extends JFrame {
         
         orderMenu.add(orderMenuItem);
         orderBookMenu.add(orderBookMenuItem);
-        chartMenu.add(chartMenuItem);
+        
         serverMenu.add(connectExecMenuItem);
         serverMenu.addSeparator();
         serverMenu.add(disconnectExecMenuItem);
         configurationMenu.add(openConfigurationMenuItem);
+        loyolaChartMenu.add(loyolaRamblerIndexMenuItem);
         
         //add menu to menubar
         menuBar.add(fileMenu);
         menuBar.add(aboutMenu);  
-        
-        
+
         menuBar.add(orderMenu);
         menuBar.add(orderBookMenu);
+        menuBar.add(loyolaChartMenu);
+       
        // menuBar.add(serverMenu);  //commented out for now
         menuBar.add(configurationMenu);
 
@@ -434,6 +446,11 @@ public class ClientFrame extends JFrame {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				} 
+           }
+           if(e.getActionCommand().contains("LoyolaRamblerIndex")){
+	           LoyolaRamblerIndex loyolaRamblerIndexRealTimeWorker = new LoyolaRamblerIndex();
+	           Thread chartThread = new Thread(()->loyolaRamblerIndexRealTimeWorker.go());
+	           chartThread.start();
            }
            
         }    
