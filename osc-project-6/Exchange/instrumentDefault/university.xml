@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instruments>
+   <instrument name="Loyola Rambler Futures" ticker="LRF" sedol="2005973" ric="LRF-M18" cusip="459200101" price="2000.00"/>
+   <instrument name="Loyola micro-Rambler Futures" ticker="MRF" sedol="2986539" ric="MRF-M18" cusip="984332106" price="1000.00"/>
+   
+   <instrument name="Depaul Blue Demon Futures" ticker="DBF" sedol="2005974" ric="DBF-M18" cusip="459200102" price="500.00"/>
+   <instrument name="Depaul micro-Blue Demon Futures" ticker="MDBF" sedol="2986540" ric="MDBF-M18" cusip="984332107" price="250.00"/>
+   
+   <instrument name="Illinois Institute of Technology Futures" ticker="IITF" sedol="2005975" ric="IITF-M18" cusip="459200103" price="600.00"/>
+   <instrument name="micro-IIT Futures" ticker="MIITF" sedol="2986541" ric="MIITF-M18" cusip="984332108" price="300.00"/>
+   
+   <instrument name="School of the Art Institute of Chicago Futures" ticker="AICF" sedol="2005976" ric="AICF-M18" cusip="459200104" price="400.00"/>
+   <instrument name="micro-SAIC Futures" ticker="MAICF" sedol="2986542" ric="MAICF-M18" cusip="984332109" price="200.00"/>
+   
+   <instrument name="UIC Dragon Futures" ticker="UICDF" sedol="200597" ric="UICDF-M18" cusip="459200105" price="100"/>
+   <instrument name="UIC micro-Dragon Futures" ticker="MUICDF" sedol="2986543" ric="MUICDF-M18" cusip="984332110" price="50"/>
+</instruments>
+
+
