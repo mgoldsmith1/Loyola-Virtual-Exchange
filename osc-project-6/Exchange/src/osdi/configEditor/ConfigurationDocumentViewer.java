@@ -85,13 +85,13 @@ public class ConfigurationDocumentViewer {
 		});
 
 		gui.add(open, BorderLayout.NORTH);
-		gui.add(save, BorderLayout.SOUTH);
+		gui.add(save, BorderLayout.EAST);
 
 		f.setContentPane(gui);
 		f.pack();
-		f.setSize(400, 300);
+		f.setSize(600, 500);
 		f.setLocationByPlatform(true);
-
+        f.setLocationRelativeTo(null);
 		f.setVisible(true);
 	}
 }
