@@ -34,9 +34,9 @@ public class LoyolaRamblerIndex {
     // Create Chart
     chart =
         QuickChart.getChart(
-            "Loyola Rambler Index (Real-time)",
+            "Loyola Rambler Futures Index (Real-time)",
             "Time",
-            "Value",
+            "Price",
             "randomWalk",
             new double[] {0},
             new double[] {0});

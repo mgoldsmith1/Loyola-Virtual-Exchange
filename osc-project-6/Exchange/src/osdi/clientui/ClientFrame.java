@@ -83,6 +83,17 @@ import java.awt.TextArea;
 /**
  * Main application window
  */
+
+/**
+ * Displays the GUI for ClientFrame
+ * @param osdi.client.OrderTableModel orderTableModel, 
+ *        osdi.client.ExecutionTableModel executionTableModel,
+          final osdi.client.ClientApplication application, 
+          Initiator initiator, 
+          SessionSettings settings
+ * @return JFrame 
+ * @author Yang Li, Chris Elliott, Eric Lymberopoulos, Matthew Goldsmith, Yonathan Gordon
+ */
 public class ClientFrame extends JFrame {
 
 	private JFrame mainFrame;
@@ -153,11 +164,17 @@ public class ClientFrame extends JFrame {
         setJMenuBar(menubar);
     }
 
+    /**
+	 * Displays image logo
+	 * @param none
+	 * @return nothing
+	 * @author Matthew Goldsmith
+	 */
 	public void splashScreenInit() {
 		JWindow window = new JWindow();
 
 		window.getContentPane().add(new JLabel(new javax.swing.ImageIcon(Client.class.getResource("logo.png")), SwingConstants.CENTER)).setBackground(Color.WHITE);
-
+//mediumsmall-res.png
 		window.setSize(1080,600);
 		
 		// previously deleted. we'll keep setBounds for now until
@@ -181,6 +198,12 @@ public class ClientFrame extends JFrame {
 		window.dispose();
 	}
 
+	/**
+	 * Initializes the GUI for ClientFrame
+	 * @param none
+	 * @return nothing
+	 * @author Matthew Goldsmith
+	 */
     private void initializeMainMenuGUI(){
         mainFrame = new JFrame("Loyola Virtual Exchange");
         
@@ -208,6 +231,13 @@ public class ClientFrame extends JFrame {
         mainFrame.setLocationRelativeTo(null); // centers the GUI
         mainFrame.setVisible(true);  
      }
+    
+    /**
+	 * Displays the GUI for ClientFrame
+	 * @param none
+	 * @return nothing
+	 * @author Yang Li, Chris Elliott, Eric Lymberopoulos, Matthew Goldsmith, Yonathan Gordon
+	 */
      private void displayMainMenuGUI(){
         //create a menu bar
         final JMenuBar menuBar = new JMenuBar();
@@ -326,12 +356,11 @@ public class ClientFrame extends JFrame {
         });
       
         
-        JMenu mnLogon = new JMenu("Connect");  //Client//User
-        fileMenu.add(mnLogon);      
-        mnLogon.add(clientStartLogonMenuItem);
-        mnLogon.add(clientLogoutMenuItem);
+        JMenu logonMenu = new JMenu("Connect");  //Client//User
+        fileMenu.add(logonMenu);      
+        logonMenu.add(clientStartLogonMenuItem);
+        logonMenu.add(clientLogoutMenuItem);
         fileMenu.addSeparator();
- 
         fileMenu.add(exitMenuItem);       
         
         orderMenu.add(orderMenuItem);
@@ -345,12 +374,10 @@ public class ClientFrame extends JFrame {
         
         //add menu to menubar
         menuBar.add(fileMenu);
-        menuBar.add(aboutMenu);  
-
+        menuBar.add(aboutMenu); 
         menuBar.add(orderMenu);
         menuBar.add(orderBookMenu);
         menuBar.add(loyolaChartMenu);
-       
        // menuBar.add(serverMenu);  //commented out for now
         menuBar.add(configurationMenu);
 
