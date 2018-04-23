@@ -111,7 +111,7 @@ public class ExchangeFeed {
             Long[] primeValues = ordersThatAreLoyolaPrimeIndex.dequeue();
             currentCount += primeValues.length;
             if(currentCount % 1 == 0) {
-                System.out.println("have " + currentCount + " Loyola Prime Index (LPX) orders filled");
+                System.out.println("have " + currentCount + " Loyola Rambler Index Futures (LRF) orders filled");
                 System.out.flush();
             }
         }

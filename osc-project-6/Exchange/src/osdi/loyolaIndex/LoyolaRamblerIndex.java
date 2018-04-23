@@ -46,9 +46,13 @@ public class LoyolaRamblerIndex {
     // Show it
     sw = new SwingWrapper<XYChart>(chart);
     sw.displayChart();
-
+   
     mySwingWorker = new MySwingWorker();
     mySwingWorker.execute();
+  
+  }
+  public void stopWithCancel(){
+	  mySwingWorker.cancel(true);
   }
 
   private class MySwingWorker extends SwingWorker<Boolean, double[]> {
@@ -57,6 +61,7 @@ public class LoyolaRamblerIndex {
 
     public MySwingWorker() {
 
+      //random price added
       fifo.add(0.0);
     }
 
@@ -65,6 +70,7 @@ public class LoyolaRamblerIndex {
 
       while (!isCancelled()) {
 
+    	//random price added
         fifo.add(fifo.get(fifo.size() - 1) + Math.random() - .5);
         if (fifo.size() > 500) {
           fifo.removeFirst();
