@@ -34,7 +34,7 @@ public class LoyolaRamblerIndex {
     // Create Chart
     chart =
         QuickChart.getChart(
-            "Loyola Rambler Futures Index (Real-time)",
+            "Loyola Rambler Index Futures (Real-time)",
             "Time",
             "Price",
             "randomWalk",
@@ -62,7 +62,7 @@ public class LoyolaRamblerIndex {
     public MySwingWorker() {
 
       //random price added
-      fifo.add(0.0);
+      fifo.add(2000.0);
     }
 
     @Override
