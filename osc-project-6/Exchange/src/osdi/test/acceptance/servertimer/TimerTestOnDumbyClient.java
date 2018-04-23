@@ -17,7 +17,7 @@
  * are not clear to you.
  ******************************************************************************/
 
-package osdi.test.acceptancetimer;
+package osdi.test.acceptance.servertimer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,8 +53,8 @@ import java.util.concurrent.CountDownLatch;
 /**
  * @author <a href="mailto:jhensley@bonddesk.com">John Hensley</a>
  */
-public class TimerTestClient extends MessageCracker implements Application {
-    private final Logger log = LoggerFactory.getLogger(TimerTestServer.class);
+public class TimerTestOnDumbyClient extends MessageCracker implements Application {
+    private final Logger log = LoggerFactory.getLogger(osdi.tracker.FIXTracker.class);
     private final SessionSettings settings = new SessionSettings();
     private final CountDownLatch shutdownLatch = new CountDownLatch(1);
     private boolean failed;
@@ -95,15 +95,15 @@ public class TimerTestClient extends MessageCracker implements Application {
         defaults.put("SocketTcpNoDelay", "Y");
         defaults.put("StartTime", "00:00:00");
         defaults.put("EndTime", "00:00:00");
-        defaults.put("SenderCompID", "TW");
-        defaults.put("TargetCompID", "ISLD");
+        defaults.put("SenderCompID", "CLIENT");
+        defaults.put("TargetCompID", "FIXTRACKER");
         defaults.put("FileStorePath", "target/data/timer_test");
         defaults.put("ValidateUserDefinedFields", "Y");
         settings.set(defaults);
 
-        SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIX44, "TW", "ISLD");
+        SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIX44, "FIXTRACKER", "CLIENT");
         settings.setString(sessionID, "BeginString", FixVersions.BEGINSTRING_FIX44);
-        settings.setString(sessionID, "DataDictionary", "FIX44.xml");
+        settings.setString(sessionID, "DataDictionary", "FIX42.xml"); //FIX44.xml
 
         MessageStoreFactory storeFactory = new MemoryStoreFactory();
         Initiator initiator = new SocketInitiator(this, storeFactory, settings,
@@ -144,7 +144,7 @@ public class TimerTestClient extends MessageCracker implements Application {
 
     public static void main(String[] args) throws ConfigError, SessionNotFound,
             InterruptedException {
-        TimerTestClient ttc = new TimerTestClient();
+        TimerTestOnDumbyClient ttc = new TimerTestOnDumbyClient();
         ttc.run();
     }
 }

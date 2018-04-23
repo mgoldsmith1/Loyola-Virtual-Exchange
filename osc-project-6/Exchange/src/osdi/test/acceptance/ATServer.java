@@ -24,6 +24,7 @@ import osdi.test.util.ReflectionUtil;
 
 import org.apache.mina.core.filterchain.IoFilterChainBuilder;
 import org.junit.Assert;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import quickfix.DefaultMessageFactory;
@@ -65,7 +66,7 @@ public class ATServer implements Runnable {
     private boolean usingMemoryStore;
     private AbstractSocketAcceptor acceptor;
     private int transportType = ProtocolFactory.SOCKET;
-    private int port = 9877;
+    private int port = 9878;//9877;
     private boolean threaded;
     private IoFilterChainBuilder ioFilterChainBuilder;
     private boolean useSSL;
@@ -108,8 +109,8 @@ public class ATServer implements Runnable {
             defaults.put("SocketTcpNoDelay", "Y");
             defaults.put("StartTime", "00:00:00");
             defaults.put("EndTime", "00:00:00");
-            defaults.put("SenderCompID", "ISLD");
-            defaults.put("TargetCompID", "TW");
+            defaults.put("SenderCompID", "FIXTRACKER");//ISLD");
+            defaults.put("TargetCompID", "CLIENT");//TW");
             defaults.put("JdbcDriver", "com.mysql.jdbc.Driver");
             defaults.put("JdbcURL", "jdbc:mysql://localhost/quickfix");
             defaults.put("JdbcUser", "quickfixj");
@@ -236,6 +237,7 @@ public class ATServer implements Runnable {
         }
     }
 
+   // @Test
     private void assertSessionIds() {
         // This is a strange place for this test, but it wasn't convenient
         // to put it elsewhere. Bug #153
@@ -244,9 +246,10 @@ public class ATServer implements Runnable {
             Assert.assertTrue(sessionID instanceof SessionID);
         }
     }
-
+    
+    
     public void acceptFixVersion(String beginString) {
-        SessionID sessionID = new SessionID(beginString, "ISLD", "TW");
+        SessionID sessionID = new SessionID(beginString, "FIXTRACKER","CLIENT");//ISLD", "TW");
         settings.setString(sessionID, "BeginString", beginString);
         // settings.setString(sessionID, "DataDictionary", "etc/" + beginString.replaceAll("\\.", "")
         //         + ".xml");

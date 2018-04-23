@@ -17,7 +17,7 @@
  * are not clear to you.
  ******************************************************************************/
 
-package osdi.test.acceptancetimer;
+package osdi.test.acceptance.clienttimer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,9 +52,9 @@ import java.util.concurrent.CountDownLatch;
 /**
  * @author <a href="mailto:jhensley@bonddesk.com">John Hensley</a>
  */
-public class TimerTestServer extends MessageCracker implements Application, Runnable {
+public class TimerTestOnDumbyServer extends MessageCracker implements Application, Runnable {
     SocketAcceptor acceptor;
-    private final Logger log = LoggerFactory.getLogger(TimerTestServer.class);
+    private final Logger log = LoggerFactory.getLogger(TimerTestOnDumbyServer.class);
     private final SessionSettings settings = new SessionSettings();
     private Thread serverThread;
     private final CountDownLatch initializationLatch = new CountDownLatch(1);
@@ -120,16 +120,16 @@ public class TimerTestServer extends MessageCracker implements Application, Runn
             defaults.put("EndTime", "00:00:00");
             defaults.put("SenderCompID", "ISLD");
             defaults.put("TargetCompID", "TW");
-            /*
-              defaults.put("SenderCompID", "CLIENT");//ISLD");
-              defaults.put("TargetCompID", "FIXTRACKER");
-             * */
+            
+              defaults.put("SenderCompID", "FIXTRACKER");//ISLD");
+              defaults.put("TargetCompID", "CLIENT");
+            // * */
             defaults.put("FileStorePath", "target/data/server");
             defaults.put("ValidateUserDefinedFields", "Y");
             defaults.put("ResetOnDisconnect", "Y");
             settings.set(defaults);
 
-            SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIX44, "ISLD", "TW");
+            SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIX44, "FIXTRACKER", "CLIENT");
             settings.setString(sessionID, "BeginString", FixVersions.BEGINSTRING_FIX44);
                         settings.setString(sessionID, "DataDictionary", FixVersions.BEGINSTRING_FIX44.replaceAll("\\.", "") + ".xml");
 
@@ -167,7 +167,7 @@ public class TimerTestServer extends MessageCracker implements Application, Runn
     }
 
     public static void main(String[] args) {
-        TimerTestServer server = new TimerTestServer();
+        TimerTestOnDumbyServer server = new TimerTestOnDumbyServer();
         server.run();
     }
 }

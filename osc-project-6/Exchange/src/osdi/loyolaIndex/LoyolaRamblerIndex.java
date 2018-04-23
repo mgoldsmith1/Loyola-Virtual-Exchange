@@ -62,7 +62,7 @@ public class LoyolaRamblerIndex {
     public MySwingWorker() {
 
       //random price added
-      fifo.add(2000.0);
+      fifo.add(2000.25);
     }
 
     @Override

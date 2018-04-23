@@ -102,7 +102,14 @@ public class Client {
         frame.setLocationRelativeTo(null);
     }
 
-    public synchronized void logon() {
+    /**
+	 * 
+	 */
+	public Client() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public synchronized void logon() {
     	
         if (!initiatorStarted) {
             try {

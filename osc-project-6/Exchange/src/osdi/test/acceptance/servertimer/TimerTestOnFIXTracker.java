@@ -17,27 +17,36 @@
  * are not clear to you.
  ******************************************************************************/
 
-package osdi.test.acceptancetimer;
+package osdi.test.acceptance.servertimer;
 
 import junit.framework.TestCase;
 import quickfix.ConfigError;
 import quickfix.SessionNotFound;
 
-public class TimerTest extends TestCase {
 
-    TimerTestServer server;
+/**
+ * TimerTests Tests Client.java in osdi.client.Client
+ * 
+ * @param none
+ * @author Matthew Goldsmith
+ */
+public class TimerTestOnFIXTracker extends TestCase {
+
+    TimerTestOnDumbyClient client;
 
     public void testAcceptorTimer() throws ConfigError, SessionNotFound, InterruptedException {
-        new TimerTestClient().run();
+        //new TimerTestClient().run();
+    	new osdi.tracker.FIXTracker().start();//.client.Client();
     }
 
     protected void setUp() throws Exception {
-        server = new TimerTestServer();
-        server.start();
-        server.waitForInitialization();
+    	client = new TimerTestOnDumbyClient();
+    	client.run();
+    	//client.
     }
 
     protected void tearDown() throws Exception {
-        server.stop();
+    	//client.
+    	//client.stop();
     }
 }
