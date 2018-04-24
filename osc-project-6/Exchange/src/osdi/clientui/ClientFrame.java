@@ -48,6 +48,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.Timer;
 
 import javax.management.JMException;
 import javax.swing.ImageIcon;
@@ -63,6 +64,8 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+
+import com.sun.awt.AWTUtilities;
 
 import osdi.client.Client;
 import osdi.client.ClientApplication;
@@ -191,17 +194,13 @@ public class ClientFrame extends JFrame {
 		window.setBackground(Color.WHITE);
 		window.setVisible(true);
 
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		//Timer to fade out the splash screen
+		Timer timer = new Timer();
+		timer.schedule(new FadeSplash(window),2500,5);
+		while(window.isShowing()) {
+			String delay = new String();
+			delay = "Waiting for splashscreen to fade.";
 		}
-		// JFrame frame = new JFrame();
-		// frame.add(new JLabel("Welcome"));
-		// frame.setLocationRelativeTo(null);
-		// frame.setVisible(true);
-		// frame.setSize(300,100);
-		window.dispose();
 	}
 
 	/**
