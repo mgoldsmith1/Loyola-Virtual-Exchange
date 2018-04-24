@@ -17,7 +17,7 @@
  * are not clear to you.
  ******************************************************************************/
 
-package osdi.test.acceptance.servertimer;
+package osdi.test.acceptance.server.timer;
 
 import junit.framework.TestCase;
 import quickfix.ConfigError;
@@ -32,7 +32,7 @@ import quickfix.SessionNotFound;
  */
 public class TimerTestOnFIXTracker extends TestCase {
 
-    TimerTestOnDumbyClient client;
+    TimerTestOnFakeClientAcceptor client;
 
     public void testAcceptorTimer() throws ConfigError, SessionNotFound, InterruptedException {
         //new TimerTestClient().run();
@@ -40,7 +40,7 @@ public class TimerTestOnFIXTracker extends TestCase {
     }
 
     protected void setUp() throws Exception {
-    	client = new TimerTestOnDumbyClient();
+    	client = new TimerTestOnFakeClientAcceptor();
     	client.run();
     	//client.
     }

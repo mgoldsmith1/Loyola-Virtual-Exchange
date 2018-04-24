@@ -17,7 +17,7 @@
  * are not clear to you.
  ******************************************************************************/
 
-package osdi.test.acceptance.clienttimer;
+package osdi.test.acceptance.client.timer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,9 +52,9 @@ import java.util.concurrent.CountDownLatch;
 /**
  * @author <a href="mailto:jhensley@bonddesk.com">John Hensley</a>
  */
-public class TimerTestOnDumbyServer extends MessageCracker implements Application, Runnable {
+public class TimerTestOnFakeServerAcceptor extends MessageCracker implements Application, Runnable {
     SocketAcceptor acceptor;
-    private final Logger log = LoggerFactory.getLogger(TimerTestOnDumbyServer.class);
+    private final Logger log = LoggerFactory.getLogger(TimerTestOnFakeServerAcceptor.class);
     private final SessionSettings settings = new SessionSettings();
     private Thread serverThread;
     private final CountDownLatch initializationLatch = new CountDownLatch(1);
@@ -167,7 +167,7 @@ public class TimerTestOnDumbyServer extends MessageCracker implements Applicatio
     }
 
     public static void main(String[] args) {
-        TimerTestOnDumbyServer server = new TimerTestOnDumbyServer();
+        TimerTestOnFakeServerAcceptor server = new TimerTestOnFakeServerAcceptor();
         server.run();
     }
 }

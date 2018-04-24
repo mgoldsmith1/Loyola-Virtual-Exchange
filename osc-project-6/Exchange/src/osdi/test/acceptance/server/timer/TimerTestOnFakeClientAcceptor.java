@@ -17,7 +17,7 @@
  * are not clear to you.
  ******************************************************************************/
 
-package osdi.test.acceptance.servertimer;
+package osdi.test.acceptance.server.timer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +53,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * @author <a href="mailto:jhensley@bonddesk.com">John Hensley</a>
  */
-public class TimerTestOnDumbyClient extends MessageCracker implements Application {
+public class TimerTestOnFakeClientAcceptor extends MessageCracker implements Application {
     private final Logger log = LoggerFactory.getLogger(osdi.tracker.FIXTracker.class);
     private final SessionSettings settings = new SessionSettings();
     private final CountDownLatch shutdownLatch = new CountDownLatch(1);
@@ -144,7 +144,7 @@ public class TimerTestOnDumbyClient extends MessageCracker implements Applicatio
 
     public static void main(String[] args) throws ConfigError, SessionNotFound,
             InterruptedException {
-        TimerTestOnDumbyClient ttc = new TimerTestOnDumbyClient();
+        TimerTestOnFakeClientAcceptor ttc = new TimerTestOnFakeClientAcceptor();
         ttc.run();
     }
 }
