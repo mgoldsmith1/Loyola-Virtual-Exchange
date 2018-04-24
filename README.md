@@ -151,7 +151,7 @@ $ ./install-run.sh
 
 ## Development ##
 
-* Writing tests
+* [Writing tests](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/tree/master/osc-project-6/Exchange/src/osdi/test)
 * Code review
 * Other guidelines
 * [Contribution.md](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/Contributions.md)
