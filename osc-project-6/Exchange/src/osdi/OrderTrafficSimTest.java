@@ -8,7 +8,7 @@ import osdi.exchange.ExchangeFeed;
 import osdi.exchange.NumberRange;
 
 
-public class App 
+public class OrderTrafficSimTest 
 {
     private static final long startValue = 1000L;
     private static final long thousand = 1000L;
@@ -17,9 +17,9 @@ public class App
     
     public static void main( String[] args )
     {
-    	 System.out.println("Starting the Exchange Feed... 3 seconds");
+    	 System.out.println("Starting Exchange Feed...");
     	 try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		 } catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
