@@ -9,7 +9,7 @@ Welcome to the Loyola Virtual Exchange!
 An open source exchange simulator that uses the FIX Protocol that allows users to trade Virtual Currency products on the Loyola Exchange. 
 
 ## How it works ## 
-![screenshot](https://user-images.githubusercontent.com/25426180/37797273-5e4d6b58-2de7-11e8-96e6-d7263c65271e.png)
+![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/ApplicationWorkspace.png)
 
 Loyola Virtual Currency Products:
 
