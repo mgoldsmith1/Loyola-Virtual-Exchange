@@ -95,30 +95,15 @@ Cloning Loyola-Virtual-Exchange with Git
 ```bash
 $ git clone https://github.com/mgoldsmith1/Loyola-Virtual-Exchange.git
 $ cd Loyola-Virtual-Exchange
-
 ```
 
 On OSX, Linux, and Windows from a terminal you can run the application via the following:
 ```bash
 $ ./run.sh
 ```
-To run the client and server individually:
 
-Step 1: Run the server:
-```bash 
-$ cd osc-project-6/Exchange/jars
-$ java -jar server.jar
-```
-Step 2: In the same directory run the client:
-```bash 
-$ java -jar client.jar
-```
-You can also create a script to run the server and client simultaneously using a pipeline:
-```bash 
-$ cd osc-project-6/Exchange/jars
-$ java -jar server.jar | java -jar client.jar
-```
-From any directory on your local machine, you can also automate the entire sequence of requirements/installation steps by running the install-run.sh file. (Note: If you already have Homebrew and Java 8 the installation will skip this steps, clone, then run the project):
+You can also automate the requirements/installation steps by running the install-run.sh file within your project workspace.
+The installation script will check your version of Java and install Java 8 if necessary.
 ```bash 
 $ ./install-run.sh
 ```
