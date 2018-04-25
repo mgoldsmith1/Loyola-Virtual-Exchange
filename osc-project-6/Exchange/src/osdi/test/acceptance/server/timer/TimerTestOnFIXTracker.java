@@ -32,7 +32,7 @@ import quickfix.SessionNotFound;
  */
 public class TimerTestOnFIXTracker extends TestCase {
 
-    TimerTestOnFakeClientAcceptor client;
+    TimerTestOnFakeClientInitiator client;
 
     public void testAcceptorTimer() throws ConfigError, SessionNotFound, InterruptedException {
         //new TimerTestClient().run();
@@ -40,7 +40,7 @@ public class TimerTestOnFIXTracker extends TestCase {
     }
 
     protected void setUp() throws Exception {
-    	client = new TimerTestOnFakeClientAcceptor();
+    	client = new TimerTestOnFakeClientInitiator();
     	client.run();
     	//client.
     }

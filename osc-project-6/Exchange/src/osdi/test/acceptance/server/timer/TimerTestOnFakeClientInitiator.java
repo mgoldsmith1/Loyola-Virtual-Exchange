@@ -53,7 +53,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * @author <a href="mailto:jhensley@bonddesk.com">John Hensley</a>
  */
-public class TimerTestOnFakeClientAcceptor extends MessageCracker implements Application {
+public class TimerTestOnFakeClientInitiator extends MessageCracker implements Application {
     private final Logger log = LoggerFactory.getLogger(osdi.tracker.FIXTracker.class);
     private final SessionSettings settings = new SessionSettings();
     private final CountDownLatch shutdownLatch = new CountDownLatch(1);
@@ -144,7 +144,7 @@ public class TimerTestOnFakeClientAcceptor extends MessageCracker implements App
 
     public static void main(String[] args) throws ConfigError, SessionNotFound,
             InterruptedException {
-        TimerTestOnFakeClientAcceptor ttc = new TimerTestOnFakeClientAcceptor();
+        TimerTestOnFakeClientInitiator ttc = new TimerTestOnFakeClientInitiator();
         ttc.run();
     }
 }
