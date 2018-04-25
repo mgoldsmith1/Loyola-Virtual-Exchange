@@ -91,7 +91,7 @@ public class TimerTestOnFakeClientAcceptor extends MessageCracker implements App
         defaults.put("ConnectionType", "initiator");
         defaults.put("HeartBtInt", "2");
         defaults.put("SocketConnectHost", "localhost");
-        defaults.put("SocketConnectPort", "19888");
+        defaults.put("SocketConnectPort", "9878");//19888");
         defaults.put("SocketTcpNoDelay", "Y");
         defaults.put("StartTime", "00:00:00");
         defaults.put("EndTime", "00:00:00");
@@ -101,8 +101,8 @@ public class TimerTestOnFakeClientAcceptor extends MessageCracker implements App
         defaults.put("ValidateUserDefinedFields", "Y");
         settings.set(defaults);
 
-        SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIX44, "FIXTRACKER", "CLIENT");
-        settings.setString(sessionID, "BeginString", FixVersions.BEGINSTRING_FIX44);
+        SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIX42, "FIXTRACKER", "CLIENT");
+        settings.setString(sessionID, "BeginString", FixVersions.BEGINSTRING_FIX42);
         settings.setString(sessionID, "DataDictionary", "FIX42.xml"); //FIX44.xml
 
         MessageStoreFactory storeFactory = new MemoryStoreFactory();

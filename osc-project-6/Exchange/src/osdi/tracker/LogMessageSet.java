@@ -10,6 +10,9 @@
 package osdi.tracker;
 
 import java.util.ArrayList;
+
+import osdi.locks.Semaphore;
+import osdi.locks.SpinLock;
 import osdi.trackerui.MessageTableModel;
 import quickfix.DataDictionary;
 import quickfix.Message;
@@ -21,13 +24,42 @@ public class LogMessageSet {
 	private ArrayList<LogMessage> messages = null;
 	private MessageTableModel model;
 	private int messageIndex = 0;
-	
+	  //private final int bufferSize;
+	    //private final java.util.Queue<T> queue;
+	    private final Semaphore full;
+	    private final Semaphore empty;
+	    private final SpinLock spinLock;
+
+	    
+
+	   /* @Override
+	    public void enqueue(T item) {
+	        empty.down();
+	        try {
+	            spinLock.lock();
+	            queue.add(item);
+	        } finally {
+	            spinLock.unlock();
+	        }
+	        full.up();
+	    }*/
 	public LogMessageSet() {
 		messages = new ArrayList<LogMessage>();
+		 // this.bufferSize =executions.getCount();
+          //  queue = new java.util.ArrayDeque<>();
+            full = new Semaphore(0);
+            empty = new Semaphore(100);
+            spinLock = new SpinLock();
+   // }
+		
 	}
 	
 	public void add(Message message, boolean incoming, 
                 DataDictionary dictionary, SessionID sessionID) {
+		empty.down();
+        try {
+        	spinLock.lock();
+        
 		messageIndex++;
 		LogMessage msg = 
                         new LogMessage(messageIndex, incoming, sessionID,
@@ -43,6 +75,10 @@ public class LogMessageSet {
                 }
 		//call back to the model to update
 		model.update();		
+        } finally {
+            spinLock.unlock();
+        }
+        full.up();
 	}
 	
 	public LogMessage getMessage( int i ) {

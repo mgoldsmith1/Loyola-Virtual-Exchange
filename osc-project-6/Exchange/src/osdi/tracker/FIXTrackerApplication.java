@@ -18,6 +18,8 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Random;
 
@@ -92,7 +94,7 @@ public class FIXTrackerApplication extends MessageCracker
     private IOIset iois = null;
     private OrderSet orders = null;
     private ExecutionSet executions = null;
-    private String _path = new File("").getAbsolutePath();
+   // private String _path = new File("").getAbsolutePath();
                                 
     private final int bufferSize;
     //private final java.util.Queue<T> queue;
@@ -285,11 +287,7 @@ public class FIXTrackerApplication extends MessageCracker
     }
     
     public void saveSettings() {
-        /*
-         URL resourceUrl = getClass().getResource("FIXTracker.cfg");
-File file = new File(resourceUrl.toURI()s);
-OutputStream output = new FileOutputStream(file);
-         * */
+
         try {
             URL resourceUrl = getClass().getResource("FIXTracker.cfg");
             File file = null;
@@ -882,12 +880,25 @@ OutputStream output = new FileOutputStream(file);
         Random r = new Random();
         return (r.nextInt((int)((max-min)*10+1))+min*10) / 25.0;
     }
+    private Collection<Thread> threads = new ArrayList<>();
     // Executor methods
     public void startExecutor( Integer delay, Integer partials ) {
         try {
             executor =  new Executor( delay, partials );
-            executorThread = new Thread(executor);
-            executorThread.start();
+            for(int i = 0; i < 2 ; i++){
+               executorThread = new Thread(executor);
+               //executorThread.start();
+               executorThread.setDaemon(true);
+            }
+            threads.add(executorThread);
+            
+     
+        //threads.add(counter);
+
+        for(Thread t : threads) {
+            t.setDaemon(true);
+            t.start();
+        }
         } catch (Exception e) {e.printStackTrace();}
         if (connected && executorStarted)
            executorStatus.setIcon(new javax.swing.ImageIcon(FIXTracker.class.getResource("green.gif")));

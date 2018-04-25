@@ -115,11 +115,11 @@ public class TimerTestOnFakeServerAcceptor extends MessageCracker implements App
         try {
             HashMap<Object, Object> defaults = new HashMap<>();
             defaults.put("ConnectionType", "acceptor");
-            defaults.put("SocketAcceptPort", "19888" );
+            defaults.put("SocketAcceptPort", "9878");//"19888" );
             defaults.put("StartTime", "00:00:00");
             defaults.put("EndTime", "00:00:00");
-            defaults.put("SenderCompID", "ISLD");
-            defaults.put("TargetCompID", "TW");
+            //defaults.put("SenderCompID", "ISLD");
+            //defaults.put("TargetCompID", "TW");
             
               defaults.put("SenderCompID", "FIXTRACKER");//ISLD");
               defaults.put("TargetCompID", "CLIENT");
@@ -129,9 +129,9 @@ public class TimerTestOnFakeServerAcceptor extends MessageCracker implements App
             defaults.put("ResetOnDisconnect", "Y");
             settings.set(defaults);
 
-            SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIX44, "FIXTRACKER", "CLIENT");
-            settings.setString(sessionID, "BeginString", FixVersions.BEGINSTRING_FIX44);
-                        settings.setString(sessionID, "DataDictionary", FixVersions.BEGINSTRING_FIX44.replaceAll("\\.", "") + ".xml");
+            SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIX42, "FIXTRACKER", "CLIENT");
+            settings.setString(sessionID, "BeginString", FixVersions.BEGINSTRING_FIX42);
+                        settings.setString(sessionID, "DataDictionary", FixVersions.BEGINSTRING_FIX42.replaceAll("\\.", "") + ".xml");
 
             MessageStoreFactory factory = new MemoryStoreFactory();
             acceptor = new SocketAcceptor(this, factory, settings, new SLF4JLogFactory(settings),
