@@ -54,6 +54,7 @@ import org.quickfixj.jmx.mbean.session.*;
 //import osdi.client.BanzaiApplication
 import osdi.clientui.ClientFrame;
 import osdi.configEditor.ConfigurationDocumentViewer;
+import osdi.test.acceptanceresynch.ResynchTestServer;
 
 /**
  * Entry point for the Client application.
@@ -66,9 +67,18 @@ public class Client {
     private boolean initiatorStarted = false;
     private Initiator initiator = null;
     private JFrame frame = null;
+    
+    private final Logger logger = LoggerFactory.getLogger(ResynchTestServer.class);
+    private final SessionSettings settings = new SessionSettings();
+   // private final CountDownLatch shutdownLatch = new CountDownLatch(1);
+    private boolean failed;
+
+    private boolean unsynchMode = false;
+    private boolean forceResynch = false;
 
     public Client(String[] args) throws Exception {
         InputStream inputStream = null;
+        
         if (args.length == 0) {
             inputStream = ConfigurationDocumentViewer.class.getResourceAsStream("config/client.cfg");
             		//Client.class.getResourceAsStream("client.cfg");
@@ -157,6 +167,21 @@ public class Client {
            // client.logon(); // don't move this 
         }
         shutdownLatch.await();
+    }
+    public void setUnsynchMode(boolean unsynchMode) {
+        this.unsynchMode = unsynchMode;
+    }
+
+    public boolean isUnsynchMode() {
+        return unsynchMode;
+    }
+
+    public void setForceResynch(boolean forceResynch) {
+        this.forceResynch = forceResynch;
+    }
+
+    public boolean isForceResynch() {
+        return forceResynch;
     }
 
 }

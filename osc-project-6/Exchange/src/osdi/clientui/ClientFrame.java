@@ -181,14 +181,14 @@ public class ClientFrame extends JFrame {
 		JWindow window = new JWindow();
 
 		window.getContentPane()
-				.add(new JLabel(new javax.swing.ImageIcon(Client.class.getResource("logo.png")), SwingConstants.CENTER))
+				.add(new JLabel(new javax.swing.ImageIcon(Client.class.getResource("testlogo.png")), SwingConstants.CENTER))
 				.setBackground(Color.WHITE);
-		// mediumsmall-res.png
+
 		window.setSize(1080, 600);
 
 		// previously deleted. we'll keep setBounds for now until
 		// we add one of the other images that are larger.
-		window.setBounds(500, 150, 300, 200);
+		window.setBounds(600, 500, 500, 400); //400
 		window.setLocationRelativeTo(null);
 
 		window.setBackground(Color.WHITE);
