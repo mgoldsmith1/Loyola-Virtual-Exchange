@@ -15,7 +15,7 @@ public class ExchangeFeed {
     private volatile long finishedTasks = 0;
     private final SpinLock finishedLock = new SpinLock();
 
-    private static int getThreadCount() {
+    public static int getThreadCount() {
         return Runtime.getRuntime().availableProcessors() * 4;
     }
 

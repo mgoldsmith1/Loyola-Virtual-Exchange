@@ -885,7 +885,7 @@ public class FIXTrackerApplication extends MessageCracker
     public void startExecutor( Integer delay, Integer partials ) {
         try {
             executor =  new Executor( delay, partials );
-            for(int i = 0; i < 2 ; i++){
+            for(int i = 0; i < osdi.exchange.ExchangeFeed.getThreadCount() ; i++){
                executorThread = new Thread(executor);
                //executorThread.start();
                executorThread.setDaemon(true);
