@@ -1,7 +1,7 @@
 /**
  * 
  */
-package osdi.loyolaIndex;
+package osdi.loyola.index;
 
 import java.util.List;
 

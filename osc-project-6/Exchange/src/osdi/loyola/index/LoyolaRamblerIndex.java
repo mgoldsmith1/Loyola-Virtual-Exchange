@@ -1,7 +1,9 @@
 /**
  * 
  */
-package osdi.loyolaIndex;
+package osdi.loyola.index;
+
+import java.text.DecimalFormat;
 
 /**
  * @author Mattata
@@ -12,16 +14,30 @@ import java.util.LinkedList;
 import java.util.List;
 import javax.swing.SwingWorker;
 
-import osdi.loyolaIndex.QuickChart;
+import osdi.collections.OrderQueue;
+import osdi.locks.Semaphore;
+import osdi.locks.SpinLock;
+import osdi.loyola.index.QuickChart;
 import osdi.zindex.chart.SwingWrapper;
 import osdi.zindex.chart.XYChart;
 
-/** Creates a real-time chart using SwingWorker */
-public class LoyolaRamblerIndex {
+/** Creates a real-time chart using SwingWorker 
+ * @param <T>*/
+public class LoyolaRamblerIndex  {
 
   MySwingWorker mySwingWorker;
   SwingWrapper<XYChart> sw;
   XYChart chart;
+  private DecimalFormat df = new DecimalFormat("0.00");
+ // private final int bufferSize;
+
+  private double[] array;
+  
+  public LoyolaRamblerIndex(){
+	  //this.bufferSize = bufferSize;
+    
+  }
+ 
 
   public static void main(String[] args) throws Exception {
 
@@ -42,7 +58,7 @@ public class LoyolaRamblerIndex {
             new double[] {0});
     chart.getStyler().setLegendVisible(false);
     chart.getStyler().setXAxisTicksVisible(false);
-
+   
     // Show it
     sw = new SwingWrapper<XYChart>(chart);
     sw.displayChart();
@@ -58,13 +74,18 @@ public class LoyolaRamblerIndex {
   private class MySwingWorker extends SwingWorker<Boolean, double[]> {
 
     final LinkedList<Double> fifo = new LinkedList<Double>();
-
+    
+    //00, .25, .50, .75, 1.00
+    public double quarterRound(double v){
+    	   return Math.floor(v*4)/4;
+    }
     public MySwingWorker() {
 
       //random price added
+    	
       fifo.add(2000.25);
     }
-
+    
     @Override
     protected Boolean doInBackground() throws Exception {
 
@@ -75,10 +96,13 @@ public class LoyolaRamblerIndex {
         if (fifo.size() > 500) {
           fifo.removeFirst();
         }
-
-        double[] array = new double[fifo.size()];
+       
+        array = new double[fifo.size()];
         for (int i = 0; i < fifo.size(); i++) {
-          array[i] = fifo.get(i);
+          //array[i] = fifo.get(i);
+          array[i] = Double.valueOf(df.format(fifo.get(i)));
+          array[i] = quarterRound(array[i]);
+          //String angleFormated = df.format(array[i]);
         }
         publish(array);
 
@@ -94,13 +118,19 @@ public class LoyolaRamblerIndex {
     }
 
     @Override
-    protected void process(List<double[]> chunks) {
-
+    protected void process(List<double[]> chunks)  {
+     
+      System.out.println("quote: " + array[0] );
+     // chart.setYAxisTitle("Quote: " + array[0]);
       System.out.println("number of chunks: " + chunks.size());
-
+      //MathUtils.SMA mer = new MathUtils.SMA(array.length);
+       
       double[] mostRecentDataSet = chunks.get(chunks.size() - 1);
 
       chart.updateXYSeries("randomWalk", null, mostRecentDataSet, null);
+      //double smaLRF = mer.compute(array[0]);
+      //System.out.println("sma quote: " + array[0] );
+     // chart.addSeries("randomWalk", smaLRF);
       sw.repaintChart();
 
       long start = System.currentTimeMillis();
@@ -113,4 +143,6 @@ public class LoyolaRamblerIndex {
       }
     }
   }
+
+
 }

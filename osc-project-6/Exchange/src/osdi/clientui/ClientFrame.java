@@ -20,7 +20,7 @@
 package osdi.clientui;
 
 import osdi.clientui.ClientPanel;
-import osdi.loyolaIndex.LoyolaRamblerIndex;
+import osdi.loyola.index.LoyolaRamblerIndex;
 import osdi.server.Server;
 import osdi.tracker.FIXTracker;
 import quickfix.ConfigError;
@@ -94,7 +94,7 @@ import java.awt.TextArea;
  *            executionTableModel, final osdi.client.ClientApplication
  *            application, Initiator initiator, SessionSettings settings
  * @return JFrame
- * @author Yang Li, Chris Elliott, Eric Lymberopoulos, Matthew Goldsmith,
+ * @author Matthew Goldsmith, Eric Lymberopoulos, Yang Li, Chris Elliott,
  *         Yonathan Gordon
  */
 public class ClientFrame extends JFrame {
@@ -243,8 +243,8 @@ public class ClientFrame extends JFrame {
 	 * 
 	 * @param none
 	 * @return nothing
-	 * @author Yang Li, Chris Elliott, Eric Lymberopoulos, Matthew Goldsmith,
-	 *         Yonathan Gordon
+	 * @author Matthew Goldsmith, Eric Lymberopoulos, Yang Li, Chris Elliott,
+     *         Yonathan Gordon
 	 */
 	private void displayMainMenuGUI() {
 

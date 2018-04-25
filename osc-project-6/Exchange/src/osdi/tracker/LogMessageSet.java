@@ -24,22 +24,22 @@ public class LogMessageSet {
 	private MessageTableModel model;
 	private int messageIndex = 0;
 
-	private final Semaphore full;
-	private final Semaphore empty;
-	private final SpinLock spinLock;
+	//private final Semaphore full;
+	//private final Semaphore empty;
+	//private final SpinLock spinLock;
 
 	public LogMessageSet() {
 		messages = new ArrayList<LogMessage>();
-		full = new Semaphore(0);
-		empty = new Semaphore(100);
-		spinLock = new SpinLock();
+		//full = new Semaphore(0);
+		//empty = new Semaphore(100);
+		//spinLock = new SpinLock();
 
 	}
 
 	public void add(Message message, boolean incoming, DataDictionary dictionary, SessionID sessionID) {
-		empty.down();
-		try {
-			spinLock.lock();
+		//empty.down();
+		//try {
+		//	spinLock.lock();
 			//below and before spinLock.unlock() is now atomic
 			messageIndex++;
 			LogMessage msg = new LogMessage(messageIndex, incoming, sessionID, message.toString(), dictionary);
@@ -54,10 +54,10 @@ public class LogMessageSet {
 			}
 			// call back to the model to update
 			model.update();
-		} finally {
-			spinLock.unlock();
-		}
-		full.up();
+		//} finally {
+		//	spinLock.unlock();
+		//}
+		//full.up();
 	}
 
 	public LogMessage getMessage(int i) {
