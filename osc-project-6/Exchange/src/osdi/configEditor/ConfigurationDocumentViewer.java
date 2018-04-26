@@ -39,12 +39,14 @@ public class ConfigurationDocumentViewer {
 		final JEditorPane document = new JEditorPane();
 		gui.add(new JScrollPane(document), BorderLayout.CENTER);
 		
-		URL classpath = ConfigurationDocumentViewer.class.getResource("DocumentViewer.class");
-		File location = new File("locationTarget");
+	//	URL classpath = ConfigurationDocumentViewer.class.getResource("DocumentViewer.class");
+		//File location = new File("locationTarget");
 	
 
 		fileChooser.setDialogTitle("Configuration Files");
-		fileChooser.setFileFilter(new CFGSearcher());
+		CFGSearcher cfgSearch = new CFGSearcher();
+	    cfgSearch.accept(new java.io.File(resourseURL.getPath()));
+		fileChooser.setFileFilter(cfgSearch);//new CFGSearcher());
 
 		JButton open = new JButton("Open");
 		JButton save = new JButton("Save");
