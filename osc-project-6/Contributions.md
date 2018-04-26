@@ -1,6 +1,6 @@
 # Contributing to Loyola-Virtual-Exchange
 
-# Make Pull Requests
+## Make Pull Requests
 https://services.github.com/on-demand/github-cli/open-pull-request-github
 
 If you're using the command line to make the pull-request:
