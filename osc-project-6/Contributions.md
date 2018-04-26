@@ -1,5 +1,8 @@
+# Contributing to Loyola-Virtual-Exchange
 
-# Make Pull Requests
+We welcome all your ideas. If you want to propose code change for improving the project, please discuss with our team in advance. 
+
+## Make Pull Requests
 https://services.github.com/on-demand/github-cli/open-pull-request-github
 
 If you're using the command line to make the pull-request:
@@ -27,3 +30,7 @@ $ git commit -a -m "Added a file and modified a file"
 $ git push origin update/XOPS-12345
 $ git status
 ```
+
+## Asking for help
+
+If you need help please join #MES IRC channel on freenode.
