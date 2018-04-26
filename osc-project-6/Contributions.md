@@ -1,3 +1,4 @@
+# Contributing to Loyola-Virtual-Exchange
 
 # Make Pull Requests
 https://services.github.com/on-demand/github-cli/open-pull-request-github
