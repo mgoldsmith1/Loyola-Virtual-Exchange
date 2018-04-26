@@ -18,7 +18,7 @@ public class CFGSearcher extends FileFilter{
 			return false;
 	}
 	public String getDescription() {
-		return "Configuration File Search Only";
+		return "Configuration File Search";
 	}
 	public String extension (File f) {
 		String fileName = f.getName();

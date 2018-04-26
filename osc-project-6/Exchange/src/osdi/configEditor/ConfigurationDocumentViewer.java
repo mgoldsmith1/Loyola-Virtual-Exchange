@@ -20,7 +20,7 @@ public class ConfigurationDocumentViewer {
 		URL resourseURL = null;
 		
 		try {
-		    resourseURL = getClass().getResource("config");
+			resourseURL = ConfigurationDocumentViewer.class.getResource("config");
 			File file = null;
 			
 		} catch (Exception e1) {
@@ -31,11 +31,9 @@ public class ConfigurationDocumentViewer {
 		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		final JFileChooser fileChooser = new JFileChooser();
 		
-		try {
-			fileChooser.setCurrentDirectory(new java.io.File( resourseURL.toURI()));
-		} catch (URISyntaxException e1) {
-			e1.printStackTrace();
-		}
+	    // 
+	    fileChooser.setCurrentDirectory( new java.io.File(resourseURL.getPath().toString())); //resourseURL.toString() // resourseURL.toURL(); <-- this one requires try catch
+		
 		JPanel gui = new JPanel(new BorderLayout());
 
 		final JEditorPane document = new JEditorPane();
