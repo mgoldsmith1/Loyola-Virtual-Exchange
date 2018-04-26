@@ -112,8 +112,8 @@ $ ./install-run.sh
 
 * Provides live updates of financial exchange information.
 * Integrate the Financial Information Exchange Application Programming Interface to:
-* Provides simulation of message/order routing.
-* Provide string responses for financial exchange quotes for clients to trade based on.
+    - Provide simulation of message/order routing.
+    - Provide string responses containing financial exchange quotes for clients to trade based on.
 
 ## Functional vs Non-Functional Requirements ##
 
