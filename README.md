@@ -126,7 +126,7 @@ $ ./install-run.sh
 
 ## Frequently Asked Questions (FAQ) ##
 * What is the Loyola-Virtual-Exchange?	
-   - _Loyola-Virtual-Exchange is an open source trading simulator that uses the FIX Protocol and will allow users to test market strategies._
+   - _Loyola-Virtual-Exchange is an open source exchange simulator that uses the FIX Protocol._
 
 * Which software license is Loyola-Virtual-Exchange licensed under?	
    - _Loyola-Virtual-Exchange is licensed under the GNU General Public License v3.0. Refer to the license document for more information._
