@@ -26,6 +26,8 @@ import osdi.clientui.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
 
 import javax.swing.JFrame;
@@ -41,6 +43,7 @@ import quickfix.Initiator;
 import quickfix.LogFactory;
 import quickfix.MessageFactory;
 import quickfix.MessageStoreFactory;
+import quickfix.RuntimeError;
 import quickfix.ScreenLogFactory;
 import quickfix.Session;
 import quickfix.SessionID;
@@ -124,6 +127,29 @@ public class Client {
         if (!initiatorStarted) {
             try {
                 initiator.start();
+
+                try {
+                    Timer timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        public void run() {
+                            //stop(true);
+                        	client.logout();
+                        }
+                    }, 10000);
+
+                    try {
+                        shutdownLatch.await();
+                    } catch (InterruptedException e) {
+                    }
+
+                    if (failed) {
+                        String message = "Heartbeat not sent";
+                        log.error(message);
+                        throw new RuntimeError(message);
+                    }
+                } finally {
+                    initiator.stop();
+                }
                 initiatorStarted = true;
            
             } catch (Exception e) {

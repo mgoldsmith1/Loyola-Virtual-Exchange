@@ -21,6 +21,9 @@ package osdi.test.acceptanceresynch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import osdi.client.Client;
+import osdi.tracker.FIXTracker;
 import quickfix.Application;
 import quickfix.ConfigError;
 import quickfix.DefaultMessageFactory;
@@ -51,7 +54,7 @@ import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
 
 public class ResynchTestClient extends MessageCracker implements Application {
-    private final Logger log = LoggerFactory.getLogger(ResynchTestServer.class);
+    private final Logger log = LoggerFactory.getLogger(FIXTracker.class);//ResynchTestServer.class);
     private final SessionSettings settings = new SessionSettings();
     private final CountDownLatch shutdownLatch = new CountDownLatch(1);
     private boolean failed;
@@ -100,26 +103,28 @@ public class ResynchTestClient extends MessageCracker implements Application {
     public void run() throws ConfigError, SessionNotFound, InterruptedException {
         HashMap<Object, Object> defaults = new HashMap<>();
         defaults.put("ConnectionType", "initiator");
-        defaults.put("HeartBtInt", "2");
+        defaults.put("HeartBtInt", "3");
         defaults.put("SocketConnectHost", "localhost");
-        defaults.put("SocketConnectPort", "19889");
+        defaults.put("SocketConnectPort", "9878");//"19889");
         defaults.put("SocketTcpNoDelay", "Y");
         defaults.put("ReconnectInterval", "3");
         defaults.put("StartTime", "00:00:00");
         defaults.put("EndTime", "00:00:00");
-        defaults.put("SenderCompID", "TW");
-        defaults.put("TargetCompID", "ISLD");
+        defaults.put("SenderCompID", "CLIENT");
+        defaults.put("TargetCompID", "FIXTRACKER");
         defaults.put("FileStorePath", "target/data/resynch_test");
         defaults.put("ValidateUserDefinedFields", "Y");
         settings.set(defaults);
 
-        SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIX44, "TW", "ISLD");
-        settings.setString(sessionID, "BeginString", FixVersions.BEGINSTRING_FIX44);
-        settings.setString(sessionID, "DataDictionary", "FIX44.xml");
+        SessionID sessionID = new SessionID(FixVersions.BEGINSTRING_FIX42, "CLIENT", "FIXTRACKER");
+        settings.setString(sessionID, "BeginString", FixVersions.BEGINSTRING_FIX42);
+        settings.setString(sessionID, "DataDictionary", "FIX42.xml");
 
         MessageStoreFactory storeFactory = new MemoryStoreFactory();
         Initiator initiator = new SocketInitiator(this, storeFactory, settings,
                 new SLF4JLogFactory(settings), new DefaultMessageFactory());
+       
+      
         initiator.start();
 
         try {
@@ -127,6 +132,8 @@ public class ResynchTestClient extends MessageCracker implements Application {
             timer.schedule(new TimerTask() {
                 public void run() {
                     stop(true);
+                	// Client a = new Client();
+                	//a.get().stop();
                 }
             }, 10000);
 

@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.concurrent.CountDownLatch;
 
 import osdi.client.Client;
 import osdi.configEditor.ConfigurationDocumentViewer;
@@ -41,6 +42,10 @@ public class FIXTracker {
 	private static LogMessageSet messages = null;
 	private String _path = new File("").getAbsolutePath();
 	private FileInputStream _fileInputStream;
+	private final CountDownLatch initializationLatch = new CountDownLatch(1);
+	private final CountDownLatch shutdownLatch = new CountDownLatch(1);
+	private boolean unsynchMode = false;
+	private boolean validateSequenceNumbers = true;
 
 	public FIXTracker() {
 		InputStream inputStream = null;
@@ -124,4 +129,22 @@ public class FIXTracker {
 			System.out.println(e);
 		}
 	}
+    public void setUnsynchMode(boolean unsynchMode) {
+        this.unsynchMode = unsynchMode;
+    }
+
+    public void setValidateSequenceNumbers(boolean validateSequenceNumbers) {
+        this.validateSequenceNumbers = validateSequenceNumbers;
+    }
+
+    public boolean isValidateSequenceNumbers() {
+        return validateSequenceNumbers;
+    }
+
+    public boolean isUnsynchMode() {
+        return unsynchMode;
+    }
+    public void waitForInitialization() throws InterruptedException {
+        initializationLatch.await();
+    }
 }

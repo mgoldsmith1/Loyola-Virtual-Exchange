@@ -1,11 +1,14 @@
 package osdi.zindex.chart;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 
+import osdi.clientui.ClientFrame;
 import osdi.zindex.chart.internal.chartpart.Chart;
 
 /**
@@ -20,6 +23,8 @@ public class SwingWrapper<T extends Chart> {
   private List<T> charts = new ArrayList<T>();
   private int numRows;
   private int numColumns;
+  private final JFrame frame = null;
+  private ClientFrame a = null;
 
   /**
    * Constructor
@@ -96,6 +101,17 @@ public class SwingWrapper<T extends Chart> {
               frame.setVisible(true);
             }
           });
+      frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent windowEvent) {
+				windowEvent.getSource().equals(false);
+				//osdi.loyola.index.LoyolaRamblerIndex a;
+				//a.
+				//a.stopChartWindowThread();
+				//this.getClass().st
+				
+				//System.exit(0);
+			}
+		});
     } catch (InterruptedException e) {
       e.printStackTrace();
     } catch (InvocationTargetException e) {

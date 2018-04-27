@@ -535,6 +535,15 @@ public class ClientFrame extends JFrame {
 
 		}
 	}
+	public void stopChartWindowThread(){
+		chartThread.interrupt();
+		try {
+			chartThread.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {

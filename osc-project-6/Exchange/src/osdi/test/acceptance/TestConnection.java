@@ -32,7 +32,12 @@ import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sun.security.ntlm.Client;
+
+import osdi.client.ClientApplication;
 import osdi.test.util.ReflectionUtil;
+import osdi.tracker.FIXTracker;
+import osdi.tracker.FIXTrackerApplication;
 import quickfix.mina.ProtocolFactory;
 import quickfix.mina.message.FIXProtocolCodecFactory;
 
@@ -52,7 +57,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestConnection {
     private static final HashMap<String, IoConnector> connectors = new HashMap<>();
-    private final Logger log = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());//FIXTrackerApplication.class);//getClass());
     private final HashMap<Integer, TestIoHandler> ioHandlers = new HashMap<>();
 
     public void sendMessage(int clientId, String message) throws IOException {

@@ -37,7 +37,7 @@ public class AcceptanceTestSuite extends TestSuite {
     private static final String acceptanceTestBaseDir = AcceptanceTestSuite.class.getClassLoader().getResource(acceptanceTestResourcePath).getPath();
 
     private static int transportType = ProtocolFactory.SOCKET;
-    private static int port = 9887;
+    private static int port = 9878;
 
     private final boolean skipSlowTests;
     private final boolean multithreaded;

@@ -23,6 +23,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import osdi.tracker.FIXTracker;
 import quickfix.ConfigError;
 import quickfix.SessionNotFound;
 
@@ -31,8 +32,8 @@ import quickfix.SessionNotFound;
  */
 public class ResynchTest {
 
-    ResynchTestServer server;
-
+   // ResynchTestServer server;
+FIXTracker server;
     @Test(timeout=30000)
     public void testAcceptorTimerSync() throws ConfigError, SessionNotFound, InterruptedException {
         server.start();
@@ -65,7 +66,7 @@ public class ResynchTest {
 
     @Before
     public void setUp() throws Exception {
-        server = new ResynchTestServer();
+        server = new FIXTracker();//ResynchTestServer();
     }
 
     @After
