@@ -152,9 +152,10 @@ $ ./install-run.sh
 ## Development ##
 
 * [Writing tests](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/tree/master/osc-project-6/Exchange/src/osdi/test)
+* [Contribution.md](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/Contributions.md)
+* [Getting Started](https://www.youtube.com/watch?v=5rIdDNUL5iU)
 * Code review
 * Other guidelines
-* [Contribution.md](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/Contributions.md)
 
 ## GPL v3.0 License ##
 
