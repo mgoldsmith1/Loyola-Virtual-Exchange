@@ -1,12 +1,10 @@
 package osdi;
 
-
 import java.time.Duration;
 import java.time.Instant;
 
 import osdi.exchange.ExchangeFeed;
 import osdi.exchange.NumberRange;
-
 
 public class OrderTrafficSimTest 
 {
@@ -19,11 +17,11 @@ public class OrderTrafficSimTest
     {
     	 System.out.println("Starting Exchange Feed...");
     	 try {
-			Thread.sleep(2000);
-		 } catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		 }
+	 	Thread.sleep(2000);
+         } catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+	        e.printStackTrace();
+         }
     	 NumberRange range = new NumberRange(startValue, endValue);
          Instant start = Instant.now();
          long numberOfPrimesInRange = new ExchangeFeed().iterateThroughOrders(range);
@@ -32,7 +30,6 @@ public class OrderTrafficSimTest
          System.out.println("Duration: " + Duration.between(start, end) + " to complete...");    
     }
 
-  
     private static void reportNumberOfPrimes(long count) {
         System.out.println("There are " + count + " primes in the range");
         System.out.flush();
