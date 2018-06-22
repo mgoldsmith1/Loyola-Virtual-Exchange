@@ -128,28 +128,7 @@ public class Client {
             try {
                 initiator.start();
 
-                try {
-                    Timer timer = new Timer();
-                    timer.schedule(new TimerTask() {
-                        public void run() {
-                            //stop(true);
-                        	client.logout();
-                        }
-                    }, 10000);
-
-                    try {
-                        shutdownLatch.await();
-                    } catch (InterruptedException e) {
-                    }
-
-                    if (failed) {
-                        String message = "Heartbeat not sent";
-                        log.error(message);
-                        throw new RuntimeError(message);
-                    }
-                } finally {
-                    initiator.stop();
-                }
+              
                 initiatorStarted = true;
            
             } catch (Exception e) {
