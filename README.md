@@ -5,9 +5,10 @@
 ##  Mission Statement ##
 
 Welcome to the Loyola Virtual Exchange!
+ 
+An open source financial exchange that uses the FIX Protocol to enable university students to create a market between universities and trade Virtual Currency products on an Exchange.  
 
-An open source exchange simulator that uses the FIX Protocol that allows users to trade Virtual Currency products on the Loyola Exchange. 
-
+For more information:
 ## How it works ## 
 ![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/ApplicationWorkspace.png)
 
