@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project osc-project-6">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/../.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/ResynchTestExchange.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="osdi.test.acceptanceresynch.ResynchTestClient"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.workspace}/osc-project-6/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/beansbinding-1.2.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/dataprovider.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/dom4j-2.1.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/jaxen-1.1.6.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/jcl-over-slf4j-1.7.25.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/je-2.1.30.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/junit-4.12.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/mina-core-2.0.16.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/mysql-connector-java-5.1.6-bin.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/proxool-0.9.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/proxool-cglib-0.9.1.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/quickfixj-all-2.0.0.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/quickfixj-core.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/quickfixj-msg-fix42.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/Saxon-HE-9.8.0-4.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/slf4j-api-1.7.25.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/slf4j-jdk14-1.7.25.jar"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/osc-project-6/Exchange/jars/swing-layout.jar"/>
+        </jar>
+    </target>
+</project>
