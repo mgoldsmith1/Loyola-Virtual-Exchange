@@ -1,4 +1,6 @@
 os: osx
 language: java
-script: ant build.xml
+script:
+  - ant test
+  - ./resync_unittest.sh
 
