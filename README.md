@@ -16,7 +16,7 @@ To install Java 8 you can do so with [Homebrew](https://brew.sh/)
 
 You can also run the following installation script to automate this process:
 ```bash 
-$ ./install-run.sh
+$ ./install.sh
 ```
 
 On OSX, Linux, and Windows you can run the application via the following:
