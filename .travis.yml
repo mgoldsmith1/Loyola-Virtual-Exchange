@@ -1,4 +1,5 @@
 os: osx
 language: java
 script: ant create_run_jar
+        ./resync_unittest.sh
 
