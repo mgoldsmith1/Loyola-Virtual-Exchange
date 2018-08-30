@@ -8,7 +8,7 @@
 *.so
 *.classpath
 *.project
-*.jar
+
 *.gitattributes
 
 # Packages #

@@ -1,1 +1,3 @@
 *.html linguist-language=Java
+*.js linguist-language=Javascript
+*.sh linguist-language=Shell
