@@ -1,3 +1,5 @@
+## Financial Products
+
 Virtual Currency Futures:
 ```bash
 Name:			        Symbol	    Contract	Expires	        Price	Change
