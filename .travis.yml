@@ -5,8 +5,7 @@ language:
   
 jdk: oraclejdk8
 
-script:
-  - ./resync_unittest.sh
+script: ant create_run_jar
 
 notifications:
   email: false
