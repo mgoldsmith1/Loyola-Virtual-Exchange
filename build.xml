@@ -4,8 +4,9 @@
     <!--ANT 1.7 is required                                        -->
     <!--define folder properties-->
     <property name="dir.buildfile" value="."/>
-    <property name="dir.workspace" value="${dir.buildfile}/../.."/>
-    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <property name="dir.workspace" value="${dir.workspace}/../.."/>
+    <property name="dir.jarfile" value="${dir.workspace}/osc-project-6/App"/>
+    <!--<property name="dir.jarfile" value="${dir.buildfile}"/> -->
     <target name="create_run_jar">
         <jar destfile="${dir.jarfile}/ResynchTestExchange.jar" filesetmanifest="mergewithoutmain">
             <manifest>
