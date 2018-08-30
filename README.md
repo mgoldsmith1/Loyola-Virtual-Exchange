@@ -8,18 +8,13 @@ Welcome to the Loyola Virtual Exchange.
  
 An open source financial exchange that uses the FIX Protocol to enable university students to create a market between universities and trade Virtual Currency products on the Loyola Exchange.  
 
-## How it works ## 
-![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/ApplicationWorkspace.png)
-
-[Loyola Virtual Currency Products](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/FinancialProducts.md)
-
 ## Installation Requirements ## 
 
 * JRE Java SE 8 v1.8.0_121
 
 To install Java 8 you can do so with [Homebrew](https://brew.sh/)
 
-You can run the following installation script to automate this process:
+You can also run the following installation script to automate this process:
 ```bash 
 $ ./install-run.sh
 ```
@@ -28,6 +23,12 @@ On OSX, Linux, and Windows from a terminal you can run the application via the f
 ```bash
 $ ./run.sh
 ```
+
+## How it works ## 
+[Loyola Virtual Currency Products](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/FinancialProducts.md)
+
+## UI
+![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/ApplicationWorkspace.png)
 
 ## Features List: ##
 
@@ -46,25 +47,25 @@ $ ./run.sh
 	- Provides delegation of an exchange feed.
 
 ## Frequently Asked Questions (FAQ) ##
+
+* How do I report a bug?	
+   - _On the project's Github page under the issues tab please submit a new issue ticket with a descriptive but brief subject line. In the main body please provide adequate information for contributors to solve the issue._
+   
+* Which platforms does Loyola-Virtual-Exchange support?	
+   - _Loyola-Virtual-Exchange is actively tested and supported on various 64 bit versions of Windows (7 and up) and macOS._
+
+* Who do I talk to? 
+   - _Repo owner or admin_
+   - _Other community members or team contact_
+
 * What is the Loyola-Virtual-Exchange?	
    - _Loyola-Virtual-Exchange is an open source exchange simulator that uses the FIX Protocol._
 
 * Which software license is Loyola-Virtual-Exchange licensed under?	
    - _Loyola-Virtual-Exchange is licensed under the GNU General Public License v3.0. Refer to the license document for more information._
 
-* Which platforms does Loyola-Virtual-Exchange support?	
-   - _Loyola-Virtual-Exchange is actively tested and supported on various 64 bit versions of Windows (7 and up) and macOS._
-
 * Who made Loyola-Virtual-Exchange? 	
    - _Group6 from COMP312/412 course. The list of contributors can be found on GitHub._
-
-* How do I report a bug?	
-   - _On the project's Github page under the issues tab please submit a new issue ticket with a descriptive but brief subject line. In the main body please provide adequate information for contributors to solve the issue._
-
-* Who do I talk to? 
-   - _Repo owner or admin_
-   - _Other community members or team contact_
-
 
 ## IRC channel ##
 
