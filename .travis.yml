@@ -1,7 +1,4 @@
 os: osx
-
 language: java
-
-script: - cd osc-project-6/App
-        - ant create_run_jar
+script: ant main
 
