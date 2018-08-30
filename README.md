@@ -11,8 +11,7 @@ An open source financial exchange that uses the FIX Protocol to enable universit
 ## How it works ## 
 ![screenshot](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/ApplicationWorkspace.png)
 
-[Loyola Virtual Currency Products]()
-
+[Loyola Virtual Currency Products](https://github.com/mgoldsmith1/Loyola-Virtual-Exchange/blob/master/osc-project-6/FinancialProducts.md)
 
 ## Installation Requirements ## 
 
