@@ -1,0 +1,13 @@
+os: osx
+
+compiler:
+ - gcc
+
+language:
+  - java
+
+script:
+  - ./resync_unittest.sh
+
+notifications:
+  email: false
